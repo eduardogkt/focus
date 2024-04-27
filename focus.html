@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta lang="en">
+  <link rel="stylesheet" type="text/css" href="css/reset.css">
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+  <title>focus</title>
+</head>
+<body>
+  <div class="container" id="page-content">
+    <div class="layout">
+      <div class="background" style="visibility: hidden">
+        <div class="object" id="o1"></div>
+        <div class="object" id="o2"></div>
+        <div class="object" id="o3"></div>
+      </div>
+
+      <div class="main">
+        <section class="timer">
+          <div class="timer-mode">
+            <button class="button button-timer" id="active">focus</button>
+            <button class="button button-timer">short break</button>
+            <button class="button button-timer">long break</button>
+          </div>
+          <div class="timer-clock">
+            50:00
+          </div>
+          <div class="timer-actions">
+            <button class="button button-timer" id="start">start</button>
+            <button class="button" id="reset">
+              <img src="/resources/icons/replay_black_24dp.svg" alt="sound button">
+            </button>
+          </div>
+        </section>
+
+        <section class="menu">
+          <button class="button button-menu" id="music-button">
+            <img src="/resources/icons/music_note_black_24dp.svg" alt="music button">
+          </button>
+          <button class="button button-menu" id="screen-button">
+            <img src="/resources/icons/fullscreen_black_24dp.svg" alt="full screen button">
+          </button>
+          <button class="button button-menu" id="stats-button">
+            <img src="/resources/icons/settings_black_24dp.svg" alt="stats button">
+          </button>
+          <button class="button button-menu" id="settings-button">
+            <img src="/resources/icons/graph_black_24dp.svg" alt="settings button">
+          </button>
+          <button class="button button-menu" id="tasklist-button">
+            <img src="/resources/icons/checklist_black_24dp.svg" alt="tasklist button">
+          </button>
+        </section>
+      </div>
+
+      <div class="panel">        
+        <section class="music" id="music-panel">
+          <div class="panel-title">
+            <div class="icon-wrapper">
+              <img src="resources/icons/music_note_black_24dp.svg" alt="tasklist icon">
+            </div>
+            <h2>Music</h2>
+          </div>
+          
+          <div class="playlist">
+            
+          </div>
+        
+          <div class="sounds">
+            
+          </div>
+        </section>
+      </div>
+
+      <div class="panel">
+        <section class="tasklist" id="tasklist-panel">
+          <div class="panel-title">
+            <div class="icon-wrapper">
+              <img src="resources/icons/checklist_black_24dp.svg" alt="tasklist icon">
+            </div>
+            <h2>Task List</h2>
+          </div>
+          <div class="task-list">
+            
+          </div>
+          <button class="button button-new-task">
+            <div><img src="/resources/icons/add_black_24dp.svg" alt="stats button"></div>
+            Add a new task
+          </button>
+        </section>
+      </div>      
+    </div>
+  </div>
+
+  <script src="index.js"></script>
+</body>
+</html>
