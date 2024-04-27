@@ -93,7 +93,9 @@ body {
 .timer,
 .button-menu,
 .tasklist,
-.music {
+.music,
+.button-new-task,
+.task-item {
   background-color: var(--fill);
   backdrop-filter: var(--blur);
   box-shadow: var(--shadow);
@@ -151,22 +153,51 @@ body {
 }
 
 .panel {
-  min-width: 300px;
   grid-row: 2;
   visibility: visible;
 }
 
 .tasklist,
 .music {
-  display: flex;
-  flex-direction: column;
+  display: block;
 
   padding: 1.5rem;
   min-width: 300px;
-  min-height: 500px;
+  height: 500px;
+  overflow: scroll;
 }
 
-.tasklist {
+.panel-title {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 2rem;
+}
+
+.panel-title h2 {
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.task-list {
+}
+
+.button-new-task,
+.task-item {
+  display: flex;
+  align-items: center;
+  padding: 0.8rem 0.9rem;
+  margin-bottom: 1rem;
+  font-size: 0.8rem;
+}
+
+.task-item {
+  justify-content: space-between;
+}
+
+.button-new-task {
+  gap: 0.5rem;
+  width: 250px;
 }
 
 .music {
