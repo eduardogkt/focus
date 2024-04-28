@@ -20,7 +20,7 @@ musicButton.addEventListener("click", function() {
     }
 });
 
-const screenButton = document.getElementById("screen-button");
+const screenButton = document.getElementById("fullscreen-button");
 const layout = document.getElementById("page-content");
 
 screenButton.addEventListener("click", function() {
@@ -47,3 +47,62 @@ screenButton.addEventListener("click", function() {
         }
     }
 });
+
+// botão de som
+// adiciona um ouvinte de eventos de clique em todos os botões com a classe "button-sound"
+document.querySelectorAll(".button-sound").forEach(button => {
+    button.addEventListener("click", function() {
+        const focusEffect = "active-button";
+
+        // se o botão clicado ja tiver ativo, retira efeito de foco
+        if (button.classList.contains(focusEffect)) {
+            button.classList.remove(focusEffect);
+            stopSound(button.querySelector("audio").id);
+        }
+        else {
+            // remove classe especial de todos os botões
+            document.querySelectorAll(".button-sound").forEach(button => {
+                button.classList.remove(focusEffect);
+                stopSound(button.querySelector("audio").id);
+            });
+
+            // adiciona a classe especial apenas ao botão clicado
+            button.classList.add(focusEffect);
+            playSound(button.querySelector("audio").id);
+        }
+    });
+});
+
+function playSound(soundId) {
+    var audio = document.getElementById(soundId);
+    audio.setAttribute("loop", "true");
+    audio.play();
+}
+
+function stopSound(soundId) {
+    var audio = document.getElementById(soundId);
+    audio.pause();
+    audio.currentTime = 0;
+}
+
+function changeSoundVolume(soundId, volume) {
+    var audio = document.getElementById(soundId);
+    audio.volume = volume / 100;
+}
+
+const volumeSllider = document.getElementById("volume-slider");
+volumeSllider.addEventListener("input", function() {
+    const value = volumeSllider.value;
+    const fill = `linear-gradient(to right, var(--fill-slider) ${value}%, var(--fill) ${value}%)`
+    
+    volumeSllider.style.background = fill;
+
+    // muda o volume do som
+    document.querySelectorAll(".button-sound").forEach(sound => {
+        const focusEffect = "active-button";
+        
+        if (sound.classList.contains(focusEffect)) {
+            changeSoundVolume(sound.querySelector("audio").id, value);
+        }   
+    });
+})

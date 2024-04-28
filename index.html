@@ -18,7 +18,24 @@
       </div>
 
       <div class="main">
-        <section class="timer">
+        <section class="menu">
+          <button class="button button-menu glass-effect" id="music-button">
+            <img src="resources/icons/music_note_icon.svg" alt="music button">
+          </button>
+          <button class="button button-menu glass-effect" id="fullscreen-button">
+            <img src="resources/icons/fullscreen_icon.svg" alt="fullscreen button">
+          </button>
+          <button class="button button-menu glass-effect" id="stats-button">
+            <img src="resources/icons/settings_icon.svg" alt="stats button">
+          </button>
+          <button class="button button-menu glass-effect" id="settings-button">
+            <img src="resources/icons/graph_icon.svg" alt="settings button">
+          </button>
+          <button class="button button-menu glass-effect" id="tasklist-button">
+            <img src="resources/icons/checklist_icon.svg" alt="tasklist button">
+          </button>
+        </section>
+        <section class="timer-panel glass-effect">
           <div class="timer-mode">
             <button class="button button-timer" id="active">focus</button>
             <button class="button button-timer">short break</button>
@@ -28,14 +45,14 @@
             50:00
           </div>
           <div class="timer-actions">
-            <button class="button button-timer" id="start">start</button>
-            <button class="button" id="reset">
-              <img src="resources/icons/replay_black_24dp.svg" alt="sound button">
+            <button class="button button-timer" id="start-button">start</button>
+            <button class="button" id="reset-button">
+              <img src="resources/icons/replay_icon.svg" alt="replay button">
             </button>
           </div>
         </section>
 
-        <section class="menu">
+        <!-- <section class="menu">
           <button class="button button-menu" id="music-button">
             <img src="resources/icons/music_note_black_24dp.svg" alt="music button">
           </button>
@@ -51,51 +68,74 @@
           <button class="button button-menu" id="tasklist-button">
             <img src="resources/icons/checklist_black_24dp.svg" alt="tasklist button">
           </button>
-        </section>
+        </section> -->
       </div>
 
       <div class="panel">        
-        <section class="music" id="music-panel">
-          <div class="panel-title">
-            <img src="resources/icons/music_note_black_24dp.svg" alt="tasklist icon">
-            <h2>Music</h2>
+        <section class="music-panel glass-effect" id="music-panel">
+          <div class="panel-header">
+            <img src="resources/icons/music_note_icon.svg" alt="tasklist icon">
+            <h2 class="panel-title">Music</h2>
           </div>
           
-          <div class="playlist">
-            
+          <div class="playlist panel-section">
+            <h3 class="panel-subtitle">Playlist</h3>
+            <div class="playlist-container">
+              spotify playlist embed.
+            </div>
           </div>
         
-          <div class="sounds">
-            
+          <div class="sounds panel-section">
+            <h3 class="panel-subtitle">Sounds</h3>
+            <div class="menu">
+              <button class="button button-menu button-sound glass-effect" id="fire-sound-button">
+                <img src="resources/icons/fire_icon.svg" alt="fire sound button">
+                <audio id="fire-sound" src="resources/audio/fireplace.mp3"></audio>
+              </button>
+              <button class="button button-menu button-sound glass-effect" id="rain-sound-button">
+                <img src="resources/icons/rain_icon.svg" alt="rain sound button">
+                <audio id="rain-sound" src="resources/audio/rain.mp3"></audio>
+              </button>
+              <button class="button button-menu button-sound glass-effect" id="wind-sound-button">
+                <img src="resources/icons/wind_icon.svg" alt="wind sound button">
+                <audio id="wind-sound" src="resources/audio/fireplace.mp3"></audio>
+              </button>
+              <button class="button button-menu button-sound glass-effect" id="cafe-sound-button">
+                <img src="resources/icons/cafe_icon.svg" alt="cafe sound button">
+                <audio id="cafe-sound" src="resources/audio/cafe.mp3"></audio>
+              </button>
+            </div>
+            <div class="volume-controller">
+              <input class="input-range" id="volume-slider" type="range" min="0" max="100" value="50" step="1" >
+            </div>
           </div>
         </section>
       </div>
 
       <div class="panel">
-        <section class="tasklist" id="tasklist-panel">
-
-          <div class="panel-title">
-            <img src="resources/icons/checklist_black_24dp.svg" alt="tasklist icon">
-            <h2>Task List</h2>
+        <section class="tasklist-panel glass-effect" id="tasklist-panel">
+          <div class="panel-header">
+            <img src="resources/icons/checklist_icon.svg" alt="tasklist icon">
+            <h2 class="panel-title">Task List</h2>
           </div>
 
           <div class="task-list">
-            <div class="task-item">
+            <div class="task-item glass-effect">
               <div class="task-content">
                 Task 1
               </div>
-              <img src="resources/icons/more_horiz_white_18dp.svg" alt="task options">
+              <img src="resources/icons/options_horiz_icon.svg" alt="task options">
             </div>
-            <div class="task-item">
+            <div class="task-item glass-effect">
               <div class="task-content">
                 Task 2
               </div>
-              <img src="resources/icons/more_horiz_white_18dp.svg" alt="task options">
+              <img src="resources/icons/options_horiz_icon.svg" alt="task options">
             </div>
           </div>
 
-          <button class="button button-new-task">
-            <div><img src="resources/icons/add_black_24dp.svg" alt="add button"></div>
+          <button class="button button-new-task glass-effect">
+            <div><img src="resources/icons/add_icon.svg" alt="add button"></div>
             Add a new task
           </button>
 
