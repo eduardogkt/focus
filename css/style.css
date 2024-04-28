@@ -61,7 +61,7 @@ body {
 }
 
 .center {
-  justify-content: center;
+  justify-content: start;
   align-items: center;
   gap: 1.5rem;
   grid-column: 2;
@@ -103,6 +103,10 @@ body {
   border: 1px solid white;
   border-radius: 25px;
   box-shadow: var(--shadow);
+}
+
+.button-timer:hover {
+  border: 1px solid white;
 }
 
 .button-menu {
@@ -179,6 +183,15 @@ body {
   width: 100%;
 }
 
+.panel {
+  display: block;
+  display: none;
+  padding: 1.5rem;
+  min-width: 360px;
+  height: 550px;
+  overflow: scroll;
+}
+
 .panel-header {
   display: flex;
   align-items: center;
@@ -192,23 +205,13 @@ body {
 }
 
 .panel-subtitle {
-  font-size: 1.1rem;
+  font-size: 1rem;
   font-weight: 600;
   margin-bottom: 1.5rem;
 }
 
 .panel-section {
   /* margin-bottom: 2rem; */
-}
-
-.panel {
-  visibility: visible;
-  display: block;
-
-  padding: 1.5rem;
-  min-width: 360px;
-  height: 550px;
-  overflow: scroll;
 }
 
 .task-list {
@@ -221,6 +224,7 @@ body {
   padding: 0.8rem 0.9rem;
   margin-bottom: 1rem;
   font-size: 0.8rem;
+  /* width: max-content; */
 }
 
 .task-item {
@@ -229,7 +233,9 @@ body {
 
 .button-new-task {
   gap: 0.5rem;
-  width: 250px;
+}
+
+.button-new-task {
 }
 
 .music-panel {
@@ -245,27 +251,32 @@ body {
 }
 
 .sounds .menu {
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem;
 }
 
 .volume-slider {
   display: flex;
   justify-content: center;
-  padding: 0.8rem;
+  align-items: center;
+  gap: 0.8rem;
+  margin: 0 0.8rem;
 }
 
 .input-range {
+  --border-width: 1px;
   -webkit-appearance: none;
-  -moz-apperance: none;
+  -moz-appearance: none;
   appearance: none;
   width: 100%;
   height: 1.1rem;
-  background: linear-gradient(to right, var(--fill-slider) 50% , var(--fill) 50%);
+  background: linear-gradient(to right, var(--fill-slider) 0, var(--fill-slider) calc(50% - 1px), var(--fill) calc(50% + 1px), var(--fill) 100%);
+  background-size: calc(100% + 2 * var(--border-width)) 100%;
   border: var(--border);
   border-radius: 10px;
   outline: none;
   cursor: pointer;
   overflow: hidden;
+  margin: 0 -20px;
 }
 
 .input-range::-webkit-slider-thumb {
@@ -282,10 +293,9 @@ body {
   border: 0;
 }
 
-.input-range::-ms-thumb {
-  width: 0;
-  border: 0;
-}
+/* .input-range::-moz-range-track {
+  border-radius: 10px;
+} */
 
 #stats {
   grid-row: 3;

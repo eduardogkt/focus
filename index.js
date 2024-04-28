@@ -1,40 +1,26 @@
-const tasklistButton = document.getElementById("tasklist-button");
-const tasklistPanel = document.getElementById("tasklist-panel");
+// botões de painel do menu
+function togglePanel(buttonId, panelId) {
+    const button = document.getElementById(buttonId);
+    const panel = document.getElementById(panelId);
 
-tasklistButton.addEventListener("click", function() {
-    if (tasklistPanel.style.display === "none") {
-        tasklistPanel.style.display = "block";
-    } else {
-        tasklistPanel.style.display = "none";
-    }
-});
+    button.addEventListener("click", function() {
+        if (panel.style.display === "block") {
+            panel.style.display = "none";
+        } else {
+            panel.style.display = "block";
+        }
+    });
+}
 
-const musicButton = document.getElementById("music-button");
-const musicPanel = document.getElementById("music-panel");
+togglePanel("tasklist-button", "tasklist-panel");
+togglePanel("music-button", "music-panel");
+togglePanel("stats-button", "stats-panel");
 
-musicButton.addEventListener("click", function() {
-    if (musicPanel.style.display === "none") {
-        musicPanel.style.display = "block";
-    } else {
-        musicPanel.style.display = "none";
-    }
-});
-
-const statsButton = document.getElementById("stats-button");
-const statsPanel = document.getElementById("stats-panel");
-
-statsButton.addEventListener("click", function() {
-    if (statsPanel.style.display === "none") {
-        statsPanel.style.display = "block";
-    } else {
-        statsPanel.style.display = "none";
-    }
-});
-
-const screenButton = document.getElementById("fullscreen-button");
+// botão de tela cheia
+const fullscreenButton = document.getElementById("fullscreen-button");
 const layout = document.getElementById("page-content");
 
-screenButton.addEventListener("click", function() {
+fullscreenButton.addEventListener("click", function() {
     // entrando no modo de tela cheia
     if (!document.fullscreenElement) {
         if (layout.requestFullscreen) {
@@ -46,6 +32,7 @@ screenButton.addEventListener("click", function() {
         } else if (layout.msRequestFullscreen) {
             layout.msRequestFullscreen();
         }
+        fullscreenButton.querySelector("img").setAttribute("src", "resources/icons/fullscreen_exit_icon.svg");
     } else { // saindo do modo tela cheia
         if (document.exitFullscreen) {
             document.exitFullscreen();
@@ -56,10 +43,12 @@ screenButton.addEventListener("click", function() {
         } else if (document.msExitFullscreen) {
             document.msExitFullscreen();
         }
+        fullscreenButton.querySelector("img").setAttribute("src", "resources/icons/fullscreen_icon.svg");
+
     }
 });
 
-// botão de som
+// botões de som
 // adiciona um ouvinte de eventos de clique em todos os botões com a classe "button-sound"
 document.querySelectorAll(".button-sound").forEach(button => {
     button.addEventListener("click", function() {
@@ -103,10 +92,13 @@ function changeSoundVolume(soundId, volume) {
 
 const volumeSllider = document.getElementById("volume-slider");
 volumeSllider.addEventListener("input", function() {
+    // salva o campo de background-size
+    const backgroundSize = volumeSllider.style.backgroundSize;
     const value = volumeSllider.value;
-    const fill = `linear-gradient(to right, var(--fill-slider) ${value}%, var(--fill) ${value}%)`
+    const fill = `linear-gradient(to right,var(--fill-slider) 0, var(--fill-slider) ${value}%, var(--fill) ${value}%, var(--fill) 100%)`
     
     volumeSllider.style.background = fill;
+    volumeSllider.style.backgroundSize = backgroundSize;
 
     // muda o volume do som
     document.querySelectorAll(".button-sound").forEach(sound => {
