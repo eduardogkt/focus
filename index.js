@@ -2,10 +2,10 @@ const tasklistButton = document.getElementById("tasklist-button");
 const tasklistPanel = document.getElementById("tasklist-panel");
 
 tasklistButton.addEventListener("click", function() {
-    if (tasklistPanel.style.visibility === "hidden") {
-        tasklistPanel.style.visibility = "visible";
+    if (tasklistPanel.style.display === "none") {
+        tasklistPanel.style.display = "block";
     } else {
-        tasklistPanel.style.visibility = "hidden";
+        tasklistPanel.style.display = "none";
     }
 });
 
@@ -13,10 +13,21 @@ const musicButton = document.getElementById("music-button");
 const musicPanel = document.getElementById("music-panel");
 
 musicButton.addEventListener("click", function() {
-    if (musicPanel.style.visibility === "hidden") {
-        musicPanel.style.visibility = "visible";
+    if (musicPanel.style.display === "none") {
+        musicPanel.style.display = "block";
     } else {
-        musicPanel.style.visibility = "hidden";
+        musicPanel.style.display = "none";
+    }
+});
+
+const statsButton = document.getElementById("stats-button");
+const statsPanel = document.getElementById("stats-panel");
+
+statsButton.addEventListener("click", function() {
+    if (statsPanel.style.display === "none") {
+        statsPanel.style.display = "block";
+    } else {
+        statsPanel.style.display = "none";
     }
 });
 

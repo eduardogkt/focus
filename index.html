@@ -17,24 +17,25 @@
         <div class="object" id="o3"></div>
       </div>
 
-      <div class="main">
+      <div class="center">
         <section class="menu">
           <button class="button button-menu glass-effect" id="music-button">
             <img src="resources/icons/music_note_icon.svg" alt="music button">
           </button>
-          <button class="button button-menu glass-effect" id="fullscreen-button">
-            <img src="resources/icons/fullscreen_icon.svg" alt="fullscreen button">
-          </button>
           <button class="button button-menu glass-effect" id="stats-button">
-            <img src="resources/icons/settings_icon.svg" alt="stats button">
+            <img src="resources/icons/graph_icon.svg" alt="stats button">
           </button>
           <button class="button button-menu glass-effect" id="settings-button">
-            <img src="resources/icons/graph_icon.svg" alt="settings button">
+            <img src="resources/icons/settings_icon.svg" alt="settings button">
+          </button>
+          <button class="button button-menu glass-effect" id="fullscreen-button">
+            <img src="resources/icons/fullscreen_icon.svg" alt="fullscreen button">
           </button>
           <button class="button button-menu glass-effect" id="tasklist-button">
             <img src="resources/icons/checklist_icon.svg" alt="tasklist button">
           </button>
         </section>
+
         <section class="timer-panel glass-effect">
           <div class="timer-mode">
             <button class="button button-timer" id="active">focus</button>
@@ -51,28 +52,10 @@
             </button>
           </div>
         </section>
-
-        <!-- <section class="menu">
-          <button class="button button-menu" id="music-button">
-            <img src="resources/icons/music_note_black_24dp.svg" alt="music button">
-          </button>
-          <button class="button button-menu" id="screen-button">
-            <img src="resources/icons/fullscreen_black_24dp.svg" alt="full screen button">
-          </button>
-          <button class="button button-menu" id="stats-button">
-            <img src="resources/icons/settings_black_24dp.svg" alt="stats button">
-          </button>
-          <button class="button button-menu" id="settings-button">
-            <img src="resources/icons/graph_black_24dp.svg" alt="settings button">
-          </button>
-          <button class="button button-menu" id="tasklist-button">
-            <img src="resources/icons/checklist_black_24dp.svg" alt="tasklist button">
-          </button>
-        </section> -->
       </div>
 
-      <div class="panel">        
-        <section class="music-panel glass-effect" id="music-panel">
+      <div class="left">
+        <section class="panel music-panel glass-effect" id="music-panel">
           <div class="panel-header">
             <img src="resources/icons/music_note_icon.svg" alt="tasklist icon">
             <h2 class="panel-title">Music</h2>
@@ -97,23 +80,35 @@
                 <audio id="rain-sound" src="resources/audio/rain.mp3"></audio>
               </button>
               <button class="button button-menu button-sound glass-effect" id="wind-sound-button">
-                <img src="resources/icons/wind_icon.svg" alt="wind sound button">
-                <audio id="wind-sound" src="resources/audio/fireplace.mp3"></audio>
+                <img src="resources/icons/waves_icon.svg" alt="wind sound button">
+                <audio id="wind-sound" src="resources/audio/ocean.mp3"></audio>
               </button>
               <button class="button button-menu button-sound glass-effect" id="cafe-sound-button">
                 <img src="resources/icons/cafe_icon.svg" alt="cafe sound button">
                 <audio id="cafe-sound" src="resources/audio/cafe.mp3"></audio>
               </button>
             </div>
-            <div class="volume-controller">
+            <div class="volume-slider">
               <input class="input-range" id="volume-slider" type="range" min="0" max="100" value="50" step="1" >
             </div>
           </div>
         </section>
+
+        <section class="panel stats-panel glass-effect" id="stats-panel">
+          <div class="panel-header">
+            <img src="resources/icons/graph_icon.svg" alt="stats icon">
+            <h2 class="panel-title">Statistics</h2>
+          </div>
+          
+          <div class="playlist panel-section">
+            <h3 class="panel-subtitle">Focus Time</h3>
+            <h3 class="panel-subtitle">Sprints</h3>
+          </div>
+        </section>
       </div>
 
-      <div class="panel">
-        <section class="tasklist-panel glass-effect" id="tasklist-panel">
+      <div class="right">
+        <section class="panel tasklist-panel panel-content glass-effect" id="tasklist-panel">
           <div class="panel-header">
             <img src="resources/icons/checklist_icon.svg" alt="tasklist icon">
             <h2 class="panel-title">Task List</h2>
@@ -138,9 +133,8 @@
             <div><img src="resources/icons/add_icon.svg" alt="add button"></div>
             Add a new task
           </button>
-
         </section>
-      </div>      
+      </div>
     </div>
   </div>
 
