@@ -327,6 +327,7 @@ body {
 
 #o1 {
   background-color: darkseagreen;
+  background-image: linear-gradient(to right, #AC9647, #C95D5D);
   position: absolute;
   left: 20%;
   top: 40%;
@@ -334,6 +335,7 @@ body {
 
 #o2 {
   background-color: cadetblue;
+  background-image: linear-gradient(to right, #51478A, #84519B);
   position: absolute;
   left: 60%;
   top: 10%;
@@ -341,6 +343,7 @@ body {
 
 #o3 {
   background-color: cornflowerblue;
+  background-image: linear-gradient(to right, #478A5A, #51979B);
   position: absolute;
   left: 50%;
   top: 55%;
