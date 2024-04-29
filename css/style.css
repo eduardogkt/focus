@@ -96,7 +96,7 @@ body {
   font-weight: 600;
   background-color: var(--fill);
   box-shadow: var(--shadow);
-  transition: var(--transition);
+  transition: background-color 200ms ease-in;
 }
 
 .button:hover {
