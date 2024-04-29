@@ -104,7 +104,7 @@ body {
   border: var(--border-focus);
 }
 
-.button-timer {
+.button-pill {
   --height: 40px;
 
   min-width: 110px;
@@ -116,7 +116,7 @@ body {
   border-radius: calc(var(--height) / 2);
 }
 
-.button-timer:hover {
+.button-pill:hover {
   color: var(--black);
   background-color: var(--fill-white);
 }
@@ -266,11 +266,17 @@ body {
   margin-bottom: 2rem;
 }
 
-.panel-name {
+.panel-name,
+.panel-subheader {
   display: flex;
   align-items: center;
   gap: 0.5rem;
   width: 100%;
+}
+
+.panel-subheader {
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
 }
 
 .panel-title {
@@ -281,7 +287,6 @@ body {
 .panel-subtitle {
   font-size: 1rem;
   font-weight: 600;
-  margin-bottom: 1.5rem;
 }
 
 .panel-section {
@@ -294,7 +299,7 @@ body {
 
 .playlist-container {
   width: 310px;
-  height: 152px;
+  height: fit-content;
   border-radius: 10px;
   background-color: #282828;
   margin-bottom: 1rem;
@@ -306,6 +311,27 @@ body {
   justify-content: space-between;
   gap: 1rem;
   margin-bottom: 1rem;
+}
+
+.form-playlist {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.input-playlist {
+  height: 100px;
+  margin-bottom: 1rem;
+  border-radius: 10px;
+  resize: none;
+  outline: none;
+  padding: 0.8rem 0.9rem;
+  background-color: #282828;
+  color: white;
+}
+
+#button-playlist-submit {
+  margin-right: 1rem;
 }
 
 .sounds .menu {
@@ -357,6 +383,10 @@ body {
   border: 0;
 }
 
+.stats-title {
+  margin-bottom: 1.5rem;
+}
+
 .stats-panel .stats {
   display: flex;
   justify-content: center;
@@ -390,19 +420,19 @@ body {
 
 /* objetos para simular fundo */
 .background {
-  display: absolute;
+  display: contents;
 }
 
 .object {
   width: 250px;
   height: 250px;
-  border-radius: 150px; 
+  border-radius: 150px;
+  position: absolute;
 }
 
 #o1 {
   background-color: darkseagreen;
   background-image: linear-gradient(to right, #AC9647, #C95D5D);
-  position: absolute;
   left: 20%;
   top: 40%;
 }
@@ -410,7 +440,6 @@ body {
 #o2 {
   background-color: cadetblue;
   background-image: linear-gradient(to right, #51478A, #84519B);
-  position: absolute;
   left: 60%;
   top: 10%;
 }
@@ -418,7 +447,6 @@ body {
 #o3 {
   background-color: cornflowerblue;
   background-image: linear-gradient(to right, #478A5A, #51979B);
-  position: absolute;
   left: 50%;
   top: 55%;
 }
