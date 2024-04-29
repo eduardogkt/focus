@@ -37,7 +37,7 @@ body {
 }
 
 .container {
-  background-image: url("/resources/backgound/gris3.jpg");
+  /* background-image: url("/resources/backgound/gris3.jpg"); */
   background-size: cover;
 }
 
@@ -83,7 +83,9 @@ body {
 
 .button {
   all: unset;
+  box-sizing: border-box;
   cursor: pointer;
+  font-size: 0.8rem;
   font-weight: 600;
   background-color: var(--fill);
   transition: background-color 200ms ease-in;
@@ -95,13 +97,15 @@ body {
 }
 
 .button-timer {
-  min-width: 90px;
-  min-height: 20px;
+  --height: 40px;
+
+  min-width: 110px;
+  min-height: var(--height);
   text-align: center;
   padding: 0.7rem 0.8rem;
   font-size: 0.9rem;
   border: 1px solid white;
-  border-radius: 25px;
+  border-radius: calc(var(--height) / 2);
   box-shadow: var(--shadow);
 }
 
@@ -114,6 +118,15 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.button-icon {
+  display: flex;
+  align-items: center;
+  padding: 0.8rem 1rem 0.8rem 0.9rem;
+  margin-bottom: 1rem;
+  gap: 0.5rem;
+  width: 100%;
 }
 
 .glass-effect {
@@ -174,6 +187,7 @@ body {
   justify-content: center;
   text-align: center;
   background-color: transparent;
+  border: 0;
 }
 
 .menu {
@@ -189,7 +203,7 @@ body {
   padding: 1.5rem;
   min-width: 360px;
   height: 550px;
-  overflow: scroll;
+  overflow: auto;
 }
 
 .panel-header {
@@ -211,34 +225,10 @@ body {
 }
 
 .panel-section {
-  /* margin-bottom: 2rem; */
+  margin-bottom: 2rem;
 }
 
-.task-list {
-}
-
-.button-new-task,
-.task-item {
-  display: flex;
-  align-items: center;
-  padding: 0.8rem 0.9rem;
-  margin-bottom: 1rem;
-  font-size: 0.8rem;
-  /* width: max-content; */
-}
-
-.task-item {
-  justify-content: space-between;
-}
-
-.button-new-task {
-  gap: 0.5rem;
-}
-
-.button-new-task {
-}
-
-.music-panel {
+.panel-fit-content {
   height: fit-content;
 }
 
@@ -246,8 +236,8 @@ body {
   width: 310px;
   height: 152px;
   border-radius: 10px;
-  background-color: darkgray;
-  margin-bottom: 2rem;
+  background-color: #282828;
+  margin-bottom: 1rem;
 }
 
 .sounds .menu {
@@ -293,23 +283,40 @@ body {
   border: 0;
 }
 
-/* .input-range::-moz-range-track {
+.stats-panel .stats {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.stats .stats-field {
+  border: var(--border);
   border-radius: 10px;
-} */
-
-#stats {
-  grid-row: 3;
+  padding: 0.9rem 1rem;
+  width: 140px;
+  min-height: 100px;
+  text-align: center;
+  font-size: 0.8rem;
+}
+/* *************************************** tasklist */
+.task-list {
 }
 
-.stats-panel {
-  height: fit-content;
+.task-item {
+  display: flex;
+  align-items: center;
+  padding: 0.8rem 0.9rem;
+  margin-bottom: 1rem;
+  font-size: 0.8rem;
+  justify-content: space-between;
 }
+
 
 
 
 /* objetos para simular fundo */
 .background {
-  /* display: none; */
+  display: absolute;
 }
 
 .object {

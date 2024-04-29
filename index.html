@@ -11,7 +11,7 @@
 <body>
   <div class="container" id="page-content">
     <div class="layout">
-      <div class="background" style="visibility: hidden">
+      <div class="background" style="visibility: visible">
         <div class="object" id="o1"></div>
         <div class="object" id="o2"></div>
         <div class="object" id="o3"></div>
@@ -55,7 +55,7 @@
       </div>
 
       <div class="left">
-        <section class="panel music-panel glass-effect" id="music-panel">
+        <section class="panel music-panel panel-fit-content glass-effect" id="music-panel">
           <div class="panel-header">
             <img src="resources/icons/music_note_icon.svg" alt="tasklist icon">
             <h2 class="panel-title">Music</h2>
@@ -64,8 +64,11 @@
           <div class="playlist panel-section">
             <h3 class="panel-subtitle">Playlist</h3>
             <div class="playlist-container">
-              spotify playlist embed.
+              <iframe style="border-radius:10px" src="https://open.spotify.com/embed/playlist/37i9dQZF1DWWQRwui0ExPn?utm_source=generator&theme=0" width="100%" height="100%" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
             </div>
+            <button class="button button-icon glass-effect" id="add-playlist-button">
+              <img src="resources/icons/add_icon.svg" alt="add playlist button">
+              Add your own playlist</button>
           </div>
         
           <div class="sounds panel-section">
@@ -94,15 +97,21 @@
           </div>
         </section>
 
-        <section class="panel stats-panel glass-effect" id="stats-panel">
+        <section class="panel stats-panel panel-fit-content glass-effect" id="stats-panel">
           <div class="panel-header">
             <img src="resources/icons/graph_icon.svg" alt="stats icon">
             <h2 class="panel-title">Statistics</h2>
           </div>
           
-          <div class="playlist panel-section">
-            <h3 class="panel-subtitle">Focus Time</h3>
-            <h3 class="panel-subtitle">Sprints</h3>
+          <div class="stats panel-section">
+            <div class="stats-field">
+              <h3 class="panel-subtitle">Focus Time</h3>
+              <span id="time-stats">0 minutos</span>
+            </div>
+            <div class="stats-field">
+              <h3 class="panel-subtitle">Sprints</h3>
+              <span id="steak-stats">0</span>
+            </div>
           </div>
         </section>
       </div>
@@ -129,8 +138,8 @@
             </div>
           </div>
 
-          <button class="button button-new-task glass-effect">
-            <div><img src="resources/icons/add_icon.svg" alt="add button"></div>
+          <button class="button button-icon glass-effect" id="add-task-button">
+            <img src="resources/icons/add_icon.svg" alt="add task button">
             Add a new task
           </button>
         </section>
