@@ -114,6 +114,7 @@ body {
   font-size: 0.9rem;
   border: var(--border);
   border-radius: calc(var(--height) / 2);
+  backdrop-filter: var(--blur);
 }
 
 .button-pill:hover {
@@ -190,6 +191,12 @@ body {
   border-radius: 10px;
 }
 
+.transparent-effect {
+  background-color: transparent;
+  color: white;
+  box-shadow: none !important;
+}
+
 .active-button {
   background-color: var(--fill-focus);
   backdrop-filter: var(--blur);
@@ -197,6 +204,13 @@ body {
   color: var(--text-color);
   border: var(--border);
   border-radius: 10px;
+}
+
+.menu {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  width: 100%;
 }
 
 .timer-panel {
@@ -243,11 +257,14 @@ body {
   box-shadow: none;
 }
 
-.menu {
-  display: flex;
-  justify-content: center;
-  gap: 1.5rem;
-  width: 100%;
+.quote {
+  color: var(--text-color); 
+  font-family: 'Ubuntu', sans-serif; 
+  font-size: 1.1rem; 
+  line-height: 1.6rem; 
+  margin-top: 1.2rem; 
+  text-align: center; 
+  width:440px
 }
 
 .panel {
@@ -328,6 +345,8 @@ body {
   padding: 0.8rem 0.9rem;
   background-color: #282828;
   color: white;
+  font-family: "Ubuntu", sans-serif;
+  font-size: 0.9rem;
 }
 
 #button-playlist-submit {
@@ -421,6 +440,7 @@ body {
 /* objetos para simular fundo */
 .background {
   display: contents;
+  z-index: -1;
 }
 
 .object {
@@ -428,6 +448,7 @@ body {
   height: 250px;
   border-radius: 150px;
   position: absolute;
+  z-index: -5;
 }
 
 #o1 {

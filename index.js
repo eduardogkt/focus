@@ -19,34 +19,62 @@ togglePanel("stats-button", "stats-panel");
 // botão de tela cheia
 const fullscreenButton = document.getElementById("fullscreen-button");
 const layout = document.getElementById("page-content");
+let isFullscreen = false;
 
-fullscreenButton.addEventListener("click", function() {
-    // entrando no modo de tela cheia
-    if (!document.fullscreenElement) {
-        if (layout.requestFullscreen) {
-            layout.requestFullscreen();
-        } else if (layout.mozRequestFullScreen) {
-            layout.mozRequestFullScreen();
-        } else if (layout.webkitRequestFullscreen) {
-            layout.webkitRequestFullscreen();
-        } else if (layout.msRequestFullscreen) {
-            layout.msRequestFullscreen();
-        }
+function exitFullscreen() {
+    if (document.exitFullscreen) {
+        document.exitFullscreen();
+    } else if (document.mozCancelFullScreen) {
+        document.mozCancelFullScreen();
+    } else if (document.webkitExitFullscreen) {
+        document.webkitExitFullscreen();
+    } else if (document.msExitFullscreen) {
+        document.msExitFullscreen();
+    }
+}
+
+function enterFullscreen() {
+    if (layout.requestFullscreen) {
+        layout.requestFullscreen();
+    } else if (layout.mozRequestFullScreen) {
+        layout.mozRequestFullScreen();
+    } else if (layout.webkitRequestFullscreen) {
+        layout.webkitRequestFullscreen();
+    } else if (layout.msRequestFullscreen) {
+        layout.msRequestFullscreen();
+    }
+}
+
+function changeFullscreenIcon() {
+    if (isFullscreen) {
         fullscreenButton.querySelector("img").setAttribute("src", "resources/icons/fullscreen_exit_icon.svg");
-    } else { // saindo do modo tela cheia
-        if (document.exitFullscreen) {
-            document.exitFullscreen();
-        } else if (document.mozCancelFullScreen) {
-            document.mozCancelFullScreen();
-        } else if (document.webkitExitFullscreen) {
-            document.webkitExitFullscreen();
-        } else if (document.msExitFullscreen) {
-            document.msExitFullscreen();
-        }
+    } else {
         fullscreenButton.querySelector("img").setAttribute("src", "resources/icons/fullscreen_icon.svg");
+    }
+}
 
+// caso aperto botão
+fullscreenButton.addEventListener("click", function() {
+    if (!isFullscreen) {
+        enterFullscreen();
+    } else { 
+        exitFullscreen();
     }
 });
+
+// caso aperte esc
+document.addEventListener("keydown", function(event) {
+    if (event.key === "Escape" && isFullscreen) {
+        exitFullscreen();
+    }
+});
+
+// muda o icone e estado quando muda de tela
+document.addEventListener("fullscreenchange", function() {
+    isFullscreen = !isFullscreen; // Atualiza o estado quando a mudança de tela cheia ocorre
+    changeFullscreenIcon();
+});
+
 
 // botões de som
 // adiciona um ouvinte de eventos de clique em todos os botões com a classe "button-sound"
@@ -110,6 +138,7 @@ volumeSllider.addEventListener("input", function() {
     });
 });
 
+// funções para playlist
 const defaultPlaylist = document.querySelector(".playlist-container").textContent;
 let addPlaylistButton = document.getElementById("add-playlist-button");
 
@@ -140,10 +169,10 @@ function addPlaylist() {
         rows="5" 
         cols="20" 
         required
-        placeholder="Cole o codigo de incorporação da playlist aqui."></textarea>
+        placeholder="Paste the embedding code here."></textarea>
     <div>
-        <button class="button button-pill" id="button-playlist-submit" type="button">Enviar</button>
-        <button class="button button-pill" id="button-playlist-cancel" type="button">Cancelar</button>
+        <button class="button button-pill" id="button-playlist-submit" type="button">Send</button>
+        <button class="button button-pill" id="button-playlist-cancel" type="button">Cancel</button>
     </div>
     </form>
     `
