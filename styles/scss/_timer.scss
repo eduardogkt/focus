@@ -1,0 +1,53 @@
+%flex-gap1 {
+  display: flex;
+  gap: 1rem;
+}
+
+%white-button {
+  background-color: white;
+  color: var(--black);
+}
+
+.timer-panel {
+  @include flex(column, space-between, center, unset);
+
+  padding: 2.5rem;
+  min-width: 400px;
+  min-height: 400px;
+  box-shadow: var(--shadow);
+}
+
+.timer-mode {
+  @extend %flex-gap1;
+}
+
+.timer-actions {
+  @extend %flex-gap1;
+}
+
+.timer-clock {
+  font-size: 5rem;
+  letter-spacing: -1px;
+  font-weight: 600;
+}
+
+#start-button {
+  @extend %white-button;
+}
+
+#active {
+  @extend %white-button;
+
+  &:hover {
+    background-color: var(--fill-focus);
+    color: var(--text-color);
+  }
+}
+
+#reset-button {
+  @include flex(row, center, center, unset);
+
+  background-color: transparent;
+  border: 0;
+  box-shadow: none;
+}

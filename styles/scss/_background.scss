@@ -1,0 +1,34 @@
+.background {
+  visibility: visible;
+  display: contents;
+  z-index: -1;
+}
+
+.object {
+  width: 250px;
+  height: 250px;
+  border-radius: 150px;
+  position: absolute;
+  z-index: -5;
+}
+
+#o1 {
+  background-color: darkseagreen;
+  background-image: linear-gradient(to right, #AC9647, #C95D5D);
+  left: 20%;
+  top: 40%;
+}
+
+#o2 {
+  background-color: cadetblue;
+  background-image: linear-gradient(to right, #51478A, #84519B);
+  left: 60%;
+  top: 10%;
+}
+
+#o3 {
+  background-color: cornflowerblue;
+  background-image: linear-gradient(to right, #478A5A, #51979B);
+  left: 50%;
+  top: 55%;
+}

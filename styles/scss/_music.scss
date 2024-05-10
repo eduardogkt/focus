@@ -1,0 +1,86 @@
+.playlist-container {
+  width: 310px;
+  height: fit-content;
+  border-radius: 10px;
+  background-color: var(--gray);
+  margin-bottom: 1rem;
+}
+
+.add-playlist {
+  @include flex(row, space-between, center, 1rem);
+  margin-bottom: 1rem;
+}
+
+.form-playlist {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.input-playlist {
+  height: 100px;
+  margin-bottom: 1rem;
+  border-radius: 10px;
+  resize: none;
+  outline: none;
+  padding: 0.8rem 0.9rem;
+  background-color: var(--gray);
+  color: var(--white);
+  font-family: "Ubuntu", sans-serif;
+  font-size: 0.9rem;
+}
+
+#button-playlist-submit {
+  margin-right: 1rem;
+}
+
+.sounds .menu {
+  margin-bottom: 1.5rem;
+}
+
+.volume-slider {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.8rem;
+  margin: 0 0.8rem;
+}
+
+.input-range {
+  --border-width: 1px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 1.1rem;
+  background: linear-gradient(to right, var(--fill-slider) 0, var(--fill-slider) calc(50% - 1px), var(--fill) calc(50% + 1px), var(--fill) 100%);
+  background-size: calc(100% + 2 * var(--border-width)) 100%;
+  border: var(--border);
+  border-radius: 10px;
+  outline: none;
+  cursor: pointer;
+  overflow: hidden;
+  margin: 0 -20px;
+
+  transition: var(--transition);
+
+  &:hover {
+    border: var(--border-focus);
+  }
+}
+
+%slider-thumb {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  width: 0;
+  border: 0;
+}
+
+.input-range::-webkit-slider-thumb {
+  @extend %slider-thumb;
+}
+
+.input-range::-moz-range-thumb {
+  @extend %slider-thumb;
+}

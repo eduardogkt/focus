@@ -1,0 +1,14 @@
+.glass-effect {
+  background-color: var(--fill);
+  backdrop-filter: var(--blur);
+  box-shadow: var(--shadow);
+  color: var(--text-color);
+  border: var(--border);
+  border-radius: 10px;
+}
+
+.transparent-effect {
+  background-color: transparent;
+  color: white;
+  box-shadow: none !important;
+}

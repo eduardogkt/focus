@@ -1,0 +1,19 @@
+.stats-title {
+  margin-bottom: 1.5rem;
+}
+
+.stats-panel .stats {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.stats-field {
+  border: var(--border);
+  border-radius: 10px;
+  padding: 0.9rem 1rem;
+  width: 140px;
+  min-height: 100px;
+  text-align: center;
+  font-size: 0.8rem;
+}

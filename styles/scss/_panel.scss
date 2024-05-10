@@ -1,0 +1,50 @@
+%title {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  width: 100%;
+}
+
+.panel {
+  display: block;
+  padding: 1.5rem;
+  min-width: 360px;
+  height: 550px;
+  overflow: auto;
+}
+
+.panel-header {
+  @include flex(row, space-between, center, unset);
+  margin-bottom: 2rem;
+}
+
+.panel-name {
+  @extend %title;
+}
+
+.panel-subheader {
+  @extend %title;
+}
+
+.panel-subheader {
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+}
+
+.panel-title {
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.panel-subtitle {
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.panel-section {
+  margin-bottom: 2rem;
+}
+
+.panel-fit-content {
+  height: fit-content;
+}
