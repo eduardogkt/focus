@@ -1,11 +1,28 @@
 @mixin flex($direction, $justify-content, $align-itens, $gap) {
-    display: flex;
-    flex-direction: $direction;
-    justify-content: $justify-content;
-    align-items: $align-itens;
-    gap: $gap;
+  display: flex;
+  flex-direction: $direction;
+  justify-content: $justify-content;
+  align-items: $align-itens;
+  gap: $gap;
 }
 
 @mixin grid() {
-    
+  
+}
+
+@mixin circle($height, $width) {
+  @if $height {
+    height: $height;
+    border-radius: calc($height / 2);
+  }
+  @if $width {
+    width: $width;
+    border-radius: calc($width / 2);
+  }
+}
+
+@mixin appearence-none() {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
 }

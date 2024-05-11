@@ -48,12 +48,11 @@
 
 .input-range {
   --border-width: 1px;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
+  @include appearence-none;
+
   width: 100%;
   height: 1.1rem;
-  background: linear-gradient(to right, var(--fill-slider) 0, var(--fill-slider) calc(50% - 1px), var(--fill) calc(50% + 1px), var(--fill) 100%);
+  background: var(--volume-slider);
   background-size: calc(100% + 2 * var(--border-width)) 100%;
   border: var(--border);
   border-radius: 10px;
@@ -70,17 +69,46 @@
 }
 
 %slider-thumb {
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
+  @include appearence-none();
   width: 0;
   border: 0;
 }
 
 .input-range::-webkit-slider-thumb {
   @extend %slider-thumb;
+  visibility: hidden;
 }
 
 .input-range::-moz-range-thumb {
   @extend %slider-thumb;
+}
+
+#playlist-info-menu {
+  width: 312px;
+  max-height: 350px;
+  overflow: auto;
+  font-size: 0.8rem;
+  line-height: 1.2rem;
+  text-wrap: wrap;
+  padding: 0.9rem 1rem;
+  display: block;
+
+  div {
+    position: relative;
+  }
+  
+  p {
+    margin-bottom: 0.5rem;
+  }
+  
+  img {
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, 0);
+    margin-bottom: 1rem;
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+  }
 }

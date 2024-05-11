@@ -1,20 +1,78 @@
-// botões de painel do menu
-function togglePanel(buttonId, panelId) {
-    const button = document.getElementById(buttonId);
-    const panel = document.getElementById(panelId);
+// botões de opção (button-opt)
+const optButtons = document.querySelectorAll(".button-opt");
 
-    button.addEventListener("click", function() {
-        if (panel.style.display === "block") {
-            panel.style.display = "none";
+// esconde menus de opção (button-opt)
+function hideOptionsMenus() {
+    optButtons.forEach(function(button) {
+        const menu = button.parentNode.childNodes[3];
+        console.log(menu.innerHTML);
+
+        menu.style.display = "none";
+    })
+}
+
+// mostra/esconde menus de opção (button-opt)
+optButtons.forEach(function(button) {
+    button.addEventListener('click', function() {
+
+        const menu = this.parentNode.querySelector(".opt-menu");
+
+        // caso for o menu de informação de incorporação de playlist
+        // display precisa ser block
+        const display = 
+        (menu.id == "playlist-info-menu") ? "block" : "flex";
+
+        if (menu.style.display === display) {
+            menu.style.display = "none";
         } else {
-            panel.style.display = "block";
+            // esconde todos os menus de opção
+            hideOptionsMenus();
+
+            // mostrao menu correspondente
+            menu.style.display = display;
+        }
+    });
+});
+
+// hide/show music sections
+function toggleSection(buttonId, sectionClass, optName) {
+    const button = document.querySelector(buttonId);
+    let section = document.querySelector(sectionClass);
+    
+    button.addEventListener("click", function() {
+        const display = section.style.display;
+        if (display != "none") {
+            section.style.display = "none"
+            button.textContent = "Show " + optName;
+        } else {
+            section.style.display = "block";
+            button.textContent = "Hide " + optName;
         }
     });
 }
 
-togglePanel("tasklist-button", "tasklist-panel");
-togglePanel("music-button", "music-panel");
-togglePanel("stats-button", "stats-panel");
+toggleSection("#playlist-opt-hide-playlist-button", ".playlist", "playlist");
+toggleSection("#playlist-opt-hide-sounds-button", ".sounds", "sounds");
+
+// botões de painel do menu
+function toggleButton(buttonId, panelId, display) {
+    const button = document.getElementById(buttonId);
+    const menu = document.getElementById(panelId);
+
+    button.addEventListener("click", function() {
+        hideOptionsMenus();
+        if (menu.style.display === display) {
+            menu.style.display = "none";
+        } else {
+            menu.style.display = display;
+        }
+    });
+}
+
+toggleButton("tasklist-button", "tasklist-panel", "block");
+toggleButton("music-button", "music-panel", "block");
+toggleButton("stats-button", "stats-panel", "block");
+
 
 // botão de tela cheia
 const fullscreenButton = document.getElementById("fullscreen-button");
@@ -123,7 +181,12 @@ volumeSllider.addEventListener("input", function() {
     // salva o campo de background-size
     const backgroundSize = volumeSllider.style.backgroundSize;
     const value = volumeSllider.value;
-    const fill = `linear-gradient(to right,var(--fill-slider) 0, var(--fill-slider) ${value}%, var(--fill) ${value}%, var(--fill) 100%)`
+    const fill = `
+    linear-gradient(to right,
+                    var(--fill-slider) 0, 
+                    var(--fill-slider) ${value}%, 
+                    var(--fill)        ${value}%, 
+                    var(--fill)        100%)`
     
     volumeSllider.style.background = fill;
     volumeSllider.style.backgroundSize = backgroundSize;
@@ -215,3 +278,13 @@ addPlaylistButton.addEventListener("click", addPlaylist);
 <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/2j7iCxxDBAxpuZVKoApepZ?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy">
 </iframe>
 */
+
+const playlistOptButton = document.querySelector("#playlist-opt-button");
+
+playlistOptButton.addEventListener("click", function() {
+
+    const playlistOptMenu = document.getElementById("playlist-opt-menu");
+    pla
+});
+
+

@@ -69,11 +69,10 @@
   }
 }
 
-.button-pop {
+.button-opt {
   @include flex(row, center, center, unset);
-  height: 100%;
+  @include circle(100%, false);
   padding: 0.3rem;
-  border-radius: 50%;
   background-color: transparent;
   border: var(--border-transparent);
   box-shadow: none;
@@ -90,4 +89,17 @@
   color: var(--text-color);
   border: var(--border);
   border-radius: 10px;
+}
+
+.button-opt-menu {
+  padding: 0.7rem 0.8rem;
+  border: 1px solid var(--border);
+  width: 100%;
+  background-color: transparent;
+  box-shadow: none;
+  border-radius: 5px;
+
+  &:hover {
+    border: 1px  solid var(--border);
+  }
 }

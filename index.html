@@ -13,6 +13,7 @@
 <body>
   <div class="container" id="page-content">
     <div class="layout">
+
       <div class="background">
         <div class="object" id="o1"></div>
         <div class="object" id="o2"></div>
@@ -69,18 +70,45 @@
               <img src="resources/icons/music_note_icon.svg" alt="tasklist icon">
               <h2 class="panel-title">Music</h2>
             </div>
-            <button class="button button-pop">
-              <img src="resources/icons/options_horiz_icon.svg" alt="add playlist info button">
-            </button>
+
+            <div class="opt-menu-wrapper">
+              <button class="button button-opt" id="playlist-opt-button">
+                <img src="resources/icons/options_horiz_icon.svg" alt="playlist options button">
+              </button>
+
+              <div class="opt-menu" id="playlist-opt-menu">
+                <button class="button button-opt-menu" id="playlist-opt-hide-playlist-button">Hide playlist</button>
+                <button class="button button-opt-menu" id="playlist-opt-hide-sounds-button">Hide sounds</button>
+              </div>
+            </div>
           </div>
           
           <div class="playlist panel-section">
 
             <div class="panel-subheader">
               <h3 class="panel-subtitle">Playlist</h3>
-              <button class="button button-pop" id="info-add-playlist-button">
-                <img src="resources/icons/info_icon.svg" alt="add playlist info button">
-              </button>
+
+              <div class="opt-menu-wrapper">
+                <button class="button button-opt" id="playlist-info-button">
+                  <img src="resources/icons/info_icon.svg" alt="add playlist info button">
+                </button>
+                
+                <div class="opt-menu" id="playlist-info-menu">
+                  <div>
+                    <p>1. Go to the Spotify playlist and click on the options menu <span class="emphasis">"..."</span></p>
+                    <img src="./resources/images/info1.png" alt="">
+                    
+                    <p>2. Select <span class="emphasis">"Share"</span>, and then click on <span class=emphasis>"Embed Playlist"</span></p>
+                    <img src="./resources/images/info2.png" alt="">
+                    
+                    <p>3. Custumize your playlist</p>
+                    <img src="./resources/images/info3.png" alt="">
+                    
+                    <p>4. Copy the embed code and paste it on the field below</p>
+                    <img src="./resources/images/info4.png" alt="">
+                  </div> 
+                </div>
+              </div>
             </div>
 
             <div class="playlist-container" id="playlist-container">
@@ -128,9 +156,15 @@
               <img src="resources/icons/graph_icon.svg" alt="stats icon">
               <h2 class="panel-title">Statistics</h2>
             </div>
-            <button class="button button-pop">
-              <img src="resources/icons/options_horiz_icon.svg" alt="add playlist info button">
-            </button>
+            <div class="opt-menu-wrapper">
+              <button class="button button-opt" id="stats-opt-button">
+                <img src="resources/icons/options_horiz_icon.svg" alt="stats options button">
+              </button>
+
+              <div class="opt-menu" id="stats-opt-menu">
+                <button class="button button-opt-menu" id="stats-opt-reset-button">Reset stats</button>
+              </div>
+            </div>
           </div>
           
           <div class="stats panel-section">
@@ -153,28 +187,52 @@
               <img src="resources/icons/checklist_icon.svg" alt="tasklist icon">
               <h2 class="panel-title">Task list</h2>
             </div>
-            <button class="button button-pop">
-              <img src="resources/icons/options_horiz_icon.svg" alt="add playlist info button">
-            </button>
+
+            <div class="opt-menu-wrapper">
+              <button class="button button-opt" id="tasklist-opt-button">
+                <img src="resources/icons/options_horiz_icon.svg" alt="tasklist options button">
+              </button>
+              
+              <div class="opt-menu" id="tasklist-opt-menu">
+                <button class="button button-opt-menu" id="tasklist-opt-rem-all">Remove all tasks</button>
+                <button class="button button-opt-menu" id="tasklist-opt-rem-completed">Remove completed tasks</button>
+                <button class="button button-opt-menu" id="tasklist-opt-hide-completed">Hide completed tasks</button>
+              </div>
+            </div>
           </div>
 
           <div class="task-list">
+            
             <div class="task-item glass-effect">
               <div class="task-content">
                 Task 1
               </div>
-              <button class="button button-pop">
+              <div class="opt-menu-wrapper">
+              <button class="button button-opt button-task">
                 <img src="resources/icons/options_horiz_icon.svg" alt="task options">
               </button>
+                <div class="opt-menu">
+                  <button class="button button-opt-menu">Edit</button>
+                  <button class="button button-opt-menu">Remove</button>
+                </div>
+              </div>
             </div>
+
             <div class="task-item glass-effect">
               <div class="task-content">
                 Task 2
               </div>
-              <button class="button button-pop">
-                <img src="resources/icons/options_horiz_icon.svg" alt="task-options">
+              <div class="opt-menu-wrapper">
+              <button class="button button-opt button-task">
+                <img src="resources/icons/options_horiz_icon.svg" alt="task options">
               </button>
+                <div class="opt-menu">
+                  <button class="button button-opt-menu">Edit</button>
+                  <button class="button button-opt-menu">Remove</button>
+                </div>
+              </div>
             </div>
+            
           </div>
 
           <button class="button button-icon" id="add-task-button">

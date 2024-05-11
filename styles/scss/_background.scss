@@ -1,13 +1,11 @@
 .background {
   visibility: visible;
-  display: contents;
+  display: block;
   z-index: -1;
 }
 
 .object {
-  width: 250px;
-  height: 250px;
-  border-radius: 150px;
+  @include circle(250px, 250px);
   position: absolute;
   z-index: -5;
 }

@@ -17,6 +17,11 @@
   --blur: blur(10px);
   --shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
   --transition: all 200ms ease-in;
+  --vl-1: var(--fill-slider) 0;
+  --vl-2: var(--fill-slider) calc(50% - 1px);
+  --vl-3: var(--fill) calc(50% + 1px);
+  --vl-4: var(--fill) 100%;
+  --volume-slider: linear-gradient(to right, var(--vl-1), var(--vl-2), var(--vl-3), var(--vl-4));
 }
 
 * {
@@ -108,20 +113,20 @@ body {
   background-image: url("../../resources/icons/add_black_icon.svg");
 }
 
-.button-pop {
+.button-opt {
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
   gap: unset;
   height: 100%;
-  padding: 0.3rem;
   border-radius: 50%;
+  padding: 0.3rem;
   background-color: transparent;
   border: var(--border-transparent);
   box-shadow: none;
 }
-.button-pop:hover {
+.button-opt:hover {
   border: var(--border-transparent);
 }
 
@@ -133,6 +138,18 @@ body {
   color: var(--text-color);
   border: var(--border);
   border-radius: 10px;
+}
+
+.button-opt-menu {
+  padding: 0.7rem 0.8rem;
+  border: 1px solid var(--border);
+  width: 100%;
+  background-color: transparent;
+  box-shadow: none;
+  border-radius: 5px;
+}
+.button-opt-menu:hover {
+  border: 1px solid var(--border);
 }
 
 .glass-effect {
@@ -179,7 +196,7 @@ body {
   font-weight: 600;
 }
 
-#active:hover {
+#start-button:hover {
   background-color: var(--fill-focus);
   color: var(--text-color);
 }
@@ -203,7 +220,7 @@ body {
 }
 
 .panel {
-  display: block;
+  display: none;
   padding: 1.5rem;
   min-width: 360px;
   height: 550px;
@@ -298,12 +315,12 @@ body {
 
 .input-range {
   --border-width: 1px;
+  appearance: none;
   -webkit-appearance: none;
   -moz-appearance: none;
-  appearance: none;
   width: 100%;
   height: 1.1rem;
-  background: linear-gradient(to right, var(--fill-slider) 0, var(--fill-slider) calc(50% - 1px), var(--fill) calc(50% + 1px), var(--fill) 100%);
+  background: var(--volume-slider);
   background-size: calc(100% + 2 * var(--border-width)) 100%;
   border: var(--border);
   border-radius: 10px;
@@ -318,11 +335,42 @@ body {
 }
 
 .input-range::-moz-range-thumb, .input-range::-webkit-slider-thumb {
+  appearance: none;
   -webkit-appearance: none;
   -moz-appearance: none;
-  appearance: none;
   width: 0;
   border: 0;
+}
+
+.input-range::-webkit-slider-thumb {
+  visibility: hidden;
+}
+
+#playlist-info-menu {
+  width: 312px;
+  max-height: 350px;
+  overflow: auto;
+  font-size: 0.8rem;
+  line-height: 1.2rem;
+  text-wrap: wrap;
+  padding: 0.9rem 1rem;
+  display: block;
+}
+#playlist-info-menu div {
+  position: relative;
+}
+#playlist-info-menu p {
+  margin-bottom: 0.5rem;
+}
+#playlist-info-menu img {
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, 0);
+  margin-bottom: 1rem;
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
 }
 
 .stats-title {
@@ -352,18 +400,21 @@ body {
   margin-bottom: 1rem;
   font-size: 0.8rem;
   justify-content: space-between;
+  -webkit-backdrop-filter: none;
+          backdrop-filter: none;
 }
 
 .background {
   visibility: visible;
-  display: contents;
+  display: block;
   z-index: -1;
 }
 
 .object {
-  width: 250px;
   height: 250px;
-  border-radius: 150px;
+  border-radius: 125px;
+  width: 250px;
+  border-radius: 125px;
   position: absolute;
   z-index: -5;
 }
@@ -448,4 +499,59 @@ body {
   margin-top: 1.2rem;
   text-align: center;
   width: 440px;
+}
+
+.opt-menu-wrapper {
+  position: relative;
+  width: -moz-fit-content;
+  width: fit-content;
+}
+
+.opt-menu {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: unset;
+  display: none;
+  position: absolute;
+  right: 0rem;
+  top: 2.5rem;
+  width: -moz-fit-content;
+  width: fit-content;
+  text-wrap: nowrap;
+  border-radius: 10px;
+  border: var(--border);
+  padding: 0.5rem;
+  background-color: var(--gray);
+  -webkit-backdrop-filter: var(--blur);
+          backdrop-filter: var(--blur);
+  z-index: 30;
+}
+
+.emphasis {
+  font-weight: 700;
+  color: white;
+}
+
+*::-webkit-scrollbar {
+  width: 3px;
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+*::-webkit-scrollbar-track:hover {
+  background: #3d3d3d;
+}
+
+*::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  visibility: hidden;
+}
+
+*:hover::-webkit-scrollbar-thumb {
+  background: #676767;
+  visibility: visible;
 }/*# sourceMappingURL=style.css.map */

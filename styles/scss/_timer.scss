@@ -33,15 +33,15 @@
 
 #start-button {
   @extend %white-button;
-}
-
-#active {
-  @extend %white-button;
 
   &:hover {
     background-color: var(--fill-focus);
     color: var(--text-color);
   }
+}
+
+#active {
+  @extend %white-button;
 }
 
 #reset-button {

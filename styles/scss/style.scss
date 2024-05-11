@@ -64,3 +64,52 @@
   text-align: center; 
   width:440px
 }
+
+.opt-menu-wrapper {
+  position: relative;
+  width: fit-content;
+}
+
+.opt-menu {
+  @include flex(column, center, center, unset);
+  display: none;
+  position: absolute;
+  right: 0rem;
+  top: 2.5rem;
+  width: fit-content;
+  text-wrap: nowrap;
+  border-radius: 10px;
+  border: var(--border);
+  padding: 0.5rem;
+  background-color: var(--gray);
+  backdrop-filter: var(--blur);
+  z-index: 30;
+}
+
+.emphasis {
+  font-weight: 700;
+  color: white;
+}
+
+// para a barra de rolagem chrome
+*::-webkit-scrollbar {
+  width: 3px;
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+*::-webkit-scrollbar-track:hover {
+  background: #3d3d3d;
+}
+
+*::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  visibility: hidden;
+}
+
+*:hover::-webkit-scrollbar-thumb {
+  background: #676767;
+  visibility: visible;
+}
