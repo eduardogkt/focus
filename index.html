@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta lang="en">
-  <link rel="icon" href="./resources/icons/toll_icon.svg">
+  <link rel="icon" href="./assets/icons/adjust_icon.svg">
   <link rel="stylesheet" type="text/css" href="styles/css/reset.css">
   <link rel="stylesheet" type="text/css" href="styles/css/style.css">
   <title>focus</title>
@@ -14,52 +14,52 @@
   <div class="container" id="page-content">
     <div class="layout">
 
-      <div class="background">
+      <!-- <div class="background">
         <div class="object" id="o1"></div>
         <div class="object" id="o2"></div>
         <div class="object" id="o3"></div>
-      </div>
+      </div> -->
 
       <div class="center">
         <section class="menu">
           <button class="button button-menu glass-effect" id="music-button">
-            <img src="resources/icons/music_note_icon.svg" alt="music button">
+            <img src="assets/icons/music_note_icon.svg" alt="music button">
           </button>
           <button class="button button-menu glass-effect" id="stats-button">
-            <img src="resources/icons/graph_icon.svg" alt="stats button">
+            <img src="assets/icons/graph_icon.svg" alt="stats button">
           </button>
           <button class="button button-menu glass-effect" id="settings-button">
-            <img src="resources/icons/settings_icon.svg" alt="settings button">
+            <img src="assets/icons/settings_icon.svg" alt="settings button">
           </button>
           <button class="button button-menu glass-effect" id="fullscreen-button">
-            <img src="resources/icons/fullscreen_icon.svg" alt="fullscreen button">
+            <img src="assets/icons/fullscreen_icon.svg" alt="fullscreen button">
           </button>
           <button class="button button-menu glass-effect" id="tasklist-button">
-            <img src="resources/icons/checklist_icon.svg" alt="tasklist button">
+            <img src="assets/icons/checklist_icon.svg" alt="tasklist button">
           </button>
         </section>
 
         <section class="timer-panel glass-effect">
           <div class="timer-mode">
-            <button class="button button-pill" id="active">focus</button>
-            <button class="button button-pill">short break</button>
-            <button class="button button-pill">long break</button>
+            <button class="button button-pill button-timer-opt active" id="focus-mode">focus</button>
+            <button class="button button-pill button-timer-opt" id="short-break-mode">short break</button>
+            <button class="button button-pill button-timer-opt" id="long-break-mode">long break</button>
           </div>
-          <div class="timer-clock">
+          <div class="timer-clock" id="timer-clock">
             50:00
           </div>
           <div class="timer-actions">
             <button class="button button-pill" id="start-button">start</button>
             <button class="button" id="reset-button">
-              <img src="resources/icons/replay_icon.svg" alt="replay button">
+              <img src="assets/icons/replay_icon.svg" alt="replay button">
             </button>
           </div>
         </section>
 
-        <section class="quote">
-          <p>
+        <section class="quote" id="quote">
+          <span>
             "Some sort of quote"
-          </p>
+          </span>
         </section>
       </div>
 
@@ -67,13 +67,13 @@
         <section class="panel music-panel panel-fit-content glass-effect" id="music-panel">
           <div class="panel-header">
             <div class="panel-name">
-              <img src="resources/icons/music_note_icon.svg" alt="tasklist icon">
+              <img src="assets/icons/music_note_icon.svg" alt="tasklist icon">
               <h2 class="panel-title">Music</h2>
             </div>
 
             <div class="opt-menu-wrapper">
               <button class="button button-opt" id="playlist-opt-button">
-                <img src="resources/icons/options_horiz_icon.svg" alt="playlist options button">
+                <img src="assets/icons/options_horiz_icon.svg" alt="playlist options button">
               </button>
 
               <div class="opt-menu" id="playlist-opt-menu">
@@ -90,22 +90,22 @@
 
               <div class="opt-menu-wrapper">
                 <button class="button button-opt" id="playlist-info-button">
-                  <img src="resources/icons/info_icon.svg" alt="add playlist info button">
+                  <img src="assets/icons/info_icon.svg" alt="add playlist info button">
                 </button>
                 
                 <div class="opt-menu" id="playlist-info-menu">
                   <div>
                     <p>1. Go to the Spotify playlist and click on the options menu <span class="emphasis">"..."</span></p>
-                    <img src="./resources/images/info1.png" alt="">
+                    <img src="./assets/images/info1.png" alt="">
                     
                     <p>2. Select <span class="emphasis">"Share"</span>, and then click on <span class=emphasis>"Embed Playlist"</span></p>
-                    <img src="./resources/images/info2.png" alt="">
+                    <img src="./assets/images/info2.png" alt="">
                     
                     <p>3. Custumize your playlist</p>
-                    <img src="./resources/images/info3.png" alt="">
+                    <img src="./assets/images/info3.png" alt="">
                     
                     <p>4. Copy the embed code and paste it on the field below</p>
-                    <img src="./resources/images/info4.png" alt="">
+                    <img src="./assets/images/info4.png" alt="">
                   </div> 
                 </div>
               </div>
@@ -128,20 +128,20 @@
             </div>
             <div class="menu">
               <button class="button button-menu button-sound glass-effect" id="fire-sound-button">
-                <img src="resources/icons/fire_icon.svg" alt="fire sound button">
-                <audio id="fire-sound" src="resources/audio/fireplace.mp3"></audio>
+                <img src="assets/icons/fire_icon.svg" alt="fire sound button">
+                <audio id="fire-sound" src="assets/audio/fireplace.mp3"></audio>
               </button>
               <button class="button button-menu button-sound glass-effect" id="rain-sound-button">
-                <img src="resources/icons/rain_icon.svg" alt="rain sound button">
-                <audio id="rain-sound" src="resources/audio/rain.mp3"></audio>
+                <img src="assets/icons/rain_icon.svg" alt="rain sound button">
+                <audio id="rain-sound" src="assets/audio/rain.mp3"></audio>
               </button>
               <button class="button button-menu button-sound glass-effect" id="wind-sound-button">
-                <img src="resources/icons/waves_icon.svg" alt="wind sound button">
-                <audio id="wind-sound" src="resources/audio/ocean.mp3"></audio>
+                <img src="assets/icons/waves_icon.svg" alt="wind sound button">
+                <audio id="wind-sound" src="assets/audio/ocean.mp3"></audio>
               </button>
               <button class="button button-menu button-sound glass-effect" id="cafe-sound-button">
-                <img src="resources/icons/cafe_icon.svg" alt="cafe sound button">
-                <audio id="cafe-sound" src="resources/audio/cafe.mp3"></audio>
+                <img src="assets/icons/cafe_icon.svg" alt="cafe sound button">
+                <audio id="cafe-sound" src="assets/audio/cafe.mp3"></audio>
               </button>
             </div>
             <div class="volume-slider">
@@ -153,12 +153,12 @@
         <section class="panel stats-panel panel-fit-content glass-effect" id="stats-panel">
           <div class="panel-header">
             <div class="panel-name">
-              <img src="resources/icons/graph_icon.svg" alt="stats icon">
+              <img src="assets/icons/graph_icon.svg" alt="stats icon">
               <h2 class="panel-title">Statistics</h2>
             </div>
             <div class="opt-menu-wrapper">
               <button class="button button-opt" id="stats-opt-button">
-                <img src="resources/icons/options_horiz_icon.svg" alt="stats options button">
+                <img src="assets/icons/options_horiz_icon.svg" alt="stats options button">
               </button>
 
               <div class="opt-menu" id="stats-opt-menu">
@@ -184,13 +184,13 @@
         <section class="panel tasklist-panel panel-content glass-effect" id="tasklist-panel">
           <div class="panel-header">
             <div class="panel-name">
-              <img src="resources/icons/checklist_icon.svg" alt="tasklist icon">
+              <img src="assets/icons/checklist_icon.svg" alt="tasklist icon">
               <h2 class="panel-title">Task list</h2>
             </div>
 
             <div class="opt-menu-wrapper">
               <button class="button button-opt" id="tasklist-opt-button">
-                <img src="resources/icons/options_horiz_icon.svg" alt="tasklist options button">
+                <img src="assets/icons/options_horiz_icon.svg" alt="tasklist options button">
               </button>
               
               <div class="opt-menu" id="tasklist-opt-menu">
@@ -209,7 +209,7 @@
               </div>
               <div class="opt-menu-wrapper">
               <button class="button button-opt button-task">
-                <img src="resources/icons/options_horiz_icon.svg" alt="task options">
+                <img src="assets/icons/options_horiz_icon.svg" alt="task options">
               </button>
                 <div class="opt-menu">
                   <button class="button button-opt-menu">Edit</button>
@@ -224,7 +224,7 @@
               </div>
               <div class="opt-menu-wrapper">
               <button class="button button-opt button-task">
-                <img src="resources/icons/options_horiz_icon.svg" alt="task options">
+                <img src="assets/icons/options_horiz_icon.svg" alt="task options">
               </button>
                 <div class="opt-menu">
                   <button class="button button-opt-menu">Edit</button>
@@ -239,6 +239,58 @@
             <div role="img"></div>
             Add a new task
           </button>
+        </section>
+      </div>
+
+      <div class="over">
+        <section class="panel settings-panel panel-content glass-effect" id="settings-panel">
+          <div class="panel-header">
+            <div class="panel-name">
+              <img src="assets/icons/settings_icon.svg" alt="tasklist icon">
+              <h2 class="panel-title">Settings</h2>
+            </div>
+            <div class="panel-close">
+              <button>
+                <img src="assets/icons/close_icon.svg" alt="close settings">
+              </button>
+            </div>
+          </div>
+
+          <section>
+            <ul>
+              <li><button>Themes</button></li>
+              <li><button>Timer</button></li>
+              <li><button>Sound</button></li>
+              <li><button>Stats</button></li>
+              <li><button>Account</button></li>
+              <li><button>Support</button></li>
+            </ul>
+          </section>
+          <section>
+            <div>
+            <div>
+                <label for="focus-time">focus</label>
+                <input type="number" id="focus-time">
+                <span>minutes</span>
+              </div>
+              <div>
+                <label for="short-break-time">short time</label>
+                <input type="number" id="short-break-time">
+                <span>minutes</span>
+              </div>
+              <div>
+                <label for="long-break-time"> long break</label>
+                <input type="number" id="long-break-time">
+                <span>minutes</span>
+              </div>
+            </div>
+            <div>
+              <input type="checkbox">
+              <label for="auto-sequence">auto sequence</label>
+              <span>focus &rarr; short break (x4) &rarr; focus &rarr; long break</span>
+            </div>
+          </section>
+
         </section>
       </div>
     </div>

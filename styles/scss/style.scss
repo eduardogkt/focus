@@ -13,6 +13,7 @@
 .container {
   // background-image: url("/resources/backgound/gris3.jpg");
   background-size: cover;
+  user-select: none;
 }
 
 .layout {
@@ -26,7 +27,7 @@
 }
 
 %container-section {
-  @include flex(column, unset, unset, 1.5rem);
+  @include flex(column, center, center, 1.5rem);
   min-width: 360px; 
   min-height: 70vh;
   grid-row: 1;
@@ -50,6 +51,14 @@
   grid-column: 3;
 }
 
+.over {
+  @extend %container-section;
+  // position: absolute;
+  display: none;
+  width: 100wv;
+  height: 100hv;
+}
+
 .menu {
   @include flex(row, center, center, 1.5rem);
   width: 100%;
@@ -62,7 +71,7 @@
   line-height: 1.6rem; 
   margin-top: 1.2rem; 
   text-align: center; 
-  width:440px
+  width: 440px;
 }
 
 .opt-menu-wrapper {
@@ -89,6 +98,15 @@
 .emphasis {
   font-weight: 700;
   color: white;
+}
+
+.rotate {
+  transition: transform 1s ease;
+  transform: rotate(-360deg);
+}
+
+.hidden {
+  visibility: hidden;
 }
 
 // para a barra de rolagem chrome

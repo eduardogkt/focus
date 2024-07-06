@@ -72,6 +72,7 @@ function toggleButton(buttonId, panelId, display) {
 toggleButton("tasklist-button", "tasklist-panel", "block");
 toggleButton("music-button", "music-panel", "block");
 toggleButton("stats-button", "stats-panel", "block");
+toggleButton("settings-button", "settings-panel", "block");
 
 
 // botão de tela cheia
@@ -105,18 +106,29 @@ function enterFullscreen() {
 
 function changeFullscreenIcon() {
     if (isFullscreen) {
-        fullscreenButton.querySelector("img").setAttribute("src", "resources/icons/fullscreen_exit_icon.svg");
+        fullscreenButton.querySelector("img").setAttribute("src", "assets/icons/fullscreen_exit_icon.svg");
     } else {
-        fullscreenButton.querySelector("img").setAttribute("src", "resources/icons/fullscreen_icon.svg");
+        fullscreenButton.querySelector("img").setAttribute("src", "assets/icons/fullscreen_icon.svg");
     }
 }
 
-// caso aperto botão
-fullscreenButton.addEventListener("click", function() {
+function changeFullscreen() {
     if (!isFullscreen) {
         enterFullscreen();
     } else { 
         exitFullscreen();
+    }
+}
+
+// caso aperto botão do menu
+fullscreenButton.addEventListener("click",function() {
+    changeFullscreen()
+});
+
+// caso aperte atalho f
+document.addEventListener("keydown", function(event) {
+    if (event.key == "f") {
+        changeFullscreen();
     }
 });
 
@@ -279,12 +291,193 @@ addPlaylistButton.addEventListener("click", addPlaylist);
 </iframe>
 */
 
-const playlistOptButton = document.querySelector("#playlist-opt-button");
+const timerDisplay = document.querySelector("#timer-clock");
+const playButton = document.querySelector("#start-button");
+const resetButton = document.querySelector("#reset-button");
 
-playlistOptButton.addEventListener("click", function() {
+const timerOpts = document.querySelectorAll(".button-timer-opt");
 
-    const playlistOptMenu = document.getElementById("playlist-opt-menu");
-    pla
+const focusMode = document.querySelector("#focus-mode");
+const longBreakMode = document.querySelector("#long-break-mode");
+const shortBreakMode = document.querySelector("#short-break-mode");
+
+let timerId = null;
+let running = false;
+let focusTime = 50 * 60;
+let shortBreakTime = 10 * 60;
+let longBreakTime = 15 * 60;
+let currentModeTime = focusTime;
+let remainingSeconds = currentModeTime;
+let sequence = 0;
+let autoSequence = true;
+const numOfSequences = 4;
+
+function removeActive() {
+    timerOpts.forEach((timerOpt) => timerOpt.classList.remove("active"));
+}
+
+timerOpts.forEach(function(timerOpt) {
+    timerOpt.addEventListener("click", function() {
+        removeActive();
+        this.classList.add("active");
+
+        if (timerOpt.id === focusMode.id) {
+            setTimerMode(focusTime);
+        }
+        else if (timerOpt.id === shortBreakMode.id) {
+            setTimerMode(shortBreakTime);
+        }
+        else if (timerOpt.id === longBreakMode.id) {
+            setTimerMode(longBreakTime);
+        }
+    })
+})
+
+function setTimerMode(timerModeTime) {
+    currentModeTime = timerModeTime;
+    resetTimer();
+    updateTimer(timerModeTime);
+}
+
+function updateTimeTimer() {
+    remainingSeconds--;
+    updateTimer(remainingSeconds);
+}
+
+playButton.addEventListener("click", function() {
+    if (!running) {
+        startTimer();
+    }
+    else if (running) {
+        stopTimer();
+    }
+})
+
+function startTimer() {
+    timerId = setInterval(updateTimeTimer, 1000);
+    running = true;
+    playButton.textContent = "stop";
+}
+
+function stopTimer() {
+    clearInterval(timerId);
+    running = false;
+    playButton.textContent = "start";
+}
+
+resetButton.addEventListener("click", function() {
+    this.classList.add("rotate");
+    setTimeout(() => resetButton.classList.remove("rotate"), 1000);
+    resetTimer();
 });
 
+function resetTimer() {
+    clearInterval(timerId);
+    running = false;
+    remainingSeconds = currentModeTime;
+    playButton.textContent = "start";
+    updateTimer(currentModeTime);
+}
 
+function updateTimer(remainingSeconds) {    
+    let hours = Math.floor(remainingSeconds / 3600);
+    let minutes = Math.floor((remainingSeconds - (hours * 3600)) / 60)
+    let seconds = Math.floor(remainingSeconds % 60);
+
+    hours = String(hours).padStart(2, "0");
+    minutes = String(minutes).padStart(2, "0");
+    seconds = String(seconds).padStart(2, "0");
+
+    timerString = "";
+    if (hours == true) {
+        timeString = `${hours}:${minutes}:${seconds}`;
+    }
+    else {
+        timeString = `${minutes}:${seconds}`;
+    }
+
+    timerDisplay.textContent = timeString;
+
+    document.title = timeString + " | focus";
+
+    if (remainingSeconds < 0) {
+        playTimerAlert();
+        if (currentModeTime === focusTime) {
+            updateStats(currentModeTime / 60);
+            if (autoSequence === true) {
+                sequence++;
+            }
+            if (sequence >= numOfSequences) {
+                sequence = 0;
+                startLongBreak();
+            }
+            else {
+                startShortBreak();
+            }
+        }
+        else {
+            startFocusTime();
+        }
+    }
+}
+
+const timerSound = "assets/audio/timer-alert.mp3"
+const timerAlert = new Audio(timerSound);
+
+function playTimerAlert()  {
+    timerAlert.play()
+}
+
+function startLongBreak() {
+    removeActive();
+    longBreakMode.classList.add("active");
+
+    setTimerMode(longBreakTime);
+    startTimer();
+}
+
+function startShortBreak() {
+    removeActive();
+    shortBreakMode.classList.add("active");
+    
+    setTimerMode(shortBreakTime);
+    startTimer();
+}
+
+function startFocusTime() {
+    removeActive();
+    focusMode.classList.add("active");
+    
+    setTimerMode(focusTime);
+    startTimer();
+}
+
+const statsFocusTimeLabel = document.querySelector("#time-stats");
+const statsSteakCountLabel = document.querySelector("#steak-stats");
+
+let statsFocusTime = 0;
+let statsSteakCount = 0;
+
+function updateStats(sprintTime) {
+    statsFocusTime += sprintTime;
+    statsFocusTimeLabel.textContent = `${Math.floor(statsFocusTime)} minutes`
+    statsSteakCountLabel.textContent = statsSteakCount++;
+
+}
+
+setTimerMode(focusTime);
+
+let enableQuote = false;
+
+function displayQuote() {
+    const quote = document.querySelector("#quote");
+    if (enableQuote === true) {
+        console.log('disp')
+        quote.classList.remove("hidden");
+    } else {
+        console.log('not disp')
+        quote.classList.add("hidden");
+    }
+}
+
+displayQuote();

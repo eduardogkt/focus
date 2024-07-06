@@ -26,9 +26,13 @@
 }
 
 .timer-clock {
-  font-size: 5rem;
-  letter-spacing: -1px;
+  font-size: 5.125rem;
+  letter-spacing: 1px;
   font-weight: 600;
+}
+
+.active {
+  @extend %white-button;
 }
 
 #start-button {
@@ -38,10 +42,6 @@
     background-color: var(--fill-focus);
     color: var(--text-color);
   }
-}
-
-#active {
-  @extend %white-button;
 }
 
 #reset-button {

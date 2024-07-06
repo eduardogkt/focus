@@ -173,7 +173,7 @@ body {
   gap: 1rem;
 }
 
-#active, #start-button {
+#start-button, .active {
   background-color: white;
   color: var(--black);
 }
@@ -191,8 +191,8 @@ body {
 }
 
 .timer-clock {
-  font-size: 5rem;
-  letter-spacing: -1px;
+  font-size: 5.125rem;
+  letter-spacing: 1px;
   font-weight: 600;
 }
 
@@ -442,6 +442,9 @@ body {
 
 .container {
   background-size: cover;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
 }
 
 .layout {
@@ -455,11 +458,11 @@ body {
        column-gap: 2rem;
 }
 
-.right, .left, .center {
+.over, .right, .left, .center {
   display: flex;
   flex-direction: column;
-  justify-content: unset;
-  align-items: unset;
+  justify-content: center;
+  align-items: center;
   gap: 1.5rem;
   min-width: 360px;
   min-height: 70vh;
@@ -480,6 +483,12 @@ body {
 
 .right {
   grid-column: 3;
+}
+
+.over {
+  display: none;
+  width: 100wv;
+  height: 100hv;
 }
 
 .menu {
@@ -532,6 +541,15 @@ body {
 .emphasis {
   font-weight: 700;
   color: white;
+}
+
+.rotate {
+  transition: transform 1s ease;
+  transform: rotate(-360deg);
+}
+
+.hidden {
+  visibility: hidden;
 }
 
 *::-webkit-scrollbar {
