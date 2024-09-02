@@ -19,6 +19,7 @@
 
 .timer-mode {
   @extend %flex-gap1;
+  color: var(--white);
 }
 
 .timer-actions {
@@ -26,9 +27,10 @@
 }
 
 .timer-clock {
-  font-size: 5.125rem;
+  font-size: 5rem;
   letter-spacing: 1px;
   font-weight: 600;
+  color: var(--white)
 }
 
 .active {

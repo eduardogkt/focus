@@ -21,7 +21,7 @@
   min-height: var(--height);
   text-align: center;
   padding: 0.7rem 0.8rem;
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   border: var(--border);
   border-radius: calc(var(--height) / 2);
   backdrop-filter: var(--blur);
@@ -56,17 +56,17 @@
     background-color: var(--fill-white);
   }
 
-  div {
-    width: 24px;
-    height: 24px;
-    border: 0;
-    background-image: url("../../assets/icons/add_icon.svg");
-    transition: var(--transition);
-  }
+  // div {
+  //   width: 24px;
+  //   height: 24px;
+  //   border: 0;
+  //   background-image: url("../../assets/icons/add_icon.svg");
+  //   transition: var(--transition);
+  // }
 
-  &:hover div {
-    background-image: url("../../assets/icons/add_black_icon.svg");
-  }
+  // &:hover div {
+  //   background-image: url("../../assets/icons/add_black_icon.svg");
+  // }
 }
 
 .button-opt {

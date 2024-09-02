@@ -1,6 +1,8 @@
 @import url("https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 :root {
-  --root-font-size: 16px;
+  --font-size: 16px;
+  --font-family: /*"Ubuntu",*/ "Poppins", sans-serif;
   --black: #0E0E0E;
   --gray: #282828;
   --white: #f1f1f1;
@@ -29,15 +31,16 @@
   padding: 0;
   margin: 0;
   border: 0;
+  font-family: var(--font-family);
 }
 
 html {
   background-color: var(--background-color);
-  font-size: var(--root-font-size, 16px);
+  font-size: var(--font-size, 16px);
 }
 
 body {
-  font-family: "Ubuntu", sans-serif;
+  font-family: var(--font-family);
   min-height: 100vh;
 }
 
@@ -62,7 +65,7 @@ body {
   min-height: var(--height);
   text-align: center;
   padding: 0.7rem 0.8rem;
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   border: var(--border);
   border-radius: calc(var(--height) / 2);
   -webkit-backdrop-filter: var(--blur);
@@ -101,16 +104,6 @@ body {
 .button-icon:hover {
   color: var(--black);
   background-color: var(--fill-white);
-}
-.button-icon div {
-  width: 24px;
-  height: 24px;
-  border: 0;
-  background-image: url("../../assets/icons/add_icon.svg");
-  transition: var(--transition);
-}
-.button-icon:hover div {
-  background-image: url("../../assets/icons/add_black_icon.svg");
 }
 
 .button-opt {
@@ -190,10 +183,15 @@ body {
   box-shadow: var(--shadow);
 }
 
+.timer-mode {
+  color: var(--white);
+}
+
 .timer-clock {
-  font-size: 5.125rem;
+  font-size: 5rem;
   letter-spacing: 1px;
   font-weight: 600;
+  color: var(--white);
 }
 
 #start-button:hover {
@@ -293,8 +291,7 @@ body {
   padding: 0.8rem 0.9rem;
   background-color: var(--gray);
   color: var(--white);
-  font-family: "Ubuntu", sans-serif;
-  font-size: 0.9rem;
+  font-size: 0.8rem;
 }
 
 #button-playlist-submit {
@@ -502,8 +499,7 @@ body {
 
 .quote {
   color: var(--text-color);
-  font-family: "Ubuntu", sans-serif;
-  font-size: 1.1rem;
+  font-size: 0.9rem;
   line-height: 1.6rem;
   margin-top: 1.2rem;
   text-align: center;
@@ -572,4 +568,26 @@ body {
 *:hover::-webkit-scrollbar-thumb {
   background: #676767;
   visibility: visible;
+}
+
+.icon {
+  width: 20px;
+  height: 20px;
+  stroke-width: 2px;
+}
+
+.icon.filled {
+  fill: var(--white);
+}
+
+.opt-icon {
+  width: 15px;
+  height: 15px;
+}
+
+.warning {
+  color: tomato;
+  font-size: 0.8rem;
+  font-style: italic;
+  margin-bottom: 0.4rem;
 }/*# sourceMappingURL=style.css.map */

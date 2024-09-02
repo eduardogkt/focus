@@ -66,8 +66,7 @@
 
 .quote {
   color: var(--text-color); 
-  font-family: 'Ubuntu', sans-serif; 
-  font-size: 1.1rem; 
+  font-size: 0.9rem; 
   line-height: 1.6rem; 
   margin-top: 1.2rem; 
   text-align: center; 
@@ -130,4 +129,26 @@
 *:hover::-webkit-scrollbar-thumb {
   background: #676767;
   visibility: visible;
+}
+
+.icon {
+  width: 20px;
+  height: 20px;
+  stroke-width: 2px;
+}
+
+.icon.filled {
+  fill: var(--white);
+}
+
+.opt-icon {
+  width: 15px;
+  height: 15px;
+}
+
+.warning {
+  color: tomato;
+  font-size: 0.8rem;
+  font-style: italic;
+  margin-bottom: 0.4rem;
 }
