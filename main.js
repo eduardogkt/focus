@@ -2,6 +2,8 @@ $(function() {
 
 lucide.createIcons();
 
+// =============================================================================
+
 // esconde menus de opção (button-opt)
 function hideOptionsMenus() {
     $(".button-opt").each(function() {
@@ -32,6 +34,7 @@ $(".button-opt").on('click', function() {
 });
 
 // =============================================================================
+// botões de menu
 
 // esconte/mostra seções do painel de musica
 function toggleSection(buttonId, sectionClass, optName) {
@@ -61,6 +64,7 @@ togglePanel("#stats-button", "#stats-panel");
 togglePanel("#settings-button", "#settings-panel");
 
 // =============================================================================
+// tela cheia
 
 // botão de tela cheia
 const fullscreenButton = $("#fullscreen-button");
@@ -131,6 +135,7 @@ $(document).on("fullscreenchange", function() {
 });
 
 // =============================================================================
+// sons
 
 // botões de som
 // adiciona um ouvinte de eventos de clique em todos os botões com a classe "button-sound"
@@ -203,8 +208,8 @@ function changeSoundVolume(soundId, volume) {
 }
 
 // =============================================================================
+// playlist
 
-// funções para playlist
 let addPlaylistButton = $("#add-playlist-button");
 
 addPlaylistButton.on("click", addPlaylist); 
@@ -281,6 +286,7 @@ function getPlaylist(input) {
 }
 
 // =============================================================================
+// timer
 
 const playButton = $("#start-button");
 const resetButton = $("#reset-button");
@@ -325,8 +331,8 @@ playButton.on("click", function() {
 });
 
 resetButton.on("click", function() {
-    $(this).addClass("rotate");
-    setTimeout(() => resetButton.removeClass("rotate"), 1000);
+    $(this).addClass("rotate-ccw");
+    setTimeout(() => resetButton.removeClass("rotate-ccw"), 1000);
     resetTimer();
 });
 
@@ -381,7 +387,7 @@ function updateTimerDisplay(remainingSeconds) {
 
     // atualizando o display e o titulo da página
     $("#timer-clock").text(timeString);
-    $(document).prop("title", timeString + " | focus");
+    $(document).prop("title", `${timeString} | focus`);
 
     if (remainingSeconds < 0) {
         playTimerAlert();
@@ -421,6 +427,7 @@ function startTimerMode(timer) {
 }
 
 // =============================================================================
+// stats
 
 const statsFocusTime = $("#time-stats");
 const statsSprintCount = $("#steak-stats");
@@ -443,12 +450,37 @@ $("#stats-opt-reset-button").on("click", function() {
 })
 
 // =============================================================================
+// quote
 
 let disableQuote = false;
+const quoteApiUrl = "http://api.quotable.io/random";
+
 displayQuote();
+
+async function getQuote(url) {
+    const resp = await fetch(quoteApiUrl);
+    const data = await resp.json();
+
+    $("#quote-box").html(`"${data.content}" `)
+    $("#author-box").html(`— ${data.author}`)
+}
 
 function displayQuote() {
     $("#quote").toggleClass("hidden", disableQuote);
+    getQuote(quoteApiUrl);    
 }
+
+$("#quote-button").on("click", function() {
+    getQuote(quoteApiUrl);
+
+    $(this).addClass("rotate-cw");
+    setTimeout(() => $("#quote-button").removeClass("rotate-cw"), 1000);
+})
+
+// =============================================================================
+// tasklist
+
+
+
 
 });

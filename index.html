@@ -1,308 +1,439 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta lang="en">
-  <link rel="icon" href="./assets/icons/adjust_icon.svg">
-  <link rel="stylesheet" type="text/css" href="styles/css/reset.css">
-  <link rel="stylesheet" type="text/css" href="styles/css/style.css">
-  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-  <script defer src="main.js"></script>
-  <title>focus</title>
-</head>
-<body>
-  <div class="container" id="page-content">
-    <div class="layout">
-
-      <!-- <div class="background">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta lang="en" />
+    <link rel="icon" href="./assets/icons/adjust_icon.svg" />
+    <link rel="stylesheet" type="text/css" href="styles/css/reset.css" />
+    <link rel="stylesheet" type="text/css" href="styles/css/style.css" />
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script defer src="main.js"></script>
+    <title>focus</title>
+  </head>
+  <body>
+    <div class="container" id="page-content">
+      <div class="layout">
+        <!-- <div class="background">
         <div class="object" id="o1"></div>
         <div class="object" id="o2"></div>
         <div class="object" id="o3"></div>
       </div> -->
 
-      <div class="center">
-        <section class="menu">
-          <button class="button button-menu glass-effect" id="music-button">
-            <img src="assets/icons/music_note_icon.svg" alt="music button">
-          </button>
-          <button class="button button-menu glass-effect" id="stats-button">
-            <img src="assets/icons/graph_icon.svg" alt="stats button">
-          </button>
-          <button class="button button-menu glass-effect" id="settings-button">
-            <img src="assets/icons/settings_icon.svg" alt="settings button">
-          </button>
-          <button class="button button-menu glass-effect" id="fullscreen-button">
-            <img src="assets/icons/fullscreen_icon.svg" alt="fullscreen button">
-          </button>
-          <button class="button button-menu glass-effect" id="tasklist-button">
-            <img src="assets/icons/checklist_icon.svg" alt="tasklist button">
-          </button>
-        </section>
-
-        <section class="timer-panel glass-effect">
-        <!-- <section class="timer-panel"> -->
-          <div class="timer-mode">
-            <button class="button button-pill button-timer-opt active" id="focus-mode">focus</button>
-            <button class="button button-pill button-timer-opt" id="short-break-mode">short break</button>
-            <button class="button button-pill button-timer-opt" id="long-break-mode">long break</button>
-          </div>
-          <div class="timer-clock" id="timer-clock">
-            50:00
-          </div>
-          <div class="timer-actions">
-            <button class="button button-pill" id="start-button">start</button>
-            <button class="button" id="reset-button">
-              <img src="assets/icons/replay_icon.svg" alt="replay button">
+        <div class="center">
+          <section class="menu">
+            <button class="button button-menu glass-effect" id="music-button">
+              <img src="assets/icons/music_note_icon.svg" alt="music button" />
             </button>
-          </div>
-        </section>
+            <button class="button button-menu glass-effect" id="stats-button">
+              <img src="assets/icons/graph_icon.svg" alt="stats button" />
+            </button>
+            <button
+              class="button button-menu glass-effect"
+              id="settings-button"
+            >
+              <img src="assets/icons/settings_icon.svg" alt="settings button" />
+            </button>
+            <button
+              class="button button-menu glass-effect"
+              id="fullscreen-button"
+            >
+              <img
+                src="assets/icons/fullscreen_icon.svg"
+                alt="fullscreen button"
+              />
+            </button>
+            <button
+              class="button button-menu glass-effect"
+              id="tasklist-button"
+            >
+              <img
+                src="assets/icons/checklist_icon.svg"
+                alt="tasklist button"
+              />
+            </button>
+          </section>
 
-        <section class="quote" id="quote">
-          <span>
-            "Some sort of quote"
-          </span>
-        </section>
-      </div>
-
-      <div class="left">
-        <section class="panel music-panel panel-fit-content glass-effect" id="music-panel">
-          <div class="panel-header">
-            <div class="panel-name">
-              <img src="assets/icons/music_note_icon.svg" alt="tasklist icon">
-              <h2 class="panel-title">Music</h2>
-            </div>
-
-            <div class="opt-menu-wrapper">
-              <button class="button button-opt" id="playlist-opt-button">
-                <i data-lucide="ellipsis-vertical" class="opt-icon"></i>
-                <!-- <img src="assets/icons/options_horiz_icon.svg" alt="playlist options button"> -->
+          <section class="timer-panel glass-effect">
+            <!-- <section class="timer-panel"> -->
+            <div class="timer-mode">
+              <button
+                class="button button-pill button-timer-opt active"
+                id="focus-mode"
+              >
+                focus
               </button>
-
-              <div class="opt-menu" id="playlist-opt-menu">
-                <button class="button button-opt-menu" id="playlist-opt-hide-playlist-button">Hide playlist</button>
-                <button class="button button-opt-menu" id="playlist-opt-hide-sounds-button">Hide sounds</button>
-              </div>
+              <button
+                class="button button-pill button-timer-opt"
+                id="short-break-mode"
+              >
+                short break
+              </button>
+              <button
+                class="button button-pill button-timer-opt"
+                id="long-break-mode"
+              >
+                long break
+              </button>
             </div>
-          </div>
-          
-          <div class="playlist panel-section">
+            <div class="timer-clock" id="timer-clock">50:00</div>
+            <div class="timer-actions">
+              <button class="button button-pill" id="start-button">
+                start
+              </button>
+              <button class="button" id="reset-button">
+                <img src="assets/icons/replay_icon.svg" alt="replay button" />
+              </button>
+            </div>
+          </section>
 
-            <div class="panel-subheader">
-              <h3 class="panel-subtitle">Playlist</h3>
+          <section class="quote" id="quote">
+            <div class="quote-box">
+              <span id="quote-box"></span>
+              <span id="author-box"></span>
+            </div>
+            
+            <button class="button" id="quote-button">
+              <i data-lucide="rotate-cw" class="icon"></i>
+            </button>
+          </section>
+        </div>
+
+        <div class="left">
+          <section
+            class="panel music-panel panel-fit-content glass-effect"
+            id="music-panel"
+          >
+            <div class="panel-header">
+              <div class="panel-name">
+                <img
+                  src="assets/icons/music_note_icon.svg"
+                  alt="tasklist icon"
+                />
+                <h2 class="panel-title">Music</h2>
+              </div>
 
               <div class="opt-menu-wrapper">
-                <button class="button button-opt" id="playlist-info-button">
-                  <img src="assets/icons/info_icon.svg" alt="add playlist info button">
+                <button class="button button-opt" id="playlist-opt-button">
+                  <i data-lucide="ellipsis-vertical" class="opt-icon"></i>
+                  <!-- <img src="assets/icons/options_horiz_icon.svg" alt="playlist options button"> -->
                 </button>
-                
-                <div class="opt-menu" id="playlist-info-menu">
-                  <div>
-                    <p>1. Go to the Spotify playlist and click on the options menu <span class="emphasis">"..."</span></p>
-                    <img src="./assets/images/info1.png" alt="">
-                    
-                    <p>2. Select <span class="emphasis">"Share"</span>, and then click on <span class=emphasis>"Embed Playlist"</span></p>
-                    <img src="./assets/images/info2.png" alt="">
-                    
-                    <p>3. Custumize your playlist</p>
-                    <img src="./assets/images/info3.png" alt="">
-                    
-                    <p>4. Copy the embed code and paste it on the field below</p>
-                    <img src="./assets/images/info4.png" alt="">
-                  </div> 
+
+                <div class="opt-menu" id="playlist-opt-menu">
+                  <button
+                    class="button button-opt-menu"
+                    id="playlist-opt-hide-playlist-button"
+                  >
+                    Hide playlist
+                  </button>
+                  <button
+                    class="button button-opt-menu"
+                    id="playlist-opt-hide-sounds-button"
+                  >
+                    Hide sounds
+                  </button>
                 </div>
               </div>
             </div>
 
-            <div class="playlist-container" id="playlist-container">
-              <iframe style="border-radius:10px" src="https://open.spotify.com/embed/playlist/37i9dQZF1DWWQRwui0ExPn?utm_source=generator&theme=0" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
-            </div>
-            <div class="add-playlist" id="add-playlist-section">
-              <button class="button button-icon" id="add-playlist-button">
-                <i data-lucide="plus" class="icon"></i>
-                Add your own playlist
-              </button>
-            </div>
-          </div>
-        
-          <div class="sounds panel-section">
-            <div class="panel-subheader">
-              <h3 class="panel-subtitle">Sounds</h3>
-            </div>
-            <div class="menu">
-              <button class="button button-menu button-sound glass-effect" id="fire-sound-button">
-                <img src="assets/icons/fire_icon.svg" alt="fire sound button">
-                <audio id="fire-sound" src="assets/audio/fire.mp3"></audio>
-              </button>
-              <button class="button button-menu button-sound glass-effect" id="rain-sound-button">
-                <img src="assets/icons/rain_icon.svg" alt="rain sound button">
-                <audio id="rain-sound" src="assets/audio/rain.mp3"></audio>
-              </button>
-              <button class="button button-menu button-sound glass-effect" id="ocean-sound-button">
-                <img src="assets/icons/waves_icon.svg" alt="wind sound button">
-                <audio id="ocean-sound" src="assets/audio/ocean.mp3"></audio>
-              </button>
-              <button class="button button-menu button-sound glass-effect" id="cafe-sound-button">
-                <img src="assets/icons/cafe_icon.svg" alt="cafe sound button">
-                <audio id="cafe-sound" src="assets/audio/cafe.mp3"></audio>
-              </button>
-            </div>
-            <div class="volume-slider">
-              <input class="input-range" name="input-range" id="volume-slider" type="range" min="0" max="100" value="50" step="1" >
-            </div>
-          </div>
-        </section>
+            <div class="playlist panel-section">
+              <div class="panel-subheader">
+                <h3 class="panel-subtitle">Playlist</h3>
 
-        <section class="panel stats-panel panel-fit-content glass-effect" id="stats-panel">
-          <div class="panel-header">
-            <div class="panel-name">
-              <img src="assets/icons/graph_icon.svg" alt="stats icon">
-              <h2 class="panel-title">Statistics</h2>
-            </div>
-            <div class="opt-menu-wrapper">
-              <button class="button button-opt" id="stats-opt-button">
-                <i data-lucide="ellipsis-vertical" class="opt-icon"></i>
-                <!-- <img src="assets/icons/options_horiz_icon.svg" alt="stats options button"> -->
-              </button>
+                <div class="opt-menu-wrapper">
+                  <button class="button button-opt" id="playlist-info-button">
+                    <img
+                      src="assets/icons/info_icon.svg"
+                      alt="add playlist info button"
+                    />
+                  </button>
 
-              <div class="opt-menu" id="stats-opt-menu">
-                <button class="button button-opt-menu" id="stats-opt-reset-button">Reset stats</button>
-              </div>
-            </div>
-          </div>
-          
-          <div class="stats panel-section">
-            <div class="stats-field">
-              <h3 class="panel-subtitle stats-title">Focus time</h3>
-              <span id="time-stats">0 minutos</span>
-            </div>
-            <div class="stats-field">
-              <h3 class="panel-subtitle stats-title">Sprints</h3>
-              <span id="steak-stats">0</span>
-            </div>
-          </div>
-        </section>
-      </div>
+                  <div class="opt-menu" id="playlist-info-menu">
+                    <div>
+                      <p>
+                        1. Go to the Spotify playlist and click on the options
+                        menu <span class="emphasis">"..."</span>
+                      </p>
+                      <img src="./assets/images/info1.png" alt="" />
 
-      <div class="right">
-        <section class="panel tasklist-panel panel-content glass-effect" id="tasklist-panel">
-          <div class="panel-header">
-            <div class="panel-name">
-              <img src="assets/icons/checklist_icon.svg" alt="tasklist icon">
-              <h2 class="panel-title">Task list</h2>
-            </div>
+                      <p>
+                        2. Select <span class="emphasis">"Share"</span>, and
+                        then click on
+                        <span class="emphasis">"Embed Playlist"</span>
+                      </p>
+                      <img src="./assets/images/info2.png" alt="" />
 
-            <div class="opt-menu-wrapper">
-              <button class="button button-opt" id="tasklist-opt-button">
-                <i data-lucide="ellipsis-vertical" class="opt-icon"></i>
-                <!-- <img src="assets/icons/options_horiz_icon.svg" alt="tasklist options button"> -->
-              </button>
-              
-              <div class="opt-menu" id="tasklist-opt-menu">
-                <button class="button button-opt-menu" id="tasklist-opt-rem-all">Remove all tasks</button>
-                <button class="button button-opt-menu" id="tasklist-opt-rem-completed">Remove completed tasks</button>
-                <button class="button button-opt-menu" id="tasklist-opt-hide-completed">Hide completed tasks</button>
-              </div>
-            </div>
-          </div>
+                      <p>3. Custumize your playlist</p>
+                      <img src="./assets/images/info3.png" alt="" />
 
-          <div class="task-list">
-            
-            <div class="task-item glass-effect">
-              <div class="task-content">
-                Task 1
-              </div>
-              <div class="opt-menu-wrapper">
-              <button class="button button-opt button-task">
-                <i data-lucide="ellipsis-vertical" class="opt-icon"></i>
-                <!-- <img src="assets/icons/options_horiz_icon.svg" alt="task options"> -->
-              </button>
-                <div class="opt-menu">
-                  <button class="button button-opt-menu">Edit</button>
-                  <button class="button button-opt-menu">Remove</button>
+                      <p>
+                        4. Copy the embed code and paste it on the field below
+                      </p>
+                      <img src="./assets/images/info4.png" alt="" />
+                    </div>
+                  </div>
                 </div>
               </div>
+
+              <div class="playlist-container" id="playlist-container">
+                <iframe
+                  style="border-radius: 10px"
+                  src="https://open.spotify.com/embed/playlist/37i9dQZF1DWWQRwui0ExPn?utm_source=generator&theme=0"
+                  width="100%"
+                  height="152"
+                  frameborder="0"
+                  allowfullscreen=""
+                  allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                  loading="lazy"
+                ></iframe>
+              </div>
+              <div class="add-playlist" id="add-playlist-section">
+                <button class="button button-icon" id="add-playlist-button">
+                  <i data-lucide="plus" class="icon"></i>
+                  Add your own playlist
+                </button>
+              </div>
             </div>
 
-            <div class="task-item glass-effect">
-              <div class="task-content">
-                Task 2
+            <div class="sounds panel-section">
+              <div class="panel-subheader">
+                <h3 class="panel-subtitle">Sounds</h3>
               </div>
-              <div class="opt-menu-wrapper">
-              <button class="button button-opt button-task">
-                <i data-lucide="ellipsis-vertical" class="opt-icon"></i>
-                <!-- <img src="assets/icons/options_horiz_icon.svg" alt="task options"> -->
-              </button>
-                <div class="opt-menu">
-                  <button class="button button-opt-menu">Edit</button>
-                  <button class="button button-opt-menu">Remove</button>
-                </div>
+              <div class="menu">
+                <button
+                  class="button button-menu button-sound glass-effect"
+                  id="fire-sound-button"
+                >
+                  <img
+                    src="assets/icons/fire_icon.svg"
+                    alt="fire sound button"
+                  />
+                  <audio id="fire-sound" src="assets/audio/fire.mp3"></audio>
+                </button>
+                <button
+                  class="button button-menu button-sound glass-effect"
+                  id="rain-sound-button"
+                >
+                  <img
+                    src="assets/icons/rain_icon.svg"
+                    alt="rain sound button"
+                  />
+                  <audio id="rain-sound" src="assets/audio/rain.mp3"></audio>
+                </button>
+                <button
+                  class="button button-menu button-sound glass-effect"
+                  id="ocean-sound-button"
+                >
+                  <img
+                    src="assets/icons/waves_icon.svg"
+                    alt="wind sound button"
+                  />
+                  <audio id="ocean-sound" src="assets/audio/ocean.mp3"></audio>
+                </button>
+                <button
+                  class="button button-menu button-sound glass-effect"
+                  id="cafe-sound-button"
+                >
+                  <img
+                    src="assets/icons/cafe_icon.svg"
+                    alt="cafe sound button"
+                  />
+                  <audio id="cafe-sound" src="assets/audio/cafe.mp3"></audio>
+                </button>
               </div>
-            </div>
-            
-          </div>
-
-          <button class="button button-icon" id="add-task-button">
-            <!-- <div role="img"></div> -->
-            <i data-lucide="plus" class="icon"></i>
-            Add a new task
-          </button>
-        </section>
-      </div>
-
-      <div class="over">
-        <section class="panel settings-panel panel-content glass-effect" id="settings-panel">
-          <div class="panel-header">
-            <div class="panel-name">
-              <img src="assets/icons/settings_icon.svg" alt="tasklist icon">
-              <h2 class="panel-title">Settings</h2>
-            </div>
-            <div class="panel-close">
-              <button>
-                <img src="assets/icons/close_icon.svg" alt="close settings">
-              </button>
-            </div>
-          </div>
-
-          <section>
-            <ul>
-              <li><button>Themes</button></li>
-              <li><button>Timer</button></li>
-              <li><button>Sound</button></li>
-              <li><button>Stats</button></li>
-              <li><button>Account</button></li>
-              <li><button>Support</button></li>
-            </ul>
-          </section>
-          <section>
-            <div>
-            <div>
-                <label for="focus-time">focus</label>
-                <input type="number" id="focus-time">
-                <span>minutes</span>
+              <div class="volume-slider">
+                <input
+                  class="input-range"
+                  name="input-range"
+                  id="volume-slider"
+                  type="range"
+                  min="0"
+                  max="100"
+                  value="50"
+                  step="1"
+                />
               </div>
-              <div>
-                <label for="short-break-time">short time</label>
-                <input type="number" id="short-break-time">
-                <span>minutes</span>
-              </div>
-              <div>
-                <label for="long-break-time"> long break</label>
-                <input type="number" id="long-break-time">
-                <span>minutes</span>
-              </div>
-            </div>
-            <div>
-              <input type="checkbox">
-              <label for="auto-sequence">auto sequence</label>
-              <span>focus &rarr; short break (x4) &rarr; focus &rarr; long break</span>
             </div>
           </section>
 
-        </section>
+          <section
+            class="panel stats-panel panel-fit-content glass-effect"
+            id="stats-panel"
+          >
+            <div class="panel-header">
+              <div class="panel-name">
+                <img src="assets/icons/graph_icon.svg" alt="stats icon" />
+                <h2 class="panel-title">Statistics</h2>
+              </div>
+              <div class="opt-menu-wrapper">
+                <button class="button button-opt" id="stats-opt-button">
+                  <i data-lucide="ellipsis-vertical" class="opt-icon"></i>
+                  <!-- <img src="assets/icons/options_horiz_icon.svg" alt="stats options button"> -->
+                </button>
+
+                <div class="opt-menu" id="stats-opt-menu">
+                  <button
+                    class="button button-opt-menu"
+                    id="stats-opt-reset-button"
+                  >
+                    Reset stats
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <div class="stats panel-section">
+              <div class="stats-field">
+                <h3 class="panel-subtitle stats-title">Focus time</h3>
+                <span id="time-stats">0 minutos</span>
+              </div>
+              <div class="stats-field">
+                <h3 class="panel-subtitle stats-title">Sprints</h3>
+                <span id="steak-stats">0</span>
+              </div>
+            </div>
+          </section>
+        </div>
+
+        <div class="right">
+          <section
+            class="panel tasklist-panel panel-content glass-effect"
+            id="tasklist-panel"
+          >
+            <div class="panel-header">
+              <div class="panel-name">
+                <img
+                  src="assets/icons/checklist_icon.svg"
+                  alt="tasklist icon"
+                />
+                <h2 class="panel-title">Task list</h2>
+              </div>
+
+              <div class="opt-menu-wrapper">
+                <button class="button button-opt" id="tasklist-opt-button">
+                  <i data-lucide="ellipsis-vertical" class="opt-icon"></i>
+                  <!-- <img src="assets/icons/options_horiz_icon.svg" alt="tasklist options button"> -->
+                </button>
+
+                <div class="opt-menu" id="tasklist-opt-menu">
+                  <button
+                    class="button button-opt-menu"
+                    id="tasklist-opt-rem-all"
+                  >
+                    Remove all tasks
+                  </button>
+                  <button
+                    class="button button-opt-menu"
+                    id="tasklist-opt-rem-completed"
+                  >
+                    Remove completed tasks
+                  </button>
+                  <button
+                    class="button button-opt-menu"
+                    id="tasklist-opt-hide-completed"
+                  >
+                    Hide completed tasks
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <div class="task-list">
+              <div class="task-item glass-effect">
+                <div class="task-content">Task 1</div>
+                <div class="opt-menu-wrapper">
+                  <button class="button button-opt button-task">
+                    <i data-lucide="ellipsis-vertical" class="opt-icon"></i>
+                    <!-- <img src="assets/icons/options_horiz_icon.svg" alt="task options"> -->
+                  </button>
+                  <div class="opt-menu">
+                    <button class="button button-opt-menu">Edit</button>
+                    <button class="button button-opt-menu">Remove</button>
+                  </div>
+                </div>
+              </div>
+
+              <div class="task-item glass-effect">
+                <div class="task-content">Task 2</div>
+                <div class="opt-menu-wrapper">
+                  <button class="button button-opt button-task">
+                    <i data-lucide="ellipsis-vertical" class="opt-icon"></i>
+                    <!-- <img src="assets/icons/options_horiz_icon.svg" alt="task options"> -->
+                  </button>
+                  <div class="opt-menu">
+                    <button class="button button-opt-menu">Edit</button>
+                    <button class="button button-opt-menu">Remove</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <button class="button button-icon" id="add-task-button">
+              <!-- <div role="img"></div> -->
+              <i data-lucide="plus" class="icon"></i>
+              Add a new task
+            </button>
+          </section>
+        </div>
+
+        <div class="over">
+          <section
+            class="panel settings-panel panel-content glass-effect"
+            id="settings-panel"
+          >
+            <div class="panel-header">
+              <div class="panel-name">
+                <img src="assets/icons/settings_icon.svg" alt="tasklist icon" />
+                <h2 class="panel-title">Settings</h2>
+              </div>
+              <div class="panel-close">
+                <button>
+                  <img src="assets/icons/close_icon.svg" alt="close settings" />
+                </button>
+              </div>
+            </div>
+
+            <section>
+              <ul>
+                <li><button>Themes</button></li>
+                <li><button>Timer</button></li>
+                <li><button>Sound</button></li>
+                <li><button>Stats</button></li>
+                <li><button>Account</button></li>
+                <li><button>Support</button></li>
+              </ul>
+            </section>
+            <section>
+              <div>
+                <div>
+                  <label for="focus-time">focus</label>
+                  <input type="number" id="focus-time" />
+                  <span>minutes</span>
+                </div>
+                <div>
+                  <label for="short-break-time">short time</label>
+                  <input type="number" id="short-break-time" />
+                  <span>minutes</span>
+                </div>
+                <div>
+                  <label for="long-break-time"> long break</label>
+                  <input type="number" id="long-break-time" />
+                  <span>minutes</span>
+                </div>
+              </div>
+              <div>
+                <input type="checkbox" />
+                <label for="auto-sequence">auto sequence</label>
+                <span
+                  >focus &rarr; short break (x4) &rarr; focus &rarr; long
+                  break</span
+                >
+              </div>
+            </section>
+          </section>
+        </div>
       </div>
     </div>
-  </div>
-</body>
-<script src="https://unpkg.com/lucide@latest"></script>
+  </body>
+  <script src="https://unpkg.com/lucide@latest"></script>
 </html>

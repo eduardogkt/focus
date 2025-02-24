@@ -437,6 +437,48 @@ body {
   top: 55%;
 }
 
+.quote {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  color: var(--text-color);
+  font-size: 0.9rem;
+  line-height: 1.6rem;
+  text-align: center;
+  width: 440px;
+  padding: 0 1rem;
+  -webkit-user-select: text;
+     -moz-user-select: text;
+          user-select: text;
+}
+
+#quote-button {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: unset;
+  background-color: transparent;
+  border: 0;
+  box-shadow: none;
+  border-radius: 10px;
+}
+#quote-button .icon {
+  color: rgb(97, 97, 97);
+  height: 15px;
+  width: 15px;
+  stroke-width: 3px;
+}
+#quote-button:hover .icon {
+  color: var(--text-color);
+}
+
+#author-box {
+  white-space: nowrap;
+}
+
 .container {
   background-size: cover;
   -webkit-user-select: none;
@@ -497,15 +539,6 @@ body {
   width: 100%;
 }
 
-.quote {
-  color: var(--text-color);
-  font-size: 0.9rem;
-  line-height: 1.6rem;
-  margin-top: 1.2rem;
-  text-align: center;
-  width: 440px;
-}
-
 .opt-menu-wrapper {
   position: relative;
   width: -moz-fit-content;
@@ -539,7 +572,12 @@ body {
   color: white;
 }
 
-.rotate {
+.rotate-cw {
+  transition: transform 1s ease;
+  transform: rotate(360deg);
+}
+
+.rotate-ccw {
   transition: transform 1s ease;
   transform: rotate(-360deg);
 }

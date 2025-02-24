@@ -9,6 +9,7 @@
 @import "./stats";
 @import "./tasklist";
 @import "./background";
+@import "./quote";
 
 .container {
   // background-image: url("/assets/backgound/gris3.jpg");
@@ -64,15 +65,6 @@
   width: 100%;
 }
 
-.quote {
-  color: var(--text-color); 
-  font-size: 0.9rem; 
-  line-height: 1.6rem; 
-  margin-top: 1.2rem; 
-  text-align: center; 
-  width: 440px;
-}
-
 .opt-menu-wrapper {
   position: relative;
   width: fit-content;
@@ -99,7 +91,12 @@
   color: white;
 }
 
-.rotate {
+.rotate-cw {
+  transition: transform 1s ease;
+  transform: rotate(360deg);
+}
+
+.rotate-ccw {
   transition: transform 1s ease;
   transform: rotate(-360deg);
 }
