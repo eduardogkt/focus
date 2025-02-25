@@ -12,7 +12,7 @@
 @import "./quote";
 
 .container {
-  // background-image: url("/assets/backgound/gris3.jpg");
+  // background-image: url("/assets/backgound/gris1.png");
   background-size: cover;
   user-select: none;
 }
@@ -147,5 +147,12 @@
   color: tomato;
   font-size: 0.8rem;
   font-style: italic;
-  margin-bottom: 0.4rem;
+}
+
+.warning-border {
+  border: 1px solid tomato;
+}
+
+.hide {
+  display: none;
 }

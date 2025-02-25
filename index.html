@@ -78,7 +78,6 @@
               <div class="opt-menu-wrapper">
                 <button class="button button-opt" id="playlist-opt-button">
                   <i data-lucide="ellipsis-vertical" class="opt-icon"></i>
-                  <!-- <img src="assets/icons/options_horiz_icon.svg" alt="playlist options button"> -->
                 </button>
 
                 <div class="opt-menu" id="playlist-opt-menu">
@@ -132,7 +131,7 @@
               <div class="playlist-container" id="playlist-container">
                 <iframe
                   style="border-radius: 10px"
-                  src="https://open.spotify.com/embed/playlist/37i9dQZF1DWWQRwui0ExPn?utm_source=generator&theme=0"
+                  src="https://open.spotify.com/embed/playlist/37i9dQZF1DXc8kgYqQLMfH?utm_source=generato&theme=0"
                   width="100%"
                   height="152"
                   frameborder="0"
@@ -252,21 +251,22 @@
             <div class="task-list" id="task-list">
               <div class="task glass-effect">
                 <i data-lucide="circle" class="check-icon"></i>
+
                 <input type="checkbox" class="check" />
 
                 <span class="task-description">Lorem, ipsum dolor sit amet consectetur adipisicing elit.</span>
 
                 <div class="opt-menu-wrapper">
-                  <button class="button button-opt" id="tasklist-opt-button">
+                  <button class="button button-opt button-opt-task">
                     <i data-lucide="ellipsis-vertical" class="opt-icon"></i>
                   </button>
 
                   <div class="opt-menu task-opt-menu">
-                    <button class="button button-opt-menu" id="tasklist-opt-rem-all">
+                    <button class="button button-opt-menu button-opt-task-edit">
                       <i data-lucide="pencil" class="opt-icon"></i>
                       <span>Edit</span>
                     </button>
-                    <button class="button button-opt-menu" id="tasklist-opt-rem-completed">
+                    <button class="button button-opt-menu button-opt-task-remove">
                       <i data-lucide="circle-minus" class="opt-icon"></i>
                       <span>Remove</span>
                     </button>
@@ -274,45 +274,25 @@
                 </div>
               </div>
 
-              <div class="task glass-effect checked">
-                <i data-lucide="circle" class="check-icon"></i>
-                <input type="checkbox" class="check" />
-
-                <span class="task-description">
-                  Lorem, ipsum dolor sit amet consectetur adipisicing elit. Rem, veniam. Autem dolorem cupiditate,
-                  sapiente atque nobis laudantium molestiae ex debitis.
-                </span>
-
-                <div class="opt-menu-wrapper">
-                  <button class="button button-opt" id="tasklist-opt-button">
-                    <i data-lucide="ellipsis-vertical" class="opt-icon"></i>
-                  </button>
-
-                  <div class="opt-menu task-opt-menu">
-                    <button class="button button-opt-menu" id="tasklist-opt-rem-all">
-                      <i data-lucide="pencil" class="opt-icon"></i>
-                      <span>Edit</span>
-                    </button>
-                    <button class="button button-opt-menu" id="tasklist-opt-rem-completed">
-                      <i data-lucide="circle-minus" class="opt-icon"></i>
-                      <span>Remove</span>
-                    </button>
-                  </div>
-                </div>
-              </div>
-
-              <button class="button button-icon" id="add-task-button">
+              <button class="button button-icon" id="button-task-add">
                 <i data-lucide="plus" class="icon"></i>
                 Add a new task
               </button>
 
-              <div class="task-create glass-effect">
-                <textarea class="input-text" placeholder="Task description..." maxlength="500" rows="3"></textarea>
+              <!-- <div class="task-create glass-effect" id="task-create">
+                <textarea 
+                  id="task-description" 
+                  class="input-text" 
+                  placeholder="Task 
+                  description..." 
+                  maxlength="500" 
+                  rows="3"
+                ></textarea>
                 <div class="create-buttons">
                   <button class="button button-pill" id="button-create-task">criar</button>
                   <button class="button button-pill" id="button-cancel-task">cancelar</button>
                 </div>
-              </div>
+              </div> -->
             </div>
           </section>
         </div>

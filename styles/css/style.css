@@ -291,6 +291,7 @@ body {
 .input-playlist {
   height: 100px;
   margin-bottom: 1rem;
+  margin-top: 0.4rem;
   border-radius: 10px;
   resize: none;
   outline: none;
@@ -300,7 +301,7 @@ body {
   font-size: 0.8rem;
 }
 
-#button-playlist-submit {
+#button-playlist-create {
   margin-right: 1rem;
 }
 
@@ -420,8 +421,8 @@ body {
   inset: 0;
 }
 .task:has(input:checked) .check-icon {
-  fill: var(--lightgray);
-  stroke: var(--lightgray);
+  fill: var(--white);
+  stroke: var(--white);
 }
 .task .check-icon {
   width: 20px;
@@ -443,11 +444,6 @@ body {
 }
 
 .task-create {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 1rem;
   padding: 1rem 1.1rem;
   margin-bottom: 1rem;
 }
@@ -463,25 +459,23 @@ body {
   background-color: var(--gray);
   border-radius: 10px;
   color: var(--text-color);
+  margin-bottom: 1rem;
+  margin-top: 0.4rem;
 }
 .task-create .input-text:focus {
   outline: none;
 }
+.task-create .create-buttons {
+  margin: 0 auto;
+  width: -moz-fit-content;
+  width: fit-content;
+}
 
-#button-create-task {
+#button-task-create {
   margin-right: 1rem;
 }
 
 .checked {
-  color: var(--lightgray) !important;
-}
-.checked .options-button {
-  color: var(--lightgray) !important;
-}
-.checked .options-button:hover {
-  border: 1px solid var(--lightgray) !important;
-}
-.checked .options-button .opt-icon {
   color: var(--lightgray) !important;
 }
 .checked .check-icon {
@@ -715,5 +709,12 @@ body {
   color: tomato;
   font-size: 0.8rem;
   font-style: italic;
-  margin-bottom: 0.4rem;
+}
+
+.warning-border {
+  border: 1px solid tomato;
+}
+
+.hide {
+  display: none;
 }/*# sourceMappingURL=style.css.map */

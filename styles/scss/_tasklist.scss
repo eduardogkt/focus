@@ -18,8 +18,8 @@
   }
 
   &:has(input:checked) .check-icon {
-    fill: var(--lightgray);
-    stroke: var(--lightgray);
+    fill: var(--white);
+    stroke: var(--white);
   }
 
   .check-icon {
@@ -44,7 +44,6 @@
 }
 
 .task-create {
-  @include flex(column, center, center, 1rem);
   padding: 1rem 1.1rem;
   margin-bottom: 1rem;
 
@@ -60,29 +59,27 @@
     background-color: var(--gray);
     border-radius: 10px;
     color: var(--text-color);
+    margin-bottom: 1rem;
+    margin-top: 0.4rem;
 
     &:focus {
       outline: none;
     }
   }
+
+  .create-buttons {
+    margin: 0 auto;
+    width: fit-content;
+  }
 }
 
-#button-create-task {
+#button-task-create {
   margin-right: 1rem;
 }
 
 .checked {
   color: var(--lightgray) !important;
 
-  .options-button {
-    color: var(--lightgray) !important;
-    &:hover {
-      border: 1px solid var(--lightgray) !important;
-    }
-    .opt-icon {
-      color: var(--lightgray) !important;
-    }
-  }
   .check-icon {
     fill: var(--lightgray) !important;
     stroke: var(--lightgray) !important;

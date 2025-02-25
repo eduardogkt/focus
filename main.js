@@ -3,61 +3,76 @@ $(function() {
 lucide.createIcons();
 
 // =============================================================================
+// funções gerais
 
-// esconde menus de opção (button-opt)
-function hideOptionsMenus() {
-    $(".button-opt").each(function() {
-        const menu = $(this).siblings(".opt-menu");
-        menu.css("display", "none");
-    })
+// verifica se há aviso para o elemento
+function hasWarning(selector) {
+    return $(selector).siblings(".warning").length > 0;
 }
 
-// fechar menu de opções quando clicar fora
-$(document).on("click", hideOptionsMenus);
-$(".opt-menu-wrapper").on("click", event => event.stopPropagation());
+// adiciona um aviso antes do elemento
+function addWarning(selector, description) {
+    $(selector).before(`<span class="warning">${description}</span>`);
+    $(selector).addClass("warning-border");
+}
 
-// mostra/esconde menus de opção (button-opt)
-$(".button-opt").on('click', function() {
-    const menu = $(this).siblings(".opt-menu");
+// esconde todos os menus de opção
+function hideOptionsMenus() {
+    $(".opt-menu").hide();
+}
 
-    // menu de informação de incorporação de playlist display precisa ser block
-    const display = 
-        (menu.attr("id") === "playlist-info-menu") ? "block" : "flex";
+// mostra/esconde menus de opção
+function toggleMenus(event) {
+    event.stopPropagation(); // evita que o clique se propague para o document
 
-    if (menu.css("display") === display) {
+    const button = $(event.currentTarget);
+    const menu = button.siblings(".opt-menu");
+
+    const displayType = menu.attr("id") === "playlist-info-menu" ? "block" : "flex";
+
+    if (menu.css("display") === displayType) {
         menu.hide();
-    } 
-    else {
+    } else {
         hideOptionsMenus();
-        menu.css("display", display);
+        menu.css("display", displayType);
     }
-});
+}
+
+// fecha o menu de opções quando clicar fora
+$(document).on("click", hideOptionsMenus);
+$(document).on("click", ".opt-menu-wrapper", event => event.stopPropagation());
+$(document).on("click", ".button-opt", toggleMenus);
 
 // =============================================================================
-// botões de menu
+// seções e paineis
 
-// esconte/mostra seções do painel de musica
-function toggleSection(buttonId, sectionClass, optName) {
-    let section = $(sectionClass);
-    let button = $(buttonId);
-    
-    button.on("click", function() {
-        section.toggle(0, function() {
-            let isVisible = section.is(":visible");
-            button.text((isVisible ? "Hide " : "Show ") + optName);
-            hideOptionsMenus();
-        })
+// esconde/mostra seções do painel de música
+function toggleSection(buttonSelector, sectionSelector, optName) {
+    $(document).on("click", buttonSelector, function () {
+        const button = $(this);
+        const section = $(sectionSelector);
+        const isVisible = section.toggle().is(":visible");
+
+        button.find("svg").attr("data-lucide", isVisible ? "eye-off" : "eye");
+        button.find("span").text(isVisible ? `Hide ${optName}` : `Show ${optName}`);
+
+        lucide.createIcons();
+        hideOptionsMenus();
     });
 }
 
+// ativa a funcionalidade de alternância para os botões do painel de música
 toggleSection("#playlist-opt-hide-playlist-button", ".playlist", "playlist");
 toggleSection("#playlist-opt-hide-sounds-button", ".sounds", "sounds");
 
 // botões de painel do menu (considera menus com display block)
-function togglePanel(buttonId, panelId) {
-    $(buttonId).on("click", () => $(panelId).toggle());
+function togglePanel(buttonSelector, panelSelector) {
+    $(document).on("click", buttonSelector, function () {
+        $(panelSelector).toggle();
+    });
 }
 
+// ativa a funcionalidade de alternância para os painéis do menu
 togglePanel("#tasklist-button", "#tasklist-panel");
 togglePanel("#music-button", "#music-panel");
 togglePanel("#stats-button", "#stats-panel");
@@ -66,7 +81,7 @@ togglePanel("#settings-button", "#settings-panel");
 // =============================================================================
 // tela cheia
 
-// botão de tela cheia
+// seletores
 const fullscreenButton = $("#fullscreen-button");
 const layout = $("#page-content")[0];
 let isFullscreen = false;
@@ -113,13 +128,6 @@ function changeFullscreen() {
 
 // caso aperte o botão do menu
 fullscreenButton.on("click", changeFullscreen);
-
-// caso aperte o atalho "f"
-// $(document).on("keydown", function(event) {
-//     if (event.key === "f") {
-//         changeFullscreen();
-//     }
-// });
 
 // caso aperte "Esc"
 $(document).on("keydown", function(event) {
@@ -227,7 +235,7 @@ function addPlaylist() {
         required
         placeholder="Paste the embedding code or link here."></textarea>
     <div>
-        <button class="button button-pill" id="button-playlist-submit" type="button">send</button>
+        <button class="button button-pill" id="button-playlist-create" type="button">create</button>
         <button class="button button-pill" id="button-playlist-cancel" type="button">cancel</button>
     </div>
     </form>`;
@@ -235,7 +243,7 @@ function addPlaylist() {
     $("#add-playlist-section").html(form);
 
     $("#button-playlist-cancel").on("click", removePlaylistForm);
-    $("#button-playlist-submit").on("click", setCustomPlaylist);
+    $("#button-playlist-create").on("click", setCustomPlaylist);
 }
 
 function removePlaylistForm() {
@@ -259,9 +267,8 @@ function setCustomPlaylist() {
         $(".playlist-container").html(customPlaylist);
         removePlaylistForm();
     }
-    else if (!$(".warning").length) {
-        // adicionando alerta de campo vazio
-        $(".input-playlist").before(`<span class="warning">* empty field</span>`);
+    else if (!userInput && !hasWarning("#input-playlist")) {
+        addWarning(".input-playlist", "empty field");
     }
 }
 
@@ -481,6 +488,100 @@ $("#quote-button").on("click", function() {
 // tasklist
 
 
+$(document).on("click", ".check",  handleCompletedTasks);
 
+const createTaskBox = `
+    <div class="task-create glass-effect" id="task-create">
+    <textarea 
+        id="task-input" 
+        class="input-text" 
+        placeholder="Task 
+        description..." 
+        maxlength="500" 
+        rows="3"
+    ></textarea>
+    <div class="create-buttons">
+        <button class="button button-pill" id="button-task-create">create</button>
+        <button class="button button-pill" id="button-task-cancel">cancel</button>
+    </div>
+    </div>`;
+
+const addTaskButton = $("#button-task-add");
+const tasklist = $("#task-list");
+
+addTaskButton.on("click", addTask);
+
+
+function addTask() {
+    tasklist.append(createTaskBox);
+    addTaskButton.remove();
+
+    $("#button-task-cancel").on("click", removeAddTaskBox)
+    $("#button-task-create").on("click", createTask);
+}
+
+function removeAddTaskBox() {
+    tasklist.append(addTaskButton);
+    $("#task-create").remove();
+    $("#button-task-add").on("click", addTask);
+}
+
+function createTask() {
+    const description = $("#task-input").val().trim();
+
+    $("#warning").remove();
+    $("#task-input").removeClass("warning-border");
+
+    if (!description && !hasWarning("#task-input")) {
+        addWarning("#task-input", "empty field");
+        return;
+    }
+
+    tasklist.append(`
+        <div class="task glass-effect">
+            <i data-lucide="circle" class="check-icon"></i>
+
+            <input type="checkbox" class="check" />
+
+            <span class="task-description">${description}</span>
+
+            <div class="opt-menu-wrapper">
+                <button class="button button-opt button-opt-task">
+                    <i data-lucide="ellipsis-vertical" class="opt-icon"></i>
+                </button>
+
+                <div class="opt-menu task-opt-menu">
+                <button class="button button-opt-menu button-opt-task-edit">
+                    <i data-lucide="pencil" class="opt-icon"></i>
+                    <span>Edit</span>
+                </button>
+                <button class="button button-opt-menu button-opt-task-remove">
+                    <i data-lucide="circle-minus" class="opt-icon"></i>
+                    <span>Remove</span>
+                </button>
+                </div>
+            </div>
+        </div>`
+    );
+    
+    lucide.createIcons();
+    removeAddTaskBox();
+    addTask();  // continua adicionando tarefas
+}
+
+function handleCompletedTasks() {
+    $(".check").each(function() {
+        const task = $(this).parent();
+        if ($(this).is(":checked")) {
+            task.addClass("checked");
+
+            // if (hideCompletedTasks) {
+            //     hideTask(task);
+            // }
+        } else {
+            task.removeClass("checked");
+        }
+    });
+}
 
 });
