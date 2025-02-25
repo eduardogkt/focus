@@ -115,11 +115,11 @@ function changeFullscreen() {
 fullscreenButton.on("click", changeFullscreen);
 
 // caso aperte o atalho "f"
-$(document).on("keydown", function(event) {
-    if (event.key === "f") {
-        changeFullscreen();
-    }
-});
+// $(document).on("keydown", function(event) {
+//     if (event.key === "f") {
+//         changeFullscreen();
+//     }
+// });
 
 // caso aperte "Esc"
 $(document).on("keydown", function(event) {

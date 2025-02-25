@@ -28,59 +28,27 @@
             <button class="button button-menu glass-effect" id="stats-button">
               <img src="assets/icons/graph_icon.svg" alt="stats button" />
             </button>
-            <button
-              class="button button-menu glass-effect"
-              id="settings-button"
-            >
+            <button class="button button-menu glass-effect" id="settings-button">
               <img src="assets/icons/settings_icon.svg" alt="settings button" />
             </button>
-            <button
-              class="button button-menu glass-effect"
-              id="fullscreen-button"
-            >
-              <img
-                src="assets/icons/fullscreen_icon.svg"
-                alt="fullscreen button"
-              />
+            <button class="button button-menu glass-effect" id="fullscreen-button">
+              <img src="assets/icons/fullscreen_icon.svg" alt="fullscreen button" />
             </button>
-            <button
-              class="button button-menu glass-effect"
-              id="tasklist-button"
-            >
-              <img
-                src="assets/icons/checklist_icon.svg"
-                alt="tasklist button"
-              />
+            <button class="button button-menu glass-effect" id="tasklist-button">
+              <img src="assets/icons/checklist_icon.svg" alt="tasklist button" />
             </button>
           </section>
 
           <section class="timer-panel glass-effect">
             <!-- <section class="timer-panel"> -->
             <div class="timer-mode">
-              <button
-                class="button button-pill button-timer-opt active"
-                id="focus-mode"
-              >
-                focus
-              </button>
-              <button
-                class="button button-pill button-timer-opt"
-                id="short-break-mode"
-              >
-                short break
-              </button>
-              <button
-                class="button button-pill button-timer-opt"
-                id="long-break-mode"
-              >
-                long break
-              </button>
+              <button class="button button-pill button-timer-opt active" id="focus-mode">focus</button>
+              <button class="button button-pill button-timer-opt" id="short-break-mode">short break</button>
+              <button class="button button-pill button-timer-opt" id="long-break-mode">long break</button>
             </div>
             <div class="timer-clock" id="timer-clock">50:00</div>
             <div class="timer-actions">
-              <button class="button button-pill" id="start-button">
-                start
-              </button>
+              <button class="button button-pill" id="start-button">start</button>
               <button class="button" id="reset-button">
                 <img src="assets/icons/replay_icon.svg" alt="replay button" />
               </button>
@@ -92,7 +60,7 @@
               <span id="quote-box"></span>
               <span id="author-box"></span>
             </div>
-            
+
             <button class="button" id="quote-button">
               <i data-lucide="rotate-cw" class="icon"></i>
             </button>
@@ -100,16 +68,10 @@
         </div>
 
         <div class="left">
-          <section
-            class="panel music-panel panel-fit-content glass-effect"
-            id="music-panel"
-          >
+          <section class="panel music-panel panel-fit-content glass-effect" id="music-panel">
             <div class="panel-header">
               <div class="panel-name">
-                <img
-                  src="assets/icons/music_note_icon.svg"
-                  alt="tasklist icon"
-                />
+                <img src="assets/icons/music_note_icon.svg" alt="tasklist icon" />
                 <h2 class="panel-title">Music</h2>
               </div>
 
@@ -120,17 +82,13 @@
                 </button>
 
                 <div class="opt-menu" id="playlist-opt-menu">
-                  <button
-                    class="button button-opt-menu"
-                    id="playlist-opt-hide-playlist-button"
-                  >
-                    Hide playlist
+                  <button class="button button-opt-menu" id="playlist-opt-hide-playlist-button">
+                    <i data-lucide="eye-off" class="opt-icon"></i>
+                    <span>Hide playlist</span>
                   </button>
-                  <button
-                    class="button button-opt-menu"
-                    id="playlist-opt-hide-sounds-button"
-                  >
-                    Hide sounds
+                  <button class="button button-opt-menu" id="playlist-opt-hide-sounds-button">
+                    <i data-lucide="eye-off" class="opt-icon"></i>
+                    <span>Hide sounds</span>
                   </button>
                 </div>
               </div>
@@ -142,23 +100,21 @@
 
                 <div class="opt-menu-wrapper">
                   <button class="button button-opt" id="playlist-info-button">
-                    <img
-                      src="assets/icons/info_icon.svg"
-                      alt="add playlist info button"
-                    />
+                    <img src="assets/icons/info_icon.svg" alt="add playlist info button" />
                   </button>
 
                   <div class="opt-menu" id="playlist-info-menu">
                     <div>
                       <p>
-                        1. Go to the Spotify playlist and click on the options
-                        menu <span class="emphasis">"..."</span>
+                        1. Go to the Spotify playlist and click on the options menu
+                        <span class="emphasis">"..."</span>
                       </p>
                       <img src="./assets/images/info1.png" alt="" />
 
                       <p>
-                        2. Select <span class="emphasis">"Share"</span>, and
-                        then click on
+                        2. Select
+                        <span class="emphasis">"Share"</span>
+                        , and then click on
                         <span class="emphasis">"Embed Playlist"</span>
                       </p>
                       <img src="./assets/images/info2.png" alt="" />
@@ -166,9 +122,7 @@
                       <p>3. Custumize your playlist</p>
                       <img src="./assets/images/info3.png" alt="" />
 
-                      <p>
-                        4. Copy the embed code and paste it on the field below
-                      </p>
+                      <p>4. Copy the embed code and paste it on the field below</p>
                       <img src="./assets/images/info4.png" alt="" />
                     </div>
                   </div>
@@ -200,44 +154,20 @@
                 <h3 class="panel-subtitle">Sounds</h3>
               </div>
               <div class="menu">
-                <button
-                  class="button button-menu button-sound glass-effect"
-                  id="fire-sound-button"
-                >
-                  <img
-                    src="assets/icons/fire_icon.svg"
-                    alt="fire sound button"
-                  />
+                <button class="button button-menu button-sound glass-effect" id="fire-sound-button">
+                  <img src="assets/icons/fire_icon.svg" alt="fire sound button" />
                   <audio id="fire-sound" src="assets/audio/fire.mp3"></audio>
                 </button>
-                <button
-                  class="button button-menu button-sound glass-effect"
-                  id="rain-sound-button"
-                >
-                  <img
-                    src="assets/icons/rain_icon.svg"
-                    alt="rain sound button"
-                  />
+                <button class="button button-menu button-sound glass-effect" id="rain-sound-button">
+                  <img src="assets/icons/rain_icon.svg" alt="rain sound button" />
                   <audio id="rain-sound" src="assets/audio/rain.mp3"></audio>
                 </button>
-                <button
-                  class="button button-menu button-sound glass-effect"
-                  id="ocean-sound-button"
-                >
-                  <img
-                    src="assets/icons/waves_icon.svg"
-                    alt="wind sound button"
-                  />
+                <button class="button button-menu button-sound glass-effect" id="ocean-sound-button">
+                  <img src="assets/icons/waves_icon.svg" alt="wind sound button" />
                   <audio id="ocean-sound" src="assets/audio/ocean.mp3"></audio>
                 </button>
-                <button
-                  class="button button-menu button-sound glass-effect"
-                  id="cafe-sound-button"
-                >
-                  <img
-                    src="assets/icons/cafe_icon.svg"
-                    alt="cafe sound button"
-                  />
+                <button class="button button-menu button-sound glass-effect" id="cafe-sound-button">
+                  <img src="assets/icons/cafe_icon.svg" alt="cafe sound button" />
                   <audio id="cafe-sound" src="assets/audio/cafe.mp3"></audio>
                 </button>
               </div>
@@ -256,10 +186,7 @@
             </div>
           </section>
 
-          <section
-            class="panel stats-panel panel-fit-content glass-effect"
-            id="stats-panel"
-          >
+          <section class="panel stats-panel panel-fit-content glass-effect" id="stats-panel">
             <div class="panel-header">
               <div class="panel-name">
                 <img src="assets/icons/graph_icon.svg" alt="stats icon" />
@@ -268,15 +195,12 @@
               <div class="opt-menu-wrapper">
                 <button class="button button-opt" id="stats-opt-button">
                   <i data-lucide="ellipsis-vertical" class="opt-icon"></i>
-                  <!-- <img src="assets/icons/options_horiz_icon.svg" alt="stats options button"> -->
                 </button>
 
                 <div class="opt-menu" id="stats-opt-menu">
-                  <button
-                    class="button button-opt-menu"
-                    id="stats-opt-reset-button"
-                  >
-                    Reset stats
+                  <button class="button button-opt-menu" id="stats-opt-reset-button">
+                    <i data-lucide="rotate-cw" class="opt-icon"></i>
+                    <span>Reset stats</span>
                   </button>
                 </div>
               </div>
@@ -296,91 +220,105 @@
         </div>
 
         <div class="right">
-          <section
-            class="panel tasklist-panel panel-content glass-effect"
-            id="tasklist-panel"
-          >
+          <section class="panel tasklist-panel panel-content glass-effect" id="tasklist-panel" style="display: block">
             <div class="panel-header">
               <div class="panel-name">
-                <img
-                  src="assets/icons/checklist_icon.svg"
-                  alt="tasklist icon"
-                />
+                <img src="assets/icons/checklist_icon.svg" alt="tasklist icon" />
                 <h2 class="panel-title">Task list</h2>
               </div>
 
               <div class="opt-menu-wrapper">
                 <button class="button button-opt" id="tasklist-opt-button">
                   <i data-lucide="ellipsis-vertical" class="opt-icon"></i>
-                  <!-- <img src="assets/icons/options_horiz_icon.svg" alt="tasklist options button"> -->
                 </button>
 
                 <div class="opt-menu" id="tasklist-opt-menu">
-                  <button
-                    class="button button-opt-menu"
-                    id="tasklist-opt-rem-all"
-                  >
-                    Remove all tasks
+                  <button class="button button-opt-menu" id="tasklist-opt-rem-all">
+                    <i data-lucide="circle-minus" class="opt-icon"></i>
+                    <span>Remove all tasks</span>
                   </button>
-                  <button
-                    class="button button-opt-menu"
-                    id="tasklist-opt-rem-completed"
-                  >
-                    Remove completed tasks
+                  <button class="button button-opt-menu" id="tasklist-opt-rem-completed">
+                    <i data-lucide="circle-minus" class="opt-icon"></i>
+                    <span>Remove completed tasks</span>
                   </button>
-                  <button
-                    class="button button-opt-menu"
-                    id="tasklist-opt-hide-completed"
-                  >
-                    Hide completed tasks
+                  <button class="button button-opt-menu" id="tasklist-opt-hide-completed">
+                    <i data-lucide="eye-off" class="opt-icon"></i>
+                    <span>Hide completed tasks</span>
                   </button>
                 </div>
               </div>
             </div>
 
-            <div class="task-list">
-              <div class="task-item glass-effect">
-                <div class="task-content">Task 1</div>
+            <div class="task-list" id="task-list">
+              <div class="task glass-effect">
+                <i data-lucide="circle" class="check-icon"></i>
+                <input type="checkbox" class="check" />
+
+                <span class="task-description">Lorem, ipsum dolor sit amet consectetur adipisicing elit.</span>
+
                 <div class="opt-menu-wrapper">
-                  <button class="button button-opt button-task">
+                  <button class="button button-opt" id="tasklist-opt-button">
                     <i data-lucide="ellipsis-vertical" class="opt-icon"></i>
-                    <!-- <img src="assets/icons/options_horiz_icon.svg" alt="task options"> -->
                   </button>
-                  <div class="opt-menu">
-                    <button class="button button-opt-menu">Edit</button>
-                    <button class="button button-opt-menu">Remove</button>
+
+                  <div class="opt-menu task-opt-menu">
+                    <button class="button button-opt-menu" id="tasklist-opt-rem-all">
+                      <i data-lucide="pencil" class="opt-icon"></i>
+                      <span>Edit</span>
+                    </button>
+                    <button class="button button-opt-menu" id="tasklist-opt-rem-completed">
+                      <i data-lucide="circle-minus" class="opt-icon"></i>
+                      <span>Remove</span>
+                    </button>
                   </div>
                 </div>
               </div>
 
-              <div class="task-item glass-effect">
-                <div class="task-content">Task 2</div>
+              <div class="task glass-effect checked">
+                <i data-lucide="circle" class="check-icon"></i>
+                <input type="checkbox" class="check" />
+
+                <span class="task-description">
+                  Lorem, ipsum dolor sit amet consectetur adipisicing elit. Rem, veniam. Autem dolorem cupiditate,
+                  sapiente atque nobis laudantium molestiae ex debitis.
+                </span>
+
                 <div class="opt-menu-wrapper">
-                  <button class="button button-opt button-task">
+                  <button class="button button-opt" id="tasklist-opt-button">
                     <i data-lucide="ellipsis-vertical" class="opt-icon"></i>
-                    <!-- <img src="assets/icons/options_horiz_icon.svg" alt="task options"> -->
                   </button>
-                  <div class="opt-menu">
-                    <button class="button button-opt-menu">Edit</button>
-                    <button class="button button-opt-menu">Remove</button>
+
+                  <div class="opt-menu task-opt-menu">
+                    <button class="button button-opt-menu" id="tasklist-opt-rem-all">
+                      <i data-lucide="pencil" class="opt-icon"></i>
+                      <span>Edit</span>
+                    </button>
+                    <button class="button button-opt-menu" id="tasklist-opt-rem-completed">
+                      <i data-lucide="circle-minus" class="opt-icon"></i>
+                      <span>Remove</span>
+                    </button>
                   </div>
+                </div>
+              </div>
+
+              <button class="button button-icon" id="add-task-button">
+                <i data-lucide="plus" class="icon"></i>
+                Add a new task
+              </button>
+
+              <div class="task-create glass-effect">
+                <textarea class="input-text" placeholder="Task description..." maxlength="500" rows="3"></textarea>
+                <div class="create-buttons">
+                  <button class="button button-pill" id="button-create-task">criar</button>
+                  <button class="button button-pill" id="button-cancel-task">cancelar</button>
                 </div>
               </div>
             </div>
-
-            <button class="button button-icon" id="add-task-button">
-              <!-- <div role="img"></div> -->
-              <i data-lucide="plus" class="icon"></i>
-              Add a new task
-            </button>
           </section>
         </div>
 
         <div class="over">
-          <section
-            class="panel settings-panel panel-content glass-effect"
-            id="settings-panel"
-          >
+          <section class="panel settings-panel panel-content glass-effect" id="settings-panel">
             <div class="panel-header">
               <div class="panel-name">
                 <img src="assets/icons/settings_icon.svg" alt="tasklist icon" />
@@ -416,7 +354,7 @@
                   <span>minutes</span>
                 </div>
                 <div>
-                  <label for="long-break-time"> long break</label>
+                  <label for="long-break-time">long break</label>
                   <input type="number" id="long-break-time" />
                   <span>minutes</span>
                 </div>
@@ -424,10 +362,7 @@
               <div>
                 <input type="checkbox" />
                 <label for="auto-sequence">auto sequence</label>
-                <span
-                  >focus &rarr; short break (x4) &rarr; focus &rarr; long
-                  break</span
-                >
+                <span>focus &rarr; short break (x4) &rarr; focus &rarr; long break</span>
               </div>
             </section>
           </section>

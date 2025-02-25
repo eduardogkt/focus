@@ -1,10 +1,10 @@
 .quote {
   @include flex(column, center, center, 1rem);
-  
-  color: var(--text-color); 
-  font-size: 0.9rem; 
-  line-height: 1.6rem; 
-  text-align: center; 
+
+  color: var(--text-color);
+  font-size: 0.9rem;
+  line-height: 1.6rem;
+  text-align: center;
   width: 440px;
   padding: 0 1rem;
   user-select: text;
@@ -17,17 +17,17 @@
   border: 0;
   box-shadow: none;
   border-radius: 10px;
-  
+
   & .icon {
-    color: rgb(97, 97, 97);
+    color: var(--lightgray);
     height: 15px;
     width: 15px;
     stroke-width: 3px;
   }
-  
+
   &:hover .icon {
     color: var(--text-color);
-  } 
+  }
 }
 
 #author-box {

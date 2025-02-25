@@ -1,10 +1,11 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 
 :root {
   --font-size: 16px;
   --font-family: /*"Ubuntu",*/ "Poppins", sans-serif;
-  --black: #0E0E0E;
-  --gray: #282828;
+  --black: #0e0e0e;
+  --gray: #1f1f1f;
+  --lightgray: #5a5a5a;
   --white: #f1f1f1;
 
   --background-color: var(--black);
@@ -14,21 +15,21 @@
   --border-focus: 1px solid rgba(255, 255, 255, 0.2);
   --border-white: 1px solid rgba(255, 255, 255, 0.2);
   --border-transparent: 1px solid transparent;
-  
+
   --fill: rgba(40, 40, 40, 0.1);
   --fill-focus: rgba(128, 128, 128, 0.2);
   --fill-slider: rgba(255, 255, 255, 0.3);
   --fill-white: rgba(255, 255, 255, 1);
-  
-  --blur: blur(10px); 
+
+  --blur: blur(10px);
   --shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
 
   --transition: all 200ms ease-in;
-  
+
   --vl-1: var(--fill-slider) 0;
   --vl-2: var(--fill-slider) calc(50% - 1px);
-  --vl-3: var(--fill)        calc(50% + 1px);
-  --vl-4: var(--fill)        100%;
+  --vl-3: var(--fill) calc(50% + 1px);
+  --vl-4: var(--fill) 100%;
   --volume-slider: linear-gradient(to right, var(--vl-1), var(--vl-2), var(--vl-3), var(--vl-4));
 }
 

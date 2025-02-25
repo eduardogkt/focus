@@ -3,8 +3,9 @@
 :root {
   --font-size: 16px;
   --font-family: /*"Ubuntu",*/ "Poppins", sans-serif;
-  --black: #0E0E0E;
-  --gray: #282828;
+  --black: #0e0e0e;
+  --gray: #1f1f1f;
+  --lightgray: #5a5a5a;
   --white: #f1f1f1;
   --background-color: var(--black);
   --text-color: var(--white);
@@ -134,6 +135,11 @@ body {
 }
 
 .button-opt-menu {
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+  align-items: center;
+  gap: 0.4rem;
   padding: 0.7rem 0.8rem;
   border: 1px solid var(--border);
   width: 100%;
@@ -220,7 +226,7 @@ body {
 .panel {
   display: none;
   padding: 1.5rem;
-  min-width: 360px;
+  width: 360px;
   height: 550px;
   overflow: auto;
 }
@@ -390,15 +396,97 @@ body {
   font-size: 0.8rem;
 }
 
-.task-item {
+.task {
   display: flex;
-  align-items: center;
-  padding: 0.8rem 0.9rem;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 0.9rem 1rem;
   margin-bottom: 1rem;
+  position: relative;
   font-size: 0.8rem;
-  justify-content: space-between;
   -webkit-backdrop-filter: none;
           backdrop-filter: none;
+  line-height: 1.2rem;
+}
+.task .check {
+  all: unset;
+  position: absolute;
+  z-index: 3;
+  width: 45px;
+  height: 45px;
+  cursor: pointer;
+  inset: 0;
+}
+.task:has(input:checked) .check-icon {
+  fill: var(--lightgray);
+  stroke: var(--lightgray);
+}
+.task .check-icon {
+  width: 20px;
+  height: 20px;
+  stroke-width: 2px;
+  fill: transparent;
+  margin-top: 3px;
+}
+.task .task-description {
+  width: 250px;
+}
+.task .options-menu {
+  width: -moz-fit-content;
+  width: fit-content;
+}
+
+#add-task-button {
+  margin-bottom: 1rem;
+}
+
+.task-create {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 1.1rem;
+  margin-bottom: 1rem;
+}
+.task-create .input-text {
+  padding: 0.8rem 0.9rem;
+  width: 100%;
+  outline: none;
+  resize: none;
+  font-size: 0.8rem;
+  text-wrap: wrap;
+  white-space-collapse: collapse;
+  font-family: "Poppins", sans-serif;
+  background-color: var(--gray);
+  border-radius: 10px;
+  color: var(--text-color);
+}
+.task-create .input-text:focus {
+  outline: none;
+}
+
+#button-create-task {
+  margin-right: 1rem;
+}
+
+.checked {
+  color: var(--lightgray) !important;
+}
+.checked .options-button {
+  color: var(--lightgray) !important;
+}
+.checked .options-button:hover {
+  border: 1px solid var(--lightgray) !important;
+}
+.checked .options-button .opt-icon {
+  color: var(--lightgray) !important;
+}
+.checked .check-icon {
+  fill: var(--lightgray) !important;
+  stroke: var(--lightgray) !important;
 }
 
 .background {
@@ -466,7 +554,7 @@ body {
   border-radius: 10px;
 }
 #quote-button .icon {
-  color: rgb(97, 97, 97);
+  color: var(--lightgray);
   height: 15px;
   width: 15px;
   stroke-width: 3px;

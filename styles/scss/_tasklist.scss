@@ -1,16 +1,90 @@
-.task-list {
-}
-
-.task-item {
-  display: flex;
-  align-items: center;
-  padding: 0.8rem 0.9rem;
+.task {
+  @include flex(row, center, flex-start, 1rem);
+  padding: 0.9rem 1rem;
   margin-bottom: 1rem;
+  position: relative;
   font-size: 0.8rem;
-  justify-content: space-between;
   backdrop-filter: none;
+  line-height: 1.2rem;
+
+  .check {
+    all: unset;
+    position: absolute;
+    z-index: 3;
+    width: 45px;
+    height: 45px;
+    cursor: pointer;
+    inset: 0;
+  }
+
+  &:has(input:checked) .check-icon {
+    fill: var(--lightgray);
+    stroke: var(--lightgray);
+  }
+
+  .check-icon {
+    width: 20px;
+    height: 20px;
+    stroke-width: 2px;
+    fill: transparent;
+    margin-top: 3px;
+  }
+
+  .task-description {
+    width: 250px;
+  }
+
+  .options-menu {
+    width: fit-content;
+  }
 }
 
-.task-content {
+#add-task-button {
+  margin-bottom: 1rem;
 }
 
+.task-create {
+  @include flex(column, center, center, 1rem);
+  padding: 1rem 1.1rem;
+  margin-bottom: 1rem;
+
+  .input-text {
+    padding: 0.8rem 0.9rem;
+    width: 100%;
+    outline: none;
+    resize: none;
+    font-size: 0.8rem;
+    text-wrap: wrap;
+    white-space-collapse: collapse;
+    font-family: "Poppins", sans-serif;
+    background-color: var(--gray);
+    border-radius: 10px;
+    color: var(--text-color);
+
+    &:focus {
+      outline: none;
+    }
+  }
+}
+
+#button-create-task {
+  margin-right: 1rem;
+}
+
+.checked {
+  color: var(--lightgray) !important;
+
+  .options-button {
+    color: var(--lightgray) !important;
+    &:hover {
+      border: 1px solid var(--lightgray) !important;
+    }
+    .opt-icon {
+      color: var(--lightgray) !important;
+    }
+  }
+  .check-icon {
+    fill: var(--lightgray) !important;
+    stroke: var(--lightgray) !important;
+  }
+}

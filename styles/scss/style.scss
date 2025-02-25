@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap");
 @import "./root";
 @import "./functions";
 @import "./buttons";
@@ -29,7 +29,7 @@
 
 %container-section {
   @include flex(column, center, center, 1.5rem);
-  min-width: 360px; 
+  min-width: 360px;
   min-height: 70vh;
   grid-row: 1;
 }

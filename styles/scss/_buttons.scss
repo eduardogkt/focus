@@ -92,6 +92,8 @@
 }
 
 .button-opt-menu {
+  @include flex(row, start, center, 0.4rem);
+
   padding: 0.7rem 0.8rem;
   border: 1px solid var(--border);
   width: 100%;
