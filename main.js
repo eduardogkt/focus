@@ -84,122 +84,98 @@ togglePanel("#settings-button", "#settings-panel");
 // seletores
 const fullscreenButton = $("#fullscreen-button");
 const layout = $("#page-content")[0];
-let isFullscreen = false;
 
-function exitFullscreen() {
-    if (document.exitFullscreen) {
-        document.exitFullscreen();
-    } 
-    else if (document.mozCancelFullScreen) {
-        document.mozCancelFullScreen();
-    } 
-    else if (document.webkitExitFullscreen) {
-        document.webkitExitFullscreen();
-    } 
-    else if (document.msExitFullscreen) {
-        document.msExitFullscreen();
+// alterna entre tela cheia e normal
+function toggleFullscreen() {
+    if (!document.fullscreenElement) {
+        layout.requestFullscreen?.() || layout.mozRequestFullScreen?.() ||
+        layout.webkitRequestFullscreen?.() || layout.msRequestFullscreen?.();
+    } else {
+        document.exitFullscreen?.() || document.mozCancelFullScreen?.() ||
+        document.webkitExitFullscreen?.() || document.msExitFullscreen?.();
     }
 }
 
-function enterFullscreen() {
-    if (layout.requestFullscreen) {
-        layout.requestFullscreen();
-    } 
-    else if (layout.mozRequestFullScreen) {
-        layout.mozRequestFullScreen();
-    } 
-    else if (layout.webkitRequestFullscreen) {
-        layout.webkitRequestFullscreen();
-    } 
-    else if (layout.msRequestFullscreen) {
-        layout.msRequestFullscreen();
-    }
-}
-
-function changeFullscreenIcon() {
-    const icon = isFullscreen ? "assets/icons/fullscreen_exit_icon.svg" 
-                              : "assets/icons/fullscreen_icon.svg";
+// atualiza o ícone do botão de tela cheia
+function updateFullscreenIcon() {
+    const icon = document.fullscreenElement ? 
+        "assets/icons/fullscreen_exit_icon.svg" : 
+        "assets/icons/fullscreen_icon.svg";
+    
     fullscreenButton.find("img").attr("src", icon);
 }
 
-function changeFullscreen() {
-    isFullscreen ? exitFullscreen() : enterFullscreen();
-}
+// alterna tela cheia ao clicar no botão
+fullscreenButton.on("click", toggleFullscreen);
 
-// caso aperte o botão do menu
-fullscreenButton.on("click", changeFullscreen);
+// atualiza o ícone e estado quando mudar de tela cheia
+$(document).on("fullscreenchange", updateFullscreenIcon);
 
-// caso aperte "Esc"
+// sai da tela cheia ao pressionar "Esc"
 $(document).on("keydown", function(event) {
-    if (event.key === "Escape" && isFullscreen) {
-        exitFullscreen();
+    if (event.key === "Escape" && document.fullscreenElement) {
+        document.exitFullscreen();
     }
-});
-
-// muda o ícone e estado quando muda de tela cheia
-$(document).on("fullscreenchange", function() {
-    isFullscreen = !isFullscreen;
-    changeFullscreenIcon();
 });
 
 // =============================================================================
 // sons
 
-// botões de som
-// adiciona um ouvinte de eventos de clique em todos os botões com a classe "button-sound"
+// lista de sons disponíveis
 const sounds = [
-    { id: 'fire-sound-button', audio: new Audio('assets/audio/fire.mp3')},
-    { id: 'rain-sound-button', audio: new Audio('assets/audio/rain.mp3')},
-    { id: 'ocean-sound-button', audio: new Audio('assets/audio/ocean.mp3')},
-    { id: 'cafe-sound-button', audio: new Audio('assets/audio/cafe.mp3')},
+    { id: "fire-sound-button", audio: new Audio("assets/audio/fire.mp3") },
+    { id: "rain-sound-button", audio: new Audio("assets/audio/rain.mp3") },
+    { id: "ocean-sound-button", audio: new Audio("assets/audio/ocean.mp3") },
+    { id: "cafe-sound-button", audio: new Audio("assets/audio/cafe.mp3") },
 ];
 
-// botões de troca de som
-$(".button-sound").on("click", function() {
-    const active = "active-button";
+// evento de clique nos botões de som
+$(".button-sound").on("click", function () {
+    const activeClass = "active-button";
     const button = $(this);
     const soundId = button.attr("id");
-    const isActive = button.hasClass(active);
+    const isActive = button.hasClass(activeClass);
 
-    // parando todos os sons
-    $(".button-sound").each(function() {
-        $(".button-sound").removeClass(active);
-        stopSound($(this).attr("id"));
-    });
+    // para todos os sons e remove a classe de todos os botões
+    $(".button-sound").removeClass(activeClass);
+    sounds.forEach(({ id }) => stopSound(id));
 
-    // se o botão clicado não estiver ativo, liga-o
+    // se o botão clicado não estava ativo, ativa-o e toca o som
     if (!isActive) {
-        button.addClass(active);
+        button.addClass(activeClass);
         playSound(soundId);
     }
 });
 
-// barra de ajuste de volume
-$("#volume-slider").on("input", function() {
+// evento de ajuste de volume
+$("#volume-slider").on("input", function () {
     const volume = $(this).val();
-    const barFill = `
-    linear-gradient(to right,
-                    var(--fill-slider) 0, 
-                    var(--fill-slider) ${volume}%, 
-                    var(--fill)        ${volume}%, 
-                    var(--fill)        100%)`;
+    
+    // atualiza o preenchimento visual da barra
+    $(this).css("background-image", `
+        linear-gradient(to right,
+                        var(--fill-slider) 0, 
+                        var(--fill-slider) ${volume}%, 
+                        var(--fill)        ${volume}%, 
+                        var(--fill)        100%)`
+    );
 
-    $(this).css("background-image", barFill);
-
-    // muda o volume do som
-    $(".button-sound").each(function() {
+    // altera o volume apenas dos sons ativos
+    $(".button-sound.active-button").each(function () {
         changeSoundVolume($(this).attr("id"), volume);
     });
 });
 
+// toca o som correspondente
 function playSound(soundId) {
     const sound = sounds.find(sound => sound.id === soundId);
     if (sound) {
-        sound.audio.setAttribute("loop", "true");
+        sound.audio.loop = true;
         sound.audio.play();
     }
 }
 
+// para o som correspondente
 function stopSound(soundId) {
     const sound = sounds.find(sound => sound.id === soundId);
     if (sound) {
@@ -208,6 +184,7 @@ function stopSound(soundId) {
     }
 }
 
+// altera o volume do som correspondente
 function changeSoundVolume(soundId, volume) {
     const sound = sounds.find(sound => sound.id === soundId);
     if (sound) {
@@ -215,49 +192,44 @@ function changeSoundVolume(soundId, volume) {
     }
 }
 
+
 // =============================================================================
 // playlist
+const addPlaylistButton = $("#add-playlist-button");
+const addPlaylistSection = $("#add-playlist-section");
 
-let addPlaylistButton = $("#add-playlist-button");
-
-addPlaylistButton.on("click", addPlaylist); 
+// evento para exibir o formulário de adição de playlist
+addPlaylistButton.on("click", addPlaylist);
 
 function addPlaylist() {
-    const form = ` 
+    const form = `
     <form class="form-playlist">
-    <label for="playlist-input"></label>
-    <textarea
-        id="input-playlist"
-        class="input-playlist" 
-        name="playlist-input" 
-        rows="5" 
-        cols="20" 
-        required
-        placeholder="Paste the embedding code or link here."></textarea>
-    <div>
-        <button class="button button-pill" id="button-playlist-create" type="button">create</button>
-        <button class="button button-pill" id="button-playlist-cancel" type="button">cancel</button>
-    </div>
+        <label for="playlist-input"></label>
+        <textarea
+            id="input-playlist"
+            class="input-playlist" 
+            name="playlist-input" 
+            rows="5" 
+            cols="20" 
+            required
+            placeholder="Paste the embedding code or link here."></textarea>
+        <div>
+            <button class="button button-pill" id="button-playlist-create" type="button">create</button>
+            <button class="button button-pill" id="button-playlist-cancel" type="button">cancel</button>
+        </div>
     </form>`;
 
-    $("#add-playlist-section").html(form);
+    addPlaylistSection.html(form);
 
+    // Adiciona eventos aos botões dentro do formulário
     $("#button-playlist-cancel").on("click", removePlaylistForm);
     $("#button-playlist-create").on("click", setCustomPlaylist);
 }
 
 function removePlaylistForm() {
-    const button = `
-    <button class="button button-icon" id="add-playlist-button">
-        <i data-lucide="plus" class="icon"></i>
-        Add your own playlist
-    </button>`;
-    $("#add-playlist-section").html(button);
-    
-    // adiciona novamente o evento de clique ao botão de adicionar playlist
-    $("#add-playlist-button").on("click", addPlaylist);
+    addPlaylistSection.empty().append(addPlaylistButton.show());
     lucide.createIcons();
-};
+}
 
 function setCustomPlaylist() {
     const userInput = $("#input-playlist").val().trim();
@@ -266,8 +238,7 @@ function setCustomPlaylist() {
         const customPlaylist = getPlaylist(userInput);
         $(".playlist-container").html(customPlaylist);
         removePlaylistForm();
-    }
-    else if (!userInput && !hasWarning("#input-playlist")) {
+    } else if (!hasWarning("#input-playlist")) {
         addWarning(".input-playlist", "empty field");
     }
 }
@@ -275,14 +246,13 @@ function setCustomPlaylist() {
 function getPlaylist(input) {
     // iframe: pequeno height="152", grande height="352"
     
-    // user input é embed code
     if (input.includes("embed")) {
         return input;
     }
 
-    // user input é um link
     const type = input.includes("playlist") ? "playlist" : "album";
     const id = input.split('/').pop().split('?').shift();
+    
     return `
     <iframe 
         src="https://open.spotify.com/embed/${type}/${id}?utm_source=generator" 
@@ -323,6 +293,8 @@ let timerAlert = new Audio("assets/audio/timer-alert.mp3");
 setTimerMode(timers.focus);
 
 timerOpts.on("click", function() {
+    // if (running) return; // evita troca de modo enquanto o timer está rodando
+
     timerOpts.removeClass("active");
     $(this).addClass("active");
 
@@ -334,7 +306,7 @@ timerOpts.on("click", function() {
 });
 
 playButton.on("click", function() { 
-    (running) ? stopTimer() : startTimer();
+    running ? stopTimer() : startTimer();
 });
 
 resetButton.on("click", function() {
@@ -344,18 +316,26 @@ resetButton.on("click", function() {
 });
 
 function setTimerMode(timer) {
-    timers.current.mode = timer.mode
-    timers.current.time = timer.time
+    timers.current.mode = timer.mode;
+    timers.current.time = timer.time;
     resetTimer();
     updateTimerDisplay(timer.time);
 }
 
 function updateTimer() {
+    if (remainingSeconds <= 0) {
+        playTimerAlert();
+        changeTimer();
+        return;
+    }
+
     remainingSeconds--;
     updateTimerDisplay(remainingSeconds);
 }
 
 function startTimer() {
+    if (running) return; // previne múltiplos intervalos
+
     timerId = setInterval(updateTimer, 1000);
     running = true;
     playButton.text("stop");
@@ -377,52 +357,35 @@ function resetTimer() {
 
 function updateTimerDisplay(remainingSeconds) {    
     let hours = Math.floor(remainingSeconds / 3600);
-    let minutes = Math.floor((remainingSeconds - (hours * 3600)) / 60)
-    let seconds = Math.floor(remainingSeconds % 60);
+    let minutes = Math.floor((remainingSeconds % 3600) / 60);
+    let seconds = remainingSeconds % 60;
 
-    hours = String(hours).padStart(2, "0");
-    minutes = String(minutes).padStart(2, "0");
-    seconds = String(seconds).padStart(2, "0");
+    let timeString = hours > 0 
+        ? `${String(hours).padStart(2, "0")}:${String(minutes).padStart(2, "0")}:${String(seconds).padStart(2, "0")}`
+        : `${String(minutes).padStart(2, "0")}:${String(seconds).padStart(2, "0")}`;
 
-    timerString = "";
-    if (hours == true) {
-        timeString = `${hours}:${minutes}:${seconds}`;
-    }
-    else {
-        timeString = `${minutes}:${seconds}`;
-    }
-
-    // atualizando o display e o titulo da página
     $("#timer-clock").text(timeString);
     $(document).prop("title", `${timeString} | focus`);
-
-    if (remainingSeconds < 0) {
-        playTimerAlert();
-        changeTimer();
-    }
 }
 
 function changeTimer() {
     if (timers.current.time === timers.focus.time) {
         updateStats(timers.current.time / 60);
-        if (autoSequence === true) {
-            sequence++;
-        }
+        if (autoSequence) sequence++;
+
         if (sequence >= numOfSequences) {
             sequence = 0;
             startTimerMode(timers.longBreak);
-        }
-        else {
+        } else {
             startTimerMode(timers.shortBreak);
         }
-    }
-    else {
+    } else {
         startTimerMode(timers.focus);
     }
 }
 
-function playTimerAlert()  {
-    timerAlert.play()
+function playTimerAlert() {
+    timerAlert.play();
 }
 
 function startTimerMode(timer) {
@@ -433,11 +396,12 @@ function startTimerMode(timer) {
     startTimer();
 }
 
+
 // =============================================================================
 // stats
 
 const statsFocusTime = $("#time-stats");
-const statsSprintCount = $("#steak-stats");
+const statsSprintCount = $("#streak-stats");
 
 let totalFocusTime = 0;
 let sprintCount = 0;
@@ -448,13 +412,13 @@ function updateStats(sprintTime) {
     statsSprintCount.text(++sprintCount);
 }
 
-// redefine as estatísitcas
+// Reseta as estatísticas
 $("#stats-opt-reset-button").on("click", function() {
     totalFocusTime = 0;
     sprintCount = -1;
     updateStats(0);
     hideOptionsMenus();
-})
+});
 
 // =============================================================================
 // quote
@@ -465,16 +429,25 @@ const quoteApiUrl = "http://api.quotable.io/random";
 displayQuote();
 
 async function getQuote(url) {
-    const resp = await fetch(quoteApiUrl);
-    const data = await resp.json();
-
-    $("#quote-box").html(`"${data.content}" `)
-    $("#author-box").html(`— ${data.author}`)
+    try {
+        const resp = await fetch(url);
+        if (!resp.ok) throw new Error("Failed to fetch quote");
+        
+        const data = await resp.json();
+        $("#quote-box").html(`"${data.content}"`);
+        $("#author-box").html(`— ${data.author}`);
+    } catch (error) {
+        console.error("Error fetching quote:", error);
+        $("#quote-box").html("Failed to load quote.");
+        $("#author-box").html("");
+    }
 }
 
 function displayQuote() {
     $("#quote").toggleClass("hidden", disableQuote);
-    getQuote(quoteApiUrl);    
+    if (!disableQuote) {
+        getQuote(quoteApiUrl);
+    }
 }
 
 $("#quote-button").on("click", function() {
@@ -482,11 +455,11 @@ $("#quote-button").on("click", function() {
 
     $(this).addClass("rotate-cw");
     setTimeout(() => $("#quote-button").removeClass("rotate-cw"), 1000);
-})
+});
+
 
 // =============================================================================
 // tasklist
-
 
 $(document).on("click", ".check",  handleCompletedTasks);
 
