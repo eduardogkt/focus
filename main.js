@@ -214,7 +214,7 @@ function addPlaylist() {
             required
             placeholder="Paste the embedding code or link here."></textarea>
         <div>
-            <button class="button button-pill" id="button-playlist-create" type="button">create</button>
+            <button class="button button-pill" id="button-playlist-create" type="button">send</button>
             <button class="button button-pill" id="button-playlist-cancel" type="button">cancel</button>
         </div>
     </form>`;
@@ -228,6 +228,7 @@ function addPlaylist() {
 
 function removePlaylistForm() {
     addPlaylistSection.empty().append(addPlaylistButton.show());
+    addPlaylistButton.on("click", addPlaylist);
     lucide.createIcons();
 }
 
@@ -269,9 +270,9 @@ const playButton = $("#start-button");
 const resetButton = $("#reset-button");
 const timerOpts = $(".button-timer-opt");
 
-const DEFAULT_FOCUS_TIME = 60 * 0.1;
-const DEFAULT_SHORT_BREAK_TIME = 60 * 0.05;
-const DEFAULT_LONG_BREAK_TIME = 60 * 0.05;
+const DEFAULT_FOCUS_TIME = 60 * 50;
+const DEFAULT_SHORT_BREAK_TIME = 60 * 10;
+const DEFAULT_LONG_BREAK_TIME = 60 * 20;
 
 const timers = {
     focus:      { mode: "#focus-mode",       time: DEFAULT_FOCUS_TIME },
@@ -461,81 +462,79 @@ $("#quote-button").on("click", function() {
 // =============================================================================
 // tasklist
 
-$(document).on("click", ".check",  handleCompletedTasks);
-
-const createTaskBox = `
-    <div class="task-create glass-effect" id="task-create">
-    <textarea 
-        id="task-input" 
-        class="input-text" 
-        placeholder="Task 
-        description..." 
-        maxlength="500" 
-        rows="3"
-    ></textarea>
-    <div class="create-buttons">
-        <button class="button button-pill" id="button-task-create">create</button>
-        <button class="button button-pill" id="button-task-cancel">cancel</button>
-    </div>
-    </div>`;
-
 const addTaskButton = $("#button-task-add");
 const tasklist = $("#task-list");
+const createTaskBox = `
+    <div class="task-create glass-effect" id="task-create">
+        <textarea 
+            id="task-input" 
+            class="input-text" 
+            placeholder="Task description..." 
+            maxlength="500" 
+            rows="3"
+        ></textarea>
+        <div class="create-buttons">
+            <button class="button button-pill" id="button-task-create">send</button>
+            <button class="button button-pill" id="button-task-cancel">cancel</button>
+        </div>
+    </div>`;
 
-addTaskButton.on("click", addTask);
+let hideCompleted = false;
 
+$(document).on("click", ".check", handleCompletedTasks);
+$(document).on("click", "#button-task-add", addTask);
+$(document).on("click", ".button-opt-task-edit", editTask);
+$(document).on("click", ".button-opt-task-remove", removeTask);
+
+$("#tasklist-opt-rem-all").on("click", removeAllTasks);
+$("#tasklist-opt-rem-completed").on("click", removeCompletedTasks);
+$("#tasklist-opt-hide-completed").on("click", hideCompletedTasks);
 
 function addTask() {
-    tasklist.append(createTaskBox);
-    addTaskButton.remove();
+    if ($("#task-create").length) return; // evita múltiplos formulários abertos
 
-    $("#button-task-cancel").on("click", removeAddTaskBox)
+    addTaskButton.remove();
+    tasklist.append(createTaskBox);
+    
+    $("#button-task-cancel").on("click", removeAddTaskBox);
     $("#button-task-create").on("click", createTask);
 }
 
 function removeAddTaskBox() {
     tasklist.append(addTaskButton);
     $("#task-create").remove();
-    $("#button-task-add").on("click", addTask);
 }
 
 function createTask() {
-    const description = $("#task-input").val().trim();
+    const userInput = $("#task-input").val().trim();
 
-    $("#warning").remove();
-    $("#task-input").removeClass("warning-border");
-
-    if (!description && !hasWarning("#task-input")) {
-        addWarning("#task-input", "empty field");
-        return;
+    if (!validateInput(userInput)) {
+        return
     }
 
-    tasklist.append(`
+    const task = $(`
         <div class="task glass-effect">
             <i data-lucide="circle" class="check-icon"></i>
-
             <input type="checkbox" class="check" />
-
-            <span class="task-description">${description}</span>
-
+            <span class="task-description">${userInput}</span>
             <div class="opt-menu-wrapper">
                 <button class="button button-opt button-opt-task">
                     <i data-lucide="ellipsis-vertical" class="opt-icon"></i>
                 </button>
-
                 <div class="opt-menu task-opt-menu">
-                <button class="button button-opt-menu button-opt-task-edit">
-                    <i data-lucide="pencil" class="opt-icon"></i>
-                    <span>Edit</span>
-                </button>
-                <button class="button button-opt-menu button-opt-task-remove">
-                    <i data-lucide="circle-minus" class="opt-icon"></i>
-                    <span>Remove</span>
-                </button>
+                    <button class="button button-opt-menu button-opt-task-edit">
+                        <i data-lucide="pencil" class="opt-icon"></i>
+                        <span>Edit</span>
+                    </button>
+                    <button class="button button-opt-menu button-opt-task-remove">
+                        <i data-lucide="circle-minus" class="opt-icon"></i>
+                        <span>Remove</span>
+                    </button>
                 </div>
             </div>
-        </div>`
-    );
+        </div>`);
+
+    tasklist.append(task);
     
     lucide.createIcons();
     removeAddTaskBox();
@@ -543,18 +542,94 @@ function createTask() {
 }
 
 function handleCompletedTasks() {
+    const task = $(this).closest(".task");
     $(".check").each(function() {
         const task = $(this).parent();
         if ($(this).is(":checked")) {
             task.addClass("checked");
-
-            // if (hideCompletedTasks) {
-            //     hideTask(task);
-            // }
+            task.find(".button-opt").prop("disabled", true);
+            
+            if (hideCompleted) {
+                task.hide();
+            }
         } else {
             task.removeClass("checked");
+            task.find(".button-opt").prop("disabled", false);
         }
     });
+}
+
+function editTask() {
+    const task = $(this).closest(".task");
+    const description = task.find(".task-description").text();
+  
+    task.after(createTaskBox);
+    task.hide();
+
+    $("#task-input").val(description);
+    
+    $("#button-task-cancel").on("click", showTask);
+    
+    $("#button-task-create").on("click", function() {
+        const userInput = $("#task-input").val().trim();
+
+        if (!validateInput(userInput)) {
+            return
+        }
+
+        task.find(".task-description").text(userInput)
+        showTask();
+    });
+
+    function showTask() {
+        task.show();
+        $("#task-create").remove();
+    }
+
+    hideOptionsMenus();
+}
+
+function removeTask() {
+    $(this).closest(".task").remove();
+}
+
+function removeAllTasks() {
+    $(".task").remove();
+    hideOptionsMenus();
+}
+
+function removeCompletedTasks() {
+    $(".task.checked").remove();
+    hideOptionsMenus();
+}
+
+function hideCompletedTasks() {
+    if (hideCompleted === true) {
+        hideCompleted = false;
+        $(".task.checked").show();
+    } else {
+        hideCompleted = true;
+        $(".task.checked").hide();
+    }
+
+    const button = $("#tasklist-opt-hide-completed");
+    button.find("svg").attr("data-lucide", hideCompleted ? "eye" : "eye-off");
+    button.find("span").text(hideCompleted ? "Show completed tasks" : "Hide completed tasks");
+
+    lucide.createIcons();
+    hideOptionsMenus();
+}
+
+function validateInput(userInput) {
+    $("#warning").remove();
+        
+    if (!userInput) {
+        if (!hasWarning("#task-input")) {
+            addWarning("#task-input", "empty field");
+        }
+        return false;
+    }
+    return true;
 }
 
 });
