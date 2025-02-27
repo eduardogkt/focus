@@ -10,6 +10,7 @@
 @import "./tasklist";
 @import "./background";
 @import "./quote";
+@import "./settings";
 
 .container {
   // background-image: url("/assets/backgound/gris1.png");
@@ -53,11 +54,13 @@
 }
 
 .over {
-  @extend %container-section;
-  // position: absolute;
   display: none;
-  width: 100wv;
-  height: 100hv;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
 }
 
 .menu {
@@ -151,8 +154,4 @@
 
 .warning-border {
   border: 1px solid tomato;
-}
-
-.hide {
-  display: none;
 }

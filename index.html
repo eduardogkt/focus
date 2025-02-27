@@ -297,56 +297,97 @@
           </section>
         </div>
 
-        <div class="over">
-          <section class="panel settings-panel panel-content glass-effect" id="settings-panel">
-            <div class="panel-header">
-              <div class="panel-name">
-                <img src="assets/icons/settings_icon.svg" alt="settings icon" />
-                <h2 class="panel-title">Settings</h2>
-              </div>
-              <div class="panel-close">
-                <button>
-                  <img src="assets/icons/close_icon.svg" alt="close settings" />
-                </button>
-              </div>
+        <div class="over"></div>
+
+        <section class="panel settings-panel panel-content glass-effect" id="settings-panel">
+          <div class="panel-header">
+            <div class="panel-name">
+              <img src="assets/icons/settings_icon.svg" alt="stats icon" />
+              <h2 class="panel-title">Settings</h2>
             </div>
 
-            <section>
-              <ul>
-                <li><button>Themes</button></li>
-                <li><button>Timer</button></li>
-                <li><button>Sound</button></li>
-                <li><button>Stats</button></li>
-                <li><button>Account</button></li>
-                <li><button>Support</button></li>
-              </ul>
-            </section>
-            <section>
-              <div>
-                <div>
+            <div class="panel-close" id="button-close-settings">
+              <button class="button button-opt" id="stats-opt-button">
+                <i data-lucide="x"></i>
+              </button>
+            </div>
+          </div>
+
+          <div class="settings">
+            <nav class="settings-opts">
+              <li>
+                <button class="button button-setting active-setting">
+                  <img src="assets/icons/palette_icon.svg" class="icon-setting" />
+                  Themes
+                </button>
+              </li>
+              <li>
+                <button class="button button-setting">
+                  <img src="assets/icons/timer_icon.svg" class="icon-setting" />
+                  <span>Timer</span>
+                </button>
+              </li>
+              <li>
+                <button class="button button-setting">
+                  <img src="assets/icons/sound_icon.svg" class="icon-setting" />
+                  <span>Sound</span>
+                </button>
+              </li>
+              <li>
+                <button class="button button-setting">
+                  <img src="assets/icons/graph_icon.svg" class="icon-setting" />
+                  <span>Stats</span>
+                </button>
+              </li>
+              <li>
+                <button class="button button-setting">
+                  <img src="assets/icons/person_icon.svg" class="icon-setting" />
+                  <span>Account</span>
+                </button>
+              </li>
+              <li>
+                <button class="button button-setting">
+                  <img src="assets/icons/info_icon.svg" class="icon-setting" style="width: 22px" />
+                  <span>Support</span>
+                </button>
+              </li>
+            </nav>
+
+            <section class="settings-setting">
+              <div class="setting-section" id="setting-timers">
+                <div class="setting-timer">
                   <label for="focus-time">focus</label>
                   <input type="number" id="focus-time" />
                   <span>minutes</span>
                 </div>
-                <div>
+                <div class="setting-timer">
                   <label for="short-break-time">short time</label>
                   <input type="number" id="short-break-time" />
                   <span>minutes</span>
                 </div>
-                <div>
+                <div class="setting-timer">
                   <label for="long-break-time">long break</label>
                   <input type="number" id="long-break-time" />
                   <span>minutes</span>
                 </div>
               </div>
-              <div>
-                <input type="checkbox" />
-                <label for="auto-sequence">auto sequence</label>
+
+              <div class="setting-section" id="setting-sequence">
+                <div>
+                  <i data-lucide="circle" class="check-icon"></i>
+                  <input type="checkbox" id="opt-auto-sequence" class="check" />
+                  <label for="auto-sequence">auto sequence</label>
+                </div>
                 <span>focus &rarr; short break (x4) &rarr; focus &rarr; long break</span>
               </div>
             </section>
-          </section>
-        </div>
+          </div>
+
+          <div class="settings-buttons">
+            <button class="button button-pill" id="button-save-settings">save</button>
+            <button class="button button-pill" id="button-cancel-settings">cancel</button>
+          </div>
+        </section>
       </div>
     </div>
   </body>

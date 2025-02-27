@@ -69,6 +69,10 @@ toggleSection("#playlist-opt-hide-sounds-button", ".sounds", "sounds");
 function togglePanel(buttonSelector, panelSelector) {
     $(document).on("click", buttonSelector, function () {
         $(panelSelector).toggle();
+        if (panelSelector === "#settings-panel") {
+            // $(panelSelector).css("display", "flex");
+            $(".over").fadeIn(200);
+        }
     });
 }
 
@@ -631,5 +635,12 @@ function validateInput(userInput) {
     }
     return true;
 }
+
+// =============================================================================
+// settings
+
+$("#button-close-settings").on("click", function() {
+    $("#settings-panel, .over").fadeOut(200);
+})
 
 });

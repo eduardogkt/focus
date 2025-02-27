@@ -1,0 +1,123 @@
+#settings-panel {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(0, 0, 0, 0.8);
+  width: 800px;
+  height: fit-content;
+}
+
+.settings {
+  display: flex;
+  margin-bottom: 2rem;
+}
+
+.settings-opts {
+  @include flex(column, start, start, 0.3rem);
+
+  margin-left: 0 auto;
+  width: 30%;
+  height: 100%;
+  border-right: var(--border-focus);
+  list-style-type: none;
+
+  .icon-setting {
+    width: 24px;
+    height: 24px;
+  }
+
+  .active-setting {
+    background-color: var(--fill-focus);
+    border: var(--border);
+  }
+}
+
+.settings-setting {
+  font-size: 0.875rem;
+  padding-left: 4rem;
+  width: 70%;
+  max-height: 300px;
+  overflow-y: scroll;
+}
+
+.setting-section {
+  margin-bottom: 3rem;
+}
+
+.settings-buttons {
+  float: right;
+}
+
+#button-save-settings {
+  margin-right: 1rem;
+}
+
+// estilo para seções de configuração específicas
+#setting-timers {
+  @include flex(row, start, start, 2rem);
+
+  & .setting-timer {
+    @include flex(column, start, start, 0.5rem);
+
+    & label {
+      font-weight: bold;
+    }
+
+    & input {
+      width: 100px;
+      padding: 0.5rem 0.8rem;
+      border: var(--border-focus);
+      background-color: var(--fill);
+      border-radius: 5px;
+      color: var(--text-color);
+    }
+
+    & span {
+      font-size: 0.8rem;
+      color: var(--verylightgray);
+    }
+  }
+}
+
+#setting-sequence {
+  @include flex(column, center, start, 0.7rem);
+  position: relative;
+
+  & div {
+    @include flex(row, start, center, 0.5rem);
+  }
+
+  .check {
+    all: unset;
+    position: absolute;
+    z-index: 3;
+    margin: 1px;
+    cursor: pointer;
+    inset: 0;
+  }
+
+  .checked {
+    color: var(--white) !important;
+
+    .check-icon {
+      fill: var(--white) !important;
+      stroke: var(--white) !important;
+    }
+  }
+
+  & .check-icon {
+    width: 15px;
+    height: 15px;
+  }
+
+  & label {
+    font-weight: bold;
+  }
+
+  & span {
+    font-size: 0.8rem;
+    color: var(--verylightgray);
+  }
+}
