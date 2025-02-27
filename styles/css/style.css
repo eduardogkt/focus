@@ -171,6 +171,56 @@ body {
   border: var(--border);
 }
 
+.switch {
+  position: relative;
+  display: inline-block;
+  font-size: 1rem;
+  width: 2.5rem;
+  height: 1.5em;
+}
+.switch .slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border: var(--border-focus);
+  border-radius: 1rem;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+  transition: all 300ms;
+}
+.switch .slider:before {
+  position: absolute;
+  content: "";
+  height: 1rem;
+  width: 1rem;
+  left: 3px;
+  bottom: 3px;
+  background-color: white;
+  transition: all 300ms;
+  border-radius: 1rem;
+}
+.switch .slider .thumb {
+  width: 1.1rem;
+  height: 1.1rem;
+  border-radius: 1rem;
+  background-color: var(--white);
+}
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+.switch input:checked + .slider {
+  border: 1px solid var(--white);
+}
+.switch input:checked + .slider:before {
+  transform: translateX(1rem);
+}
+
 .glass-effect {
   background-color: var(--fill);
   -webkit-backdrop-filter: var(--blur);
@@ -587,7 +637,7 @@ body {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-color: rgba(0, 0, 0, 0.8);
+  background-color: rgba(0, 0, 0, 0.5);
   width: 800px;
   height: -moz-fit-content;
   height: fit-content;
@@ -631,12 +681,14 @@ body {
   margin-bottom: 3rem;
 }
 
-.settings-buttons {
-  float: right;
-}
-
 #button-save-settings {
-  margin-right: 1rem;
+  float: right;
+  background-color: var(--white);
+  color: var(--black);
+}
+#button-save-settings:hover {
+  background-color: var(--fill-focus);
+  color: var(--text-color);
 }
 
 #setting-timers {

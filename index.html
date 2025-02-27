@@ -317,14 +317,14 @@
             <nav class="settings-opts">
               <li>
                 <button class="button button-setting active-setting">
-                  <img src="assets/icons/palette_icon.svg" class="icon-setting" />
-                  Themes
+                  <img src="assets/icons/timer_icon.svg" class="icon-setting" />
+                  <span>Timer</span>
                 </button>
               </li>
               <li>
                 <button class="button button-setting">
-                  <img src="assets/icons/timer_icon.svg" class="icon-setting" />
-                  <span>Timer</span>
+                  <img src="assets/icons/palette_icon.svg" class="icon-setting" />
+                  <span>Themes</span>
                 </button>
               </li>
               <li>
@@ -357,36 +357,35 @@
               <div class="setting-section" id="setting-timers">
                 <div class="setting-timer">
                   <label for="focus-time">focus</label>
-                  <input type="number" id="focus-time" />
+                  <input type="number" id="focus-time" value="50" />
                   <span>minutes</span>
                 </div>
                 <div class="setting-timer">
                   <label for="short-break-time">short time</label>
-                  <input type="number" id="short-break-time" />
+                  <input type="number" id="short-break-time" value="10" />
                   <span>minutes</span>
                 </div>
                 <div class="setting-timer">
                   <label for="long-break-time">long break</label>
-                  <input type="number" id="long-break-time" />
+                  <input type="number" id="long-break-time" value="20" />
                   <span>minutes</span>
                 </div>
               </div>
 
               <div class="setting-section" id="setting-sequence">
                 <div>
-                  <i data-lucide="circle" class="check-icon"></i>
-                  <input type="checkbox" id="opt-auto-sequence" class="check" />
-                  <label for="auto-sequence">auto sequence</label>
+                  <label class="switch" for="opt-auto-sequence">
+                    <input type="checkbox" id="opt-auto-sequence" />
+                    <div class="slider"></div>
+                  </label>
+                  <label>auto sequence</label>
                 </div>
                 <span>focus &rarr; short break (x4) &rarr; focus &rarr; long break</span>
               </div>
             </section>
           </div>
 
-          <div class="settings-buttons">
-            <button class="button button-pill" id="button-save-settings">save</button>
-            <button class="button button-pill" id="button-cancel-settings">cancel</button>
-          </div>
+          <button class="button button-pill" id="button-save-settings">save</button>
         </section>
       </div>
     </div>

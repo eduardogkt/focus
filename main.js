@@ -70,7 +70,6 @@ function togglePanel(buttonSelector, panelSelector) {
     $(document).on("click", buttonSelector, function () {
         $(panelSelector).toggle();
         if (panelSelector === "#settings-panel") {
-            // $(panelSelector).css("display", "flex");
             $(".over").fadeIn(200);
         }
     });
