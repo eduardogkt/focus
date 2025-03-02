@@ -715,6 +715,7 @@ body {
 }
 
 .setting-section {
+  display: none !important;
   margin-bottom: 2rem;
   padding-bottom: 2rem;
   border-bottom: var(--border);
@@ -788,51 +789,81 @@ body {
   width: 200px;
 }
 
-#setting-themes .themes-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  gap: 0.5rem;
-  margin-bottom: 3rem;
+#setting-music-sections {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: start;
+  gap: 1rem;
 }
-#setting-themes .themes-grid .theme {
+
+#setting-gris-theme,
+#setting-solid-theme {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: start;
+  gap: 0.5rem;
+}
+#setting-gris-theme .themes-grid,
+#setting-solid-theme .themes-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5rem;
+}
+#setting-gris-theme .themes-grid .theme,
+#setting-solid-theme .themes-grid .theme {
   border-radius: 10px;
   border: var(--border);
   overflow: hidden;
   cursor: pointer;
 }
-#setting-themes .themes-grid .theme:hover {
+#setting-gris-theme .themes-grid .theme:hover,
+#setting-solid-theme .themes-grid .theme:hover {
   border: var(--border-focus);
 }
-#setting-themes .themes-grid .theme img, #setting-themes .themes-grid .theme div {
-  min-height: 120px;
+#setting-gris-theme .themes-grid .theme img, #setting-gris-theme .themes-grid .theme div,
+#setting-solid-theme .themes-grid .theme img,
+#setting-solid-theme .themes-grid .theme div {
+  min-height: 125px;
+  width: 220px;
   height: auto;
-  width: 100%;
 }
-#setting-themes .themes-grid .theme #black-theme {
+#setting-gris-theme .themes-grid .theme #black-theme,
+#setting-solid-theme .themes-grid .theme #black-theme {
   background-color: var(--black);
 }
-#setting-themes .themes-grid .theme #white-theme {
+#setting-gris-theme .themes-grid .theme #white-theme,
+#setting-solid-theme .themes-grid .theme #white-theme {
   background-color: var(--white);
 }
-#setting-themes .themes-grid .theme #lightgray-theme {
+#setting-gris-theme .themes-grid .theme #lightgray-theme,
+#setting-solid-theme .themes-grid .theme #lightgray-theme {
   background-color: var(--lightgray);
 }
-#setting-themes .themes-grid .theme #red-theme {
+#setting-gris-theme .themes-grid .theme #red-theme,
+#setting-solid-theme .themes-grid .theme #red-theme {
   background-color: var(--red);
 }
-#setting-themes .themes-grid .theme #green-theme {
+#setting-gris-theme .themes-grid .theme #green-theme,
+#setting-solid-theme .themes-grid .theme #green-theme {
   background-color: var(--green);
 }
-#setting-themes .themes-grid .theme #blue-theme {
+#setting-gris-theme .themes-grid .theme #blue-theme,
+#setting-solid-theme .themes-grid .theme #blue-theme {
   background-color: var(--blue);
 }
-#setting-themes .themes-grid .theme #yellow-theme {
+#setting-gris-theme .themes-grid .theme #yellow-theme,
+#setting-solid-theme .themes-grid .theme #yellow-theme {
   background-color: var(--yellow);
 }
-#setting-themes .themes-grid .theme #purple-theme {
+#setting-gris-theme .themes-grid .theme #purple-theme,
+#setting-solid-theme .themes-grid .theme #purple-theme {
   background-color: var(--purple);
 }
-#setting-themes .themes-grid .active-theme, #setting-themes .themes-grid .active-theme:hover {
+#setting-gris-theme .themes-grid .active-theme, #setting-gris-theme .themes-grid .active-theme:hover,
+#setting-solid-theme .themes-grid .active-theme,
+#setting-solid-theme .themes-grid .active-theme:hover {
   border: 1px solid var(--white);
 }
 
@@ -865,6 +896,14 @@ body {
 }
 #setting-stats #button-reset-stats {
   float: right;
+}
+
+.show-section {
+  display: flex !important;
+}
+
+.hide-section {
+  display: none !important;
 }
 
 .container {

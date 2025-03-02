@@ -316,37 +316,37 @@
           <div class="settings">
             <nav class="settings-opts">
               <li>
-                <button class="button button-setting active-setting">
+                <button class="button button-setting active-setting" id="opt-setting-timer">
                   <img src="assets/icons/timer_icon.svg" class="icon-setting" />
                   <span>Timer</span>
                 </button>
               </li>
               <li>
-                <button class="button button-setting">
+                <button class="button button-setting" id="opt-setting-theme">
                   <img src="assets/icons/palette_icon.svg" class="icon-setting" />
-                  <span>Themes</span>
+                  <span>Theme</span>
                 </button>
               </li>
               <li>
-                <button class="button button-setting">
+                <button class="button button-setting" id="opt-setting-sound">
                   <img src="assets/icons/sound_icon.svg" class="icon-setting" />
                   <span>Sound</span>
                 </button>
               </li>
               <li>
-                <button class="button button-setting">
+                <button class="button button-setting" id="opt-setting-stats">
                   <img src="assets/icons/graph_icon.svg" class="icon-setting" />
                   <span>Stats</span>
                 </button>
               </li>
               <li>
-                <button class="button button-setting">
+                <button class="button button-setting" id="opt-setting-account">
                   <img src="assets/icons/person_icon.svg" class="icon-setting" />
                   <span>Account</span>
                 </button>
               </li>
               <li>
-                <button class="button button-setting">
+                <button class="button button-setting" id="opt-setting-support">
                   <img src="assets/icons/info_icon.svg" class="icon-setting" style="width: 22px" />
                   <span>Support</span>
                 </button>
@@ -355,7 +355,8 @@
 
             <section class="settings-setting">
               <!-- timer settings -->
-              <div class="setting-section" id="setting-timers">
+
+              <div class="setting-section show-section" id="setting-timers">
                 <div class="setting-timer">
                   <label for="focus-time">focus</label>
                   <input class="input-number" type="number" id="focus-time" value="50" />
@@ -373,7 +374,7 @@
                 </div>
               </div>
 
-              <div class="setting-section" id="setting-sequence">
+              <div class="setting-section show-section" id="setting-sequence">
                 <div class="setting-toggle">
                   <div>
                     <label class="input-switch" for="opt-auto-sequence">
@@ -432,9 +433,9 @@
                 </div>
               </div>
 
-              <!-- themes settings -->
+              <!-- theme settings -->
 
-              <div class="setting-section" id="setting-themes">
+              <div class="setting-section" id="setting-gris-theme">
                 <h3>gris</h3>
                 <div class="themes-grid">
                   <div class="theme">
@@ -453,11 +454,13 @@
                     <img src="./assets/backgound/gris4.jpg" />
                   </div>
                 </div>
+              </div>
 
+              <div class="setting-section" id="setting-solid-theme">
                 <h3>solid colors</h3>
                 <div class="themes-grid">
                   <div class="theme active-theme">
-                    <div id="black-theme"></div>
+                    <div id="black-theme" role="i"></div>
                   </div>
 
                   <div class="theme">

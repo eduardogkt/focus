@@ -43,6 +43,7 @@
 }
 
 .setting-section {
+  display: none !important;
   margin-bottom: 2rem;
   padding-bottom: 2rem;
   border-bottom: var(--border);
@@ -103,10 +104,15 @@
   }
 }
 
-#setting-themes {
+#setting-music-sections {
+  @include flex(column, start, start, 1rem);
+}
+
+#setting-gris-theme,
+#setting-solid-theme {
+  @include flex(column, start, start, 0.5rem);
   & .themes-grid {
     @include grid(0.5rem);
-    margin-bottom: 3rem;
 
     & .theme {
       border-radius: 10px;
@@ -120,9 +126,9 @@
 
       & img,
       & div {
-        min-height: 120px;
+        min-height: 125px;
+        width: 220px;
         height: auto;
-        width: 100%;
       }
 
       #black-theme {
@@ -184,4 +190,12 @@
   & #button-reset-stats {
     float: right;
   }
+}
+
+.show-section {
+  display: flex !important;
+}
+
+.hide-section {
+  display: none !important;
 }

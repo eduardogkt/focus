@@ -642,4 +642,49 @@ $("#button-close-settings").on("click", function() {
     $("#settings-panel, .over").fadeOut(200);
 })
 
+const settingButtons = $(".button-setting");
+const settingSections = $(".setting-section");
+
+const settings = [
+    { name: "opt-setting-timer", sections: ["#setting-timers", "#setting-sequence"] },
+    { name: "opt-setting-theme", sections: ["#setting-gris-theme", "#setting-solid-theme"] },
+    { name: "opt-setting-sound", sections: ["#setting-sound", "#setting-alert", "#setting-music-sections"] },
+    { name: "opt-setting-stats", sections: ["#setting-stats"] }
+]
+
+settingButtons.on("click", function() {
+    settingSections.removeClass("show-section");
+    settingButtons.removeClass("active-setting");
+
+    $(this).addClass("active-setting");
+
+    const settingId = $(this).attr("id");
+
+    settings.forEach(function(setting) {
+         if (setting.name === settingId) {
+            setting.sections.forEach(function(section) { 
+                $(section).addClass("show-section");
+            });
+        }
+    })
+})
+
+const themes = $(".theme");
+
+themes.on("click", function() {
+    themes.removeClass("active-theme");
+    $(this).addClass("active-theme");
+
+    const image = $(this).find("img").attr("src");
+    const color = $(this).find("div").attr("id")?.split("-").shift();
+
+    if (image) {
+        $(".container").css("background-image", `url(${image})`);
+    }
+    else {
+        $(".container").css("background-image", "none");
+        $(".container").css("background-color", `var(--${color})`);
+    }
+});
+
 });
