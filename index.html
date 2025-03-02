@@ -354,33 +354,158 @@
             </nav>
 
             <section class="settings-setting">
+              <!-- timer settings -->
               <div class="setting-section" id="setting-timers">
                 <div class="setting-timer">
                   <label for="focus-time">focus</label>
-                  <input type="number" id="focus-time" value="50" />
+                  <input class="input-number" type="number" id="focus-time" value="50" />
                   <span>minutes</span>
                 </div>
                 <div class="setting-timer">
                   <label for="short-break-time">short time</label>
-                  <input type="number" id="short-break-time" value="10" />
+                  <input class="input-number" type="number" id="short-break-time" value="10" />
                   <span>minutes</span>
                 </div>
                 <div class="setting-timer">
                   <label for="long-break-time">long break</label>
-                  <input type="number" id="long-break-time" value="20" />
+                  <input class="input-number" type="number" id="long-break-time" value="20" />
                   <span>minutes</span>
                 </div>
               </div>
 
               <div class="setting-section" id="setting-sequence">
-                <div>
-                  <label class="switch" for="opt-auto-sequence">
-                    <input type="checkbox" id="opt-auto-sequence" />
-                    <div class="slider"></div>
-                  </label>
-                  <label>auto sequence</label>
+                <div class="setting-toggle">
+                  <div>
+                    <label class="input-switch" for="opt-auto-sequence">
+                      <input type="checkbox" id="opt-auto-sequence" checked />
+                      <div class="slider"></div>
+                    </label>
+                    <label>auto sequence</label>
+                  </div>
+                  <span>focus &rarr; short break (x4) &rarr; focus &rarr; long break</span>
                 </div>
-                <span>focus &rarr; short break (x4) &rarr; focus &rarr; long break</span>
+              </div>
+
+              <!-- sound settings -->
+
+              <div class="setting-section" id="setting-sound">
+                <h3>sounds</h3>
+
+                <div class="setting-volume">
+                  <input id="setting-sound-range" class="input-range" type="range" id="opt-volume" min="0" max="100" />
+                </div>
+              </div>
+
+              <div class="setting-section" id="setting-alert">
+                <h3>alert</h3>
+
+                <div class="input-select">
+                  <select id="setting-opt-alert">
+                    <option value="chime">chime</option>
+                  </select>
+                </div>
+
+                <div class="setting-volume">
+                  <input id="setting-alert-range" class="input-range" type="range" id="opt-volume" min="0" max="100" />
+                </div>
+              </div>
+
+              <div class="setting-section" id="setting-music-sections">
+                <div class="setting-toggle">
+                  <div>
+                    <label class="input-switch" for="opt-show-playlist">
+                      <input type="checkbox" id="opt-show-playlist" checked />
+                      <div class="slider"></div>
+                    </label>
+                    <label>show playlist</label>
+                  </div>
+                </div>
+
+                <div class="setting-toggle">
+                  <div>
+                    <label class="input-switch" for="opt-show-sound">
+                      <input type="checkbox" id="opt-show-sound" checked />
+                      <div class="slider"></div>
+                    </label>
+                    <label>show sound</label>
+                  </div>
+                </div>
+              </div>
+
+              <!-- themes settings -->
+
+              <div class="setting-section" id="setting-themes">
+                <h3>gris</h3>
+                <div class="themes-grid">
+                  <div class="theme">
+                    <img src="./assets/backgound/gris1.png" />
+                  </div>
+
+                  <div class="theme">
+                    <img src="./assets/backgound/gris2.jpg" />
+                  </div>
+
+                  <div class="theme">
+                    <img src="./assets/backgound/gris3.jpg" />
+                  </div>
+
+                  <div class="theme">
+                    <img src="./assets/backgound/gris4.jpg" />
+                  </div>
+                </div>
+
+                <h3>solid colors</h3>
+                <div class="themes-grid">
+                  <div class="theme active-theme">
+                    <div id="black-theme"></div>
+                  </div>
+
+                  <div class="theme">
+                    <div id="white-theme"></div>
+                  </div>
+
+                  <div class="theme">
+                    <div id="lightgray-theme"></div>
+                  </div>
+
+                  <div class="theme">
+                    <div id="red-theme"></div>
+                  </div>
+
+                  <div class="theme">
+                    <div id="green-theme"></div>
+                  </div>
+
+                  <div class="theme">
+                    <div id="blue-theme"></div>
+                  </div>
+
+                  <div class="theme">
+                    <div id="yellow-theme"></div>
+                  </div>
+
+                  <div class="theme">
+                    <div id="purple-theme"></div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- stats settings -->
+
+              <div class="setting-section" id="setting-stats">
+                <div class="settings-stats">
+                  <div class="stats-field">
+                    <h3 class="panel-subtitle stats-title">Focus time</h3>
+                    <span id="settings-time-stats">0 minutos</span>
+                  </div>
+
+                  <div class="stats-field">
+                    <h3 class="panel-subtitle stats-title">sprints</h3>
+                    <span id="settings-streak-stats">0</span>
+                  </div>
+                </div>
+
+                <button id="button-reset-stats" class="button button-pill">reset stats</button>
               </div>
             </section>
           </div>

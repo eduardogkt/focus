@@ -6,8 +6,10 @@
   gap: $gap;
 }
 
-@mixin grid() {
-  
+@mixin grid($gap) {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: $gap;
 }
 
 @mixin circle($height, $width) {

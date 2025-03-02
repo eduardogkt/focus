@@ -39,48 +39,8 @@
 }
 
 .volume-slider {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 0.8rem;
+  @include flex(row, center, center, 0.8rem);
   margin: 0 0.8rem;
-}
-
-.input-range {
-  --border-width: 1px;
-  @include appearence-none;
-
-  width: 100%;
-  height: 1.1rem;
-  background: var(--volume-slider);
-  background-size: calc(100% + 2 * var(--border-width)) 100%;
-  border: var(--border);
-  border-radius: 10px;
-  outline: none;
-  cursor: pointer;
-  overflow: hidden;
-  margin: 0 -20px;
-
-  transition: var(--transition);
-
-  &:hover {
-    border: var(--border-focus);
-  }
-}
-
-%slider-thumb {
-  @include appearence-none();
-  width: 0;
-  border: 0;
-}
-
-.input-range::-webkit-slider-thumb {
-  @extend %slider-thumb;
-  visibility: hidden;
-}
-
-.input-range::-moz-range-thumb {
-  @extend %slider-thumb;
 }
 
 #playlist-info-menu {
