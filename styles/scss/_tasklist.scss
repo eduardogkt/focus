@@ -1,3 +1,7 @@
+.tasklist-panel {
+  min-height: 320px;
+}
+
 .task {
   @include flex(row, center, flex-start, 1rem);
   padding: 0.9rem 1rem;
@@ -31,7 +35,8 @@
   }
 
   .task-description {
-    width: 250px;
+    width: 200px;
+    word-wrap: break-word;
   }
 
   .options-menu {
@@ -46,6 +51,7 @@
 .task-create {
   padding: 1rem 1.1rem;
   margin-bottom: 1rem;
+  width: 310px;
 
   .input-text {
     padding: 0.8rem 0.9rem;

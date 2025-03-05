@@ -306,11 +306,6 @@ body {
   box-shadow: none !important;
 }
 
-.timer-actions, .timer-mode {
-  display: flex;
-  gap: 1rem;
-}
-
 #start-button, .active {
   background-color: white;
   color: var(--black);
@@ -323,13 +318,23 @@ body {
   align-items: center;
   gap: unset;
   padding: 2.5rem;
-  min-width: 400px;
   min-height: 400px;
   box-shadow: var(--shadow);
 }
 
 .timer-mode {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
   color: var(--white);
+  flex-wrap: wrap;
+}
+
+.timer-actions {
+  display: flex;
+  gap: 1rem;
 }
 
 .timer-clock {
@@ -365,8 +370,7 @@ body {
 .panel {
   display: none;
   padding: 1.5rem;
-  width: 360px;
-  height: 550px;
+  min-width: 360px;
   overflow: auto;
 }
 
@@ -396,6 +400,9 @@ body {
 
 .panel-section {
   margin-bottom: 2rem;
+}
+.panel-section:nth-last-child(1) {
+  margin-bottom: 1rem;
 }
 
 .panel-fit-content {
@@ -504,6 +511,10 @@ body {
   font-size: 0.8rem;
 }
 
+.tasklist-panel {
+  min-height: 320px;
+}
+
 .task {
   display: flex;
   flex-direction: row;
@@ -539,7 +550,8 @@ body {
   margin-top: 3px;
 }
 .task .task-description {
-  width: 250px;
+  width: 200px;
+  word-wrap: break-word;
 }
 .task .options-menu {
   width: -moz-fit-content;
@@ -553,6 +565,7 @@ body {
 .task-create {
   padding: 1rem 1.1rem;
   margin-bottom: 1rem;
+  width: 310px;
 }
 .task-create .input-text {
   padding: 0.8rem 0.9rem;
@@ -907,6 +920,7 @@ body {
 }
 
 .container {
+  background-color: var(--black);
   background-size: cover;
   -webkit-user-select: none;
      -moz-user-select: none;
@@ -917,38 +931,33 @@ body {
   min-height: 100vh;
   padding: 3rem;
   display: grid;
-  grid-template-columns: repeat(3, auto);
+  grid-template-columns: repeat(3, 400px);
   justify-content: center;
   align-items: start;
-  -moz-column-gap: 2rem;
-       column-gap: 2rem;
+  gap: 1rem;
 }
 
 .right, .left, .center {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: start;
   align-items: center;
-  gap: 1.5rem;
-  min-width: 360px;
-  min-height: 70vh;
-  grid-row: 1;
+  gap: 2rem;
+  min-height: 590px;
 }
 
 .center {
   justify-content: start;
   align-items: center;
-  width: -moz-fit-content;
-  width: fit-content;
-  grid-column: 2;
+  order: 2;
 }
 
 .left {
-  grid-column: 1;
+  order: 1;
 }
 
 .right {
-  grid-column: 3;
+  order: 3;
 }
 
 .over {
@@ -1062,4 +1071,34 @@ body {
 
 .warning-border {
   border: 1px solid tomato;
+}
+
+@media only screen and (max-width: 1280px) {
+  .layout {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    justify-content: center;
+    align-items: center;
+  }
+  .center, .left, .right {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    min-height: 0;
+  }
+  .center {
+    order: 1;
+  }
+  .right {
+    order: 3;
+  }
+  .left {
+    order: 2;
+  }
+  .quote {
+    display: none;
+  }
 }/*# sourceMappingURL=style.css.map */
