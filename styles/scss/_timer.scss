@@ -14,7 +14,6 @@
 .timer-mode {
   @include flex(row, center, center, 1rem);
   color: var(--white);
-  flex-wrap: wrap;
 }
 
 .timer-actions {

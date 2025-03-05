@@ -329,7 +329,6 @@ body {
   align-items: center;
   gap: 1rem;
   color: var(--white);
-  flex-wrap: wrap;
 }
 
 .timer-actions {
@@ -934,7 +933,7 @@ body {
   grid-template-columns: repeat(3, 400px);
   justify-content: center;
   align-items: start;
-  gap: 1rem;
+  gap: 2rem;
 }
 
 .right, .left, .center {
@@ -1100,5 +1099,13 @@ body {
   }
   .quote {
     display: none;
+  }
+  .timer-mode {
+    flex-wrap: wrap;
+  }
+}
+@media only screen and (max-width: 600px) {
+  html {
+    font-size: 13px;
   }
 }/*# sourceMappingURL=style.css.map */

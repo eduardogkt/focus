@@ -27,7 +27,7 @@
   grid-template-columns: repeat(3, 400px);
   justify-content: center;
   align-items: start;
-  gap: 1rem;
+  gap: 2rem;
 }
 
 %container-section {
@@ -187,5 +187,15 @@
 
   .quote {
     display: none;
+  }
+
+  .timer-mode {
+    flex-wrap: wrap;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  html {
+    font-size: 13px;
   }
 }
