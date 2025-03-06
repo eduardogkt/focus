@@ -24,7 +24,7 @@
   min-height: 100vh;
   padding: 3rem;
   display: grid;
-  grid-template-columns: repeat(3, 400px);
+  grid-template-columns: repeat(3, 1fr);
   justify-content: center;
   align-items: start;
   gap: 2rem;
@@ -45,11 +45,13 @@
 .left {
   @extend %container-section;
   order: 1;
+  align-items: end;
 }
 
 .right {
   @extend %container-section;
   order: 3;
+  align-items: start;
 }
 
 .over {
@@ -166,7 +168,7 @@
   }
 
   %container-section {
-    @include flex(column, center, center, 2rem);
+    @include flex(column, start, center, 2rem);
     min-height: 0;
   }
 

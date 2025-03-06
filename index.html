@@ -124,16 +124,7 @@
                 </button>
               </div>
               <div class="volume-slider">
-                <input
-                  class="input-range"
-                  name="input-range"
-                  id="volume-slider"
-                  type="range"
-                  min="0"
-                  max="100"
-                  value="50"
-                  step="1"
-                />
+                <input id="sound-range" class="input-range sound-range" type="range" min="0" max="100" step="1" />
               </div>
             </div>
           </section>
@@ -359,17 +350,17 @@
               <div class="setting-section show-section" id="setting-timers">
                 <div class="setting-timer">
                   <label for="focus-time">focus</label>
-                  <input class="input-number" type="number" id="focus-time" value="50" />
+                  <input class="input-number" type="number" id="focus-time" value="50" min="0" />
                   <span>minutes</span>
                 </div>
                 <div class="setting-timer">
                   <label for="short-break-time">short time</label>
-                  <input class="input-number" type="number" id="short-break-time" value="10" />
+                  <input class="input-number" type="number" id="short-break-time" value="10" min="0" />
                   <span>minutes</span>
                 </div>
                 <div class="setting-timer">
                   <label for="long-break-time">long break</label>
-                  <input class="input-number" type="number" id="long-break-time" value="20" />
+                  <input class="input-number" type="number" id="long-break-time" value="20" min="0" />
                   <span>minutes</span>
                 </div>
               </div>
@@ -378,7 +369,7 @@
                 <div class="setting-toggle">
                   <div>
                     <label class="input-switch" for="opt-auto-sequence">
-                      <input type="checkbox" id="opt-auto-sequence" checked />
+                      <input type="checkbox" id="opt-auto-sequence" />
                       <div class="slider"></div>
                     </label>
                     <label>auto sequence</label>
@@ -392,8 +383,15 @@
               <div class="setting-section" id="setting-sound">
                 <h3>sounds</h3>
 
-                <div class="setting-volume">
-                  <input id="setting-sound-range" class="input-range" type="range" id="opt-volume" min="0" max="100" />
+                <div class="volume-slider">
+                  <input
+                    id="setting-sound-range"
+                    class="input-range sound-range"
+                    type="range"
+                    min="0"
+                    max="100"
+                    step="1"
+                  />
                 </div>
               </div>
 
@@ -402,12 +400,23 @@
 
                 <div class="input-select">
                   <select id="setting-opt-alert">
-                    <option value="chime">chime</option>
+                    <option value="chime-alert">chime</option>
+                    <option value="ding-alert">ding</option>
+                    <option value="dong-alert">dong</option>
+                    <option value="plew-alert">plew</option>
+                    <option value="cat-alert">cat</option>
                   </select>
                 </div>
 
-                <div class="setting-volume">
-                  <input id="setting-alert-range" class="input-range" type="range" id="opt-volume" min="0" max="100" />
+                <div class="volume-slider">
+                  <input
+                    id="setting-alert-range"
+                    class="input-range alert-range"
+                    type="range"
+                    min="0"
+                    max="100"
+                    step="1"
+                  />
                 </div>
               </div>
 
@@ -439,19 +448,19 @@
                 <h3>gris</h3>
                 <div class="themes-grid">
                   <div class="theme">
-                    <img src="./assets/backgound/gris1.png" />
+                    <img src="./assets/backgound/gris1.png" id="gris1" />
                   </div>
 
                   <div class="theme">
-                    <img src="./assets/backgound/gris2.jpg" />
+                    <img src="./assets/backgound/gris2.jpg" id="gris2" />
                   </div>
 
                   <div class="theme">
-                    <img src="./assets/backgound/gris3.jpg" />
+                    <img src="./assets/backgound/gris3.jpg" id="gris3" />
                   </div>
 
                   <div class="theme">
-                    <img src="./assets/backgound/gris4.jpg" />
+                    <img src="./assets/backgound/gris4.jpg" id="gris4" />
                   </div>
                 </div>
               </div>

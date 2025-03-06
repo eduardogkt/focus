@@ -930,7 +930,7 @@ body {
   min-height: 100vh;
   padding: 3rem;
   display: grid;
-  grid-template-columns: repeat(3, 400px);
+  grid-template-columns: repeat(3, 1fr);
   justify-content: center;
   align-items: start;
   gap: 2rem;
@@ -953,10 +953,12 @@ body {
 
 .left {
   order: 1;
+  align-items: end;
 }
 
 .right {
   order: 3;
+  align-items: start;
 }
 
 .over {
@@ -1083,7 +1085,7 @@ body {
   .center, .left, .right {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: start;
     align-items: center;
     gap: 2rem;
     min-height: 0;

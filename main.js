@@ -1,6 +1,22 @@
 $(function() {
 
+// lista de sons disponíveis
+const sounds = [
+    { id: "fire-sound-button", audio: new Audio("assets/audio/fire.mp3") },
+    { id: "rain-sound-button", audio: new Audio("assets/audio/rain.mp3") },
+    { id: "ocean-sound-button", audio: new Audio("assets/audio/ocean.mp3") },
+    { id: "cafe-sound-button", audio: new Audio("assets/audio/cafe.mp3") },
+    
+    { id: "chime-alert", audio: new Audio("assets/audio/alert/chime-alert.mp3") },
+    { id: "ding-alert", audio: new Audio("assets/audio/alert/ding-alert.mp3") },
+    { id: "dong-alert", audio: new Audio("assets/audio/alert/dong-alert.mp3") },
+    { id: "plew-alert", audio: new Audio("assets/audio/alert/plew-alert.mp3") },
+    { id: "cat-alert", audio: new Audio("assets/audio/alert/cat-alert.mp3") }
+];
+
 lucide.createIcons();
+
+getSettings();
 
 // =============================================================================
 // funções gerais
@@ -124,14 +140,6 @@ $(document).on("keydown", function(event) {
 // =============================================================================
 // sons
 
-// lista de sons disponíveis
-const sounds = [
-    { id: "fire-sound-button", audio: new Audio("assets/audio/fire.mp3") },
-    { id: "rain-sound-button", audio: new Audio("assets/audio/rain.mp3") },
-    { id: "ocean-sound-button", audio: new Audio("assets/audio/ocean.mp3") },
-    { id: "cafe-sound-button", audio: new Audio("assets/audio/cafe.mp3") },
-];
-
 // evento de clique nos botões de som
 $(".button-sound").on("click", function () {
     const activeClass = "active-button";
@@ -150,24 +158,40 @@ $(".button-sound").on("click", function () {
     }
 });
 
-// evento de ajuste de volume
-$("#volume-slider").on("input", function () {
+// evento de ajuste de volume dos sons
+$(".sound-range").on("input", function () {
     const volume = $(this).val();
-    
-    // atualiza o preenchimento visual da barra
-    $(this).css("background-image", `
-        linear-gradient(to right,
-                        var(--fill-slider) 0, 
-                        var(--fill-slider) ${volume}%, 
-                        var(--fill)        ${volume}%, 
-                        var(--fill)        100%)`
-    );
 
-    // altera o volume apenas dos sons ativos
-    $(".button-sound.active-button").each(function () {
+    updateSlider($(".sound-range"), volume);
+
+    // altera o volume do som
+    $(".button-sound").each(function () {
         changeSoundVolume($(this).attr("id"), volume);
     });
 });
+
+// evento de ajuste de volume do alerta
+$(".alert-range").on("input", function () {
+    const volume = $(this).val();
+
+    updateSlider($(".alert-range"), volume);
+
+    // altera o volume do alerta
+    changeSoundVolume($("#setting-opt-alert").val(), volume);
+});
+
+// atualiza o preenchimento visual da barra
+function updateSlider(slider, value) {
+    slider.val(value);
+
+    slider.css("background-image", `
+        linear-gradient(to right,
+                        var(--fill-slider) 0, 
+                        var(--fill-slider) ${value}%, 
+                        var(--fill)        ${value}%, 
+                        var(--fill)        100%)`
+    );
+}
 
 // toca o som correspondente
 function playSound(soundId) {
@@ -277,11 +301,15 @@ const DEFAULT_FOCUS_TIME = 60 * 50;
 const DEFAULT_SHORT_BREAK_TIME = 60 * 10;
 const DEFAULT_LONG_BREAK_TIME = 60 * 20;
 
-const timers = {
-    focus:      { mode: "#focus-mode",       time: DEFAULT_FOCUS_TIME },
-    shortBreak: { mode: "#short-break-mode", time: DEFAULT_SHORT_BREAK_TIME },
-    longBreak:  { mode: "#long-break-mode",  time: DEFAULT_LONG_BREAK_TIME },
-    current:    { mode: "#focus-mode",       time: DEFAULT_FOCUS_TIME }
+let focusTime =      $("#focus-time").val() * 60       || DEFAULT_FOCUS_TIME;
+let shortBreakTime = $("#short-break-time").val() * 60 || DEFAULT_SHORT_BREAK_TIME;
+let longBreakTime =  $("#long-break-time").val() * 60  || DEFAULT_LONG_BREAK_TIME;
+
+let timers = {
+    focus:      { mode: "#focus-mode",       time: focusTime },
+    shortBreak: { mode: "#short-break-mode", time: shortBreakTime },
+    longBreak:  { mode: "#long-break-mode",  time: longBreakTime },
+    current:    { mode: "#focus-mode",       time: focusTime }
 };
 
 let timerId = null;
@@ -289,10 +317,10 @@ let running = false;
 let remainingSeconds = timers.current.time;
 
 let sequence = 0;
-let autoSequence = true;
+let autoSequence = $("#opt-auto-sequence").is(":checked");
 let numOfSequences = 4;
 
-let timerAlert = new Audio("assets/audio/timer-alert.mp3");
+let timerAlert = sounds.find(sound => sound.id === $("#setting-opt-alert").val()).audio;
 
 setTimerMode(timers.focus);
 
@@ -373,7 +401,7 @@ function updateTimerDisplay(remainingSeconds) {
 }
 
 function changeTimer() {
-    if (timers.current.time === timers.focus.time) {
+    if (timers.current.mode === timers.focus.mode) {
         updateStats(timers.current.time / 60);
         if (autoSequence) sequence++;
 
@@ -417,7 +445,7 @@ function updateStats(sprintTime) {
 }
 
 // Reseta as estatísticas
-$("#stats-opt-reset-button").on("click", function() {
+$("#stats-opt-reset-button, #button-reset-stats").on("click", function() {
     totalFocusTime = 0;
     sprintCount = -1;
     updateStats(0);
@@ -640,6 +668,10 @@ function validateInput(userInput) {
 
 $("#button-close-settings").on("click", function() {
     $("#settings-panel, .over").fadeOut(200);
+
+    // se fechar sem salvar, volta às configurações anteriores
+    // timeout por causa do fadeOut
+    setTimeout(getSettings, 200);
 })
 
 const settingButtons = $(".button-setting");
@@ -669,6 +701,10 @@ settingButtons.on("click", function() {
     })
 })
 
+// $("#setting-opt-alert").on("change", function() {
+//     timerAlert = sounds.find(sound => sound.id === $("#setting-opt-alert").val()).audio;
+// })
+
 const themes = $(".theme");
 
 themes.on("click", function() {
@@ -678,6 +714,10 @@ themes.on("click", function() {
     const image = $(this).find("img").attr("src");
     const color = $(this).find("div").attr("id")?.split("-").shift();
 
+    setBackground(image, color);
+});
+
+function setBackground(image, color) {
     if (image) {
         $(".container").css("background-image", `url(${image})`);
     }
@@ -685,6 +725,101 @@ themes.on("click", function() {
         $(".container").css("background-image", "none");
         $(".container").css("background-color", `var(--${color})`);
     }
+}
+
+$("#button-save-settings").click(function () {
+
+    let newFocusTime = $("#focus-time").val() * 60
+    let newShortBreakTime = $("#short-break-time").val() * 60
+    let newLongBreakTime = $("#long-break-time").val() * 60
+
+    console.log(newFocusTime, newShortBreakTime, newLongBreakTime);
+
+    if (newFocusTime > 0) {
+        timers.focus.time = newFocusTime;
+    }
+    if (newShortBreakTime > 0) {
+        timers.shortBreak.time = newShortBreakTime;
+    }
+    if (newLongBreakTime > 0) {
+        timers.longBreak.time = newLongBreakTime;
+    }
+
+    // if (timers.current.mode === timers.focus.mode) {
+    //     setTimerMode(timers.focus);
+    // } else if (timers.current.mode === timers.shortBreak.mode) {
+    //     setTimerMode(timers.shortBreak);
+    // } else if (timers.current.mode === timers.longBreak.mode) {
+    //     setTimerMode(timers.longBreak);
+    // }
+
+    let newAutoSequence = $("#opt-auto-sequence").is(":checked");
+    if (autoSequence !== newAutoSequence) {
+        sequence = 0;
+    }
+    autoSequence = newAutoSequence;
+
+    timerAlert = sounds.find(sound => sound.id === $("#setting-opt-alert").val()).audio;
+
+    let storage = {
+        settings: {
+            timer: {
+                focus: newFocusTime,
+                shortBreak: newShortBreakTime,
+                longBreak: newLongBreakTime
+            },
+            sequence: {
+                auto: newAutoSequence,
+                // num: $("#num-of-sequences").val()
+            },
+            theme: {
+                active: "#" + $(".active-theme").find(">:first-child").attr("id"),
+                color: $(".active-theme").find("div").attr("id")?.split("-").shift(),
+                image: $(".active-theme").find("img").attr("src")
+            },
+            sound: {
+                volume: $(".sound-range").val()
+            },
+            alert: {
+                sound: $("#setting-opt-alert").val(),
+                volume: $(".alert-range").val()
+            }
+        },
+    };
+    
+    localStorage.setItem("storage", JSON.stringify(storage));
+    $("#settings-panel, .over").fadeOut(200);
 });
+
+function getSettings() {
+    if (localStorage.getItem("storage")) {
+        let storage = JSON.parse(localStorage.getItem("storage"));
+        let s = storage.settings;
+
+        // timer
+        $("#focus-time").val(s.timer.focus / 60);
+        $("#short-break-time").val(s.timer.shortBreak / 60);
+        $("#long-break-time").val(s.timer.longBreak / 60);
+        $("#opt-auto-sequence").prop("checked", s.sequence.auto);
+
+        $(".theme").removeClass("active-theme");
+        $(s.theme.active).parent().addClass("active-theme");
+
+        // theme
+        setBackground(s.theme.image, s.theme.color);
+
+        // sound
+        $(".sound-range").val(s.sound.volume)
+        setTimeout(() => {
+            $(".sound-range").trigger("input");
+        }, 50);
+        
+        $(".alert-range").val(s.sound.volume)
+        setTimeout(() => {    
+            $(".alert-range").trigger("input");
+        }, 50);
+        $("#setting-opt-alert").val(s.alert.sound)
+    }
+}
 
 });
