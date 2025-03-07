@@ -432,11 +432,14 @@ function playTimerAlert() {
     timerAlert.play();
 }
 
-function startTimerMode(timer) {
+function setTimerModeOpt(timer) {
     timerOpts.removeClass("active");
     $(timer.mode).addClass("active");
-
     setTimerMode(timer);
+}
+
+function startTimerMode(timer) {
+    setTimerModeOpt(timer);
     startTimer();
 }
 
@@ -754,6 +757,18 @@ $("#setting-opt-alert").on("click", function() {
     alert.play();
 })
 
+$("#button-reset-settings").on("click", async function() {
+    localStorage.removeItem("settings");
+    
+    // retorna para modo foco
+    setTimerModeOpt(timers.focus);
+
+    let defaultSettings = await fetch("assets/json/default-settings.json").then(resp => resp.json());
+    
+    localStorage.setItem("settings", JSON.stringify(defaultSettings));
+    getSettings();
+});
+
 $("#button-save-settings").click(function () {
 
     // timer
@@ -810,9 +825,20 @@ $("#button-save-settings").click(function () {
         alert: {
             sound: $("#setting-opt-alert").val(),
             volume: $(".alert-range").val()
+        },
+        display: {
+            music: {
+                playlist: $(".playlist").is(":visible"),
+                sounds: $(".sounds").is(":visible")
+            },
+            menu: {
+                tasklist: $("#tasklist-panel").is(":visible"),
+                music: $("#music-panel").is(":visible"),
+                stats: $("#stats-panel").is(":visible"),
+                settings: $("#settings-panel").is(":visible")
+            }
         }
-    };
-    
+    }
     
     localStorage.setItem("settings", JSON.stringify(settings));
     $("#settings-panel, .over").fadeOut(200);
@@ -844,7 +870,9 @@ function getSettings() {
         setTimeout(() => {    
             $(".alert-range").trigger("input");
         }, 50);
-        $("#setting-opt-alert").val(s.alert.sound)    
+        $("#setting-opt-alert").val(s.alert.sound)
+
+        // display
     }
 
     if (localStorage.getItem("stats")) {

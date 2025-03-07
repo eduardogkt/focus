@@ -1,0 +1,33 @@
+{
+  "timer": {
+    "focus": "DEFAULT_FOCUS_TIME",
+    "shortBreak": "DEFAULT_SHORT_BREAK_TIME",
+    "longBreak": "DEFAULT_LONG_BREAK_TIME"
+  },
+  "sequence": {
+    "auto": true
+  },
+  "theme": {
+    "active": "#black-theme",
+    "color": "black",
+    "image": null
+  },
+  "sound": {
+    "volume": 50
+  },
+  "alert": {
+    "sound": "chime-alert",
+    "volume": 50
+  },
+  "display": {
+    "music": {
+      "playlist": true,
+      "sounds": true
+    },
+    "menu": {
+      "tasklist": true,
+      "music": true,
+      "stats": true
+    }
+  }
+}

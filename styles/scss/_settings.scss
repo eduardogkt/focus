@@ -201,6 +201,7 @@
 }
 
 #setting-menu-buttons,
-#setting-music-sections {
+#setting-music-sections,
+#setting-reset {
   @include flex(column, start, start, 1rem);
 }

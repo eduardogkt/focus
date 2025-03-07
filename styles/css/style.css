@@ -919,7 +919,8 @@ body {
 }
 
 #setting-menu-buttons,
-#setting-music-sections {
+#setting-music-sections,
+#setting-reset {
   display: flex;
   flex-direction: column;
   justify-content: start;
