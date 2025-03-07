@@ -1,5 +1,7 @@
 $(function() {
 
+// localStorage.clear();
+
 // lista de sons disponíveis
 const sounds = [
     { id: "fire-sound-button", audio: new Audio("assets/audio/fire.mp3") },
@@ -179,6 +181,12 @@ $(".alert-range").on("input", function () {
     // altera o volume do alerta
     changeSoundVolume($("#setting-opt-alert").val(), volume);
 });
+
+// evento de tocar o alerta ao soltar o click do mouse
+$(".alert-range").on("mouseup", function() {
+    const alert = sounds.find(sound => sound.id === $("#setting-opt-alert").val()).audio;
+    alert.play();
+})
 
 // atualiza o preenchimento visual da barra
 function updateSlider(slider, value) {
@@ -403,13 +411,17 @@ function updateTimerDisplay(remainingSeconds) {
 function changeTimer() {
     if (timers.current.mode === timers.focus.mode) {
         updateStats(timers.current.time / 60);
-        if (autoSequence) sequence++;
-
-        if (sequence >= numOfSequences) {
-            sequence = 0;
-            startTimerMode(timers.longBreak);
+        if (autoSequence) {
+            sequence++;
+            
+            if (sequence >= numOfSequences) {
+                sequence = 0;
+                startTimerMode(timers.longBreak);
+            } else {
+                startTimerMode(timers.shortBreak);
+            }
         } else {
-            startTimerMode(timers.shortBreak);
+            resetTimer();
         }
     } else {
         startTimerMode(timers.focus);
@@ -432,22 +444,33 @@ function startTimerMode(timer) {
 // =============================================================================
 // stats
 
-const statsFocusTime = $("#time-stats");
-const statsSprintCount = $("#streak-stats");
+const statsFocusTime = $(".time-stats");
+const statsSprintCount = $(".streak-stats");
 
 let totalFocusTime = 0;
 let sprintCount = 0;
+
+let stats = JSON.parse(localStorage.getItem("stats")) || {focusTime: 0, sprintCount: 0};
 
 function updateStats(sprintTime) {
     totalFocusTime += sprintTime;
     statsFocusTime.text(`${Math.floor(totalFocusTime)} minutes`);
     statsSprintCount.text(++sprintCount);
+
+    stats.focusTime = totalFocusTime;
+    stats.sprintCount = sprintCount;
+
+    localStorage.setItem("stats", JSON.stringify(stats));
 }
 
 // Reseta as estatísticas
-$("#stats-opt-reset-button, #button-reset-stats").on("click", function() {
+$(".button-reset-stats").on("click", function() {
     totalFocusTime = 0;
     sprintCount = -1;
+    
+    stats = {focusTime: 0, sprintCount: 0};
+    localStorage.setItem("stats", JSON.stringify(stats));
+    
     updateStats(0);
     hideOptionsMenus();
 });
@@ -678,10 +701,12 @@ const settingButtons = $(".button-setting");
 const settingSections = $(".setting-section");
 
 const settings = [
-    { name: "opt-setting-timer", sections: ["#setting-timers", "#setting-sequence"] },
-    { name: "opt-setting-theme", sections: ["#setting-gris-theme", "#setting-solid-theme"] },
-    { name: "opt-setting-sound", sections: ["#setting-sound", "#setting-alert", "#setting-music-sections"] },
-    { name: "opt-setting-stats", sections: ["#setting-stats"] }
+    { name: "opt-setting-timer",   sections: ["#setting-timers", "#setting-sequence"] },
+    { name: "opt-setting-theme",   sections: ["#setting-gris-theme", "#setting-solid-theme"] },
+    { name: "opt-setting-sound",   sections: ["#setting-sound", "#setting-alert"] },
+    { name: "opt-setting-stats",   sections: ["#setting-stats"] },
+    { name: "opt-setting-display", sections: ["#setting-music-sections", "#setting-menu-buttons"] },
+    { name: "opt-setting-other",   sections: ["#setting-reset"] }
 ]
 
 settingButtons.on("click", function() {
@@ -700,10 +725,6 @@ settingButtons.on("click", function() {
         }
     })
 })
-
-// $("#setting-opt-alert").on("change", function() {
-//     timerAlert = sounds.find(sound => sound.id === $("#setting-opt-alert").val()).audio;
-// })
 
 const themes = $(".theme");
 
@@ -727,31 +748,37 @@ function setBackground(image, color) {
     }
 }
 
+// toca o alerta quando seleciona-o
+$("#setting-opt-alert").on("click", function() {
+    const alert = sounds.find(sound => sound.id === $("#setting-opt-alert").val()).audio;
+    alert.play();
+})
+
 $("#button-save-settings").click(function () {
 
+    // timer
     let newFocusTime = $("#focus-time").val() * 60
     let newShortBreakTime = $("#short-break-time").val() * 60
     let newLongBreakTime = $("#long-break-time").val() * 60
 
-    console.log(newFocusTime, newShortBreakTime, newLongBreakTime);
+    const changedTime = 
+        (newFocusTime !== timers.focus.time) || 
+        (newShortBreakTime !== timers.shortBreak.time) ||
+        (newLongBreakTime !== timers.longBreak.time)
 
-    if (newFocusTime > 0) {
-        timers.focus.time = newFocusTime;
-    }
-    if (newShortBreakTime > 0) {
-        timers.shortBreak.time = newShortBreakTime;
-    }
-    if (newLongBreakTime > 0) {
-        timers.longBreak.time = newLongBreakTime;
-    }
+    if (changedTime) {
+        if (newFocusTime > 0) {
+            timers.focus.time = newFocusTime;
+        }
+        if (newShortBreakTime > 0) {
+            timers.shortBreak.time = newShortBreakTime;
+        }
+        if (newLongBreakTime > 0) {
+            timers.longBreak.time = newLongBreakTime;
+        }
 
-    // if (timers.current.mode === timers.focus.mode) {
-    //     setTimerMode(timers.focus);
-    // } else if (timers.current.mode === timers.shortBreak.mode) {
-    //     setTimerMode(timers.shortBreak);
-    // } else if (timers.current.mode === timers.longBreak.mode) {
-    //     setTimerMode(timers.longBreak);
-    // }
+        setTimerMode(timers.focus);
+    }
 
     let newAutoSequence = $("#opt-auto-sequence").is(":checked");
     if (autoSequence !== newAutoSequence) {
@@ -759,42 +786,41 @@ $("#button-save-settings").click(function () {
     }
     autoSequence = newAutoSequence;
 
+    // sound
     timerAlert = sounds.find(sound => sound.id === $("#setting-opt-alert").val()).audio;
 
-    let storage = {
-        settings: {
-            timer: {
-                focus: newFocusTime,
-                shortBreak: newShortBreakTime,
-                longBreak: newLongBreakTime
-            },
-            sequence: {
-                auto: newAutoSequence,
-                // num: $("#num-of-sequences").val()
-            },
-            theme: {
-                active: "#" + $(".active-theme").find(">:first-child").attr("id"),
-                color: $(".active-theme").find("div").attr("id")?.split("-").shift(),
-                image: $(".active-theme").find("img").attr("src")
-            },
-            sound: {
-                volume: $(".sound-range").val()
-            },
-            alert: {
-                sound: $("#setting-opt-alert").val(),
-                volume: $(".alert-range").val()
-            }
+    let settings = {
+        timer: {
+            focus: newFocusTime,
+            shortBreak: newShortBreakTime,
+            longBreak: newLongBreakTime
         },
+        sequence: {
+            auto: newAutoSequence,
+            // num: $("#num-of-sequences").val()
+        },
+        theme: {
+            active: "#" + $(".active-theme").find(">:first-child").attr("id"),
+            color: $(".active-theme").find("div").attr("id")?.split("-").shift(),
+            image: $(".active-theme").find("img").attr("src")
+        },
+        sound: {
+            volume: $(".sound-range").val()
+        },
+        alert: {
+            sound: $("#setting-opt-alert").val(),
+            volume: $(".alert-range").val()
+        }
     };
     
-    localStorage.setItem("storage", JSON.stringify(storage));
+    
+    localStorage.setItem("settings", JSON.stringify(settings));
     $("#settings-panel, .over").fadeOut(200);
 });
 
 function getSettings() {
-    if (localStorage.getItem("storage")) {
-        let storage = JSON.parse(localStorage.getItem("storage"));
-        let s = storage.settings;
+    if (localStorage.getItem("settings")) {
+        let s = JSON.parse(localStorage.getItem("settings"));
 
         // timer
         $("#focus-time").val(s.timer.focus / 60);
@@ -818,7 +844,14 @@ function getSettings() {
         setTimeout(() => {    
             $(".alert-range").trigger("input");
         }, 50);
-        $("#setting-opt-alert").val(s.alert.sound)
+        $("#setting-opt-alert").val(s.alert.sound)    
+    }
+
+    if (localStorage.getItem("stats")) {
+        let s = JSON.parse(localStorage.getItem("stats"));
+        
+        $(".time-stats").text(`${Math.floor(s.focusTime)} minutes`);
+        $(".streak-stats").text(s.sprintCount);
     }
 }
 

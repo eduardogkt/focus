@@ -267,7 +267,7 @@
                 </button>
 
                 <div class="opt-menu" id="stats-opt-menu">
-                  <button class="button button-opt-menu" id="stats-opt-reset-button">
+                  <button class="button button-opt-menu button-reset-stats">
                     <i data-lucide="rotate-cw" class="opt-icon"></i>
                     <span>Reset stats</span>
                   </button>
@@ -278,11 +278,11 @@
             <div class="stats panel-section">
               <div class="stats-field">
                 <h3 class="panel-subtitle stats-title">Focus time</h3>
-                <span id="time-stats">0 minutos</span>
+                <span class="time-stats">0 minutos</span>
               </div>
               <div class="stats-field">
                 <h3 class="panel-subtitle stats-title">Sprints</h3>
-                <span id="streak-stats">0</span>
+                <span class="streak-stats">0</span>
               </div>
             </div>
           </section>
@@ -331,15 +331,15 @@
                 </button>
               </li>
               <li>
-                <button class="button button-setting" id="opt-setting-account">
-                  <img src="assets/icons/person_icon.svg" class="icon-setting" />
-                  <span>Account</span>
+                <button class="button button-setting" id="opt-setting-display">
+                  <img src="assets/icons/display_icon.svg" class="icon-setting" />
+                  <span>Display</span>
                 </button>
               </li>
               <li>
-                <button class="button button-setting" id="opt-setting-support">
-                  <img src="assets/icons/info_icon.svg" class="icon-setting" style="width: 22px" />
-                  <span>Support</span>
+                <button class="button button-setting" id="opt-setting-other">
+                  <img src="assets/icons/info_icon.svg" class="icon-setting" />
+                  <span>Other</span>
                 </button>
               </li>
             </nav>
@@ -420,28 +420,6 @@
                 </div>
               </div>
 
-              <div class="setting-section" id="setting-music-sections">
-                <div class="setting-toggle">
-                  <div>
-                    <label class="input-switch" for="opt-show-playlist">
-                      <input type="checkbox" id="opt-show-playlist" checked />
-                      <div class="slider"></div>
-                    </label>
-                    <label>show playlist</label>
-                  </div>
-                </div>
-
-                <div class="setting-toggle">
-                  <div>
-                    <label class="input-switch" for="opt-show-sound">
-                      <input type="checkbox" id="opt-show-sound" checked />
-                      <div class="slider"></div>
-                    </label>
-                    <label>show sound</label>
-                  </div>
-                </div>
-              </div>
-
               <!-- theme settings -->
 
               <div class="setting-section" id="setting-gris-theme">
@@ -508,16 +486,94 @@
                 <div class="settings-stats">
                   <div class="stats-field">
                     <h3 class="panel-subtitle stats-title">Focus time</h3>
-                    <span id="settings-time-stats">0 minutos</span>
+                    <span class="time-stats">0 minutos</span>
                   </div>
 
                   <div class="stats-field">
                     <h3 class="panel-subtitle stats-title">sprints</h3>
-                    <span id="settings-streak-stats">0</span>
+                    <span class="streak-stats">0</span>
                   </div>
                 </div>
 
-                <button id="button-reset-stats" class="button button-pill">reset stats</button>
+                <button class="button button-pill button-reset-stats">reset stats</button>
+              </div>
+
+              <!-- display settings -->
+
+              <div class="setting-section" id="setting-music-sections">
+                <div class="setting-toggle">
+                  <div>
+                    <label class="input-switch" for="opt-show-playlist">
+                      <input type="checkbox" id="opt-show-playlist" />
+                      <div class="slider"></div>
+                    </label>
+                    <label>show playlist</label>
+                  </div>
+                </div>
+
+                <div class="setting-toggle">
+                  <div>
+                    <label class="input-switch" for="opt-show-sound">
+                      <input type="checkbox" id="opt-show-sound" />
+                      <div class="slider"></div>
+                    </label>
+                    <label>show sound</label>
+                  </div>
+                </div>
+              </div>
+
+              <div class="setting-section" id="setting-menu-buttons">
+                <div class="setting-toggle">
+                  <div>
+                    <label class="input-switch" for="opt-show-playlist">
+                      <input type="checkbox" id="opt-show-playlist" />
+                      <div class="slider"></div>
+                    </label>
+                    <label>show music panel</label>
+                  </div>
+                </div>
+
+                <div class="setting-toggle">
+                  <div>
+                    <label class="input-switch" for="opt-show-sound">
+                      <input type="checkbox" id="opt-show-sound" />
+                      <div class="slider"></div>
+                    </label>
+                    <label>show stats panel</label>
+                  </div>
+                </div>
+
+                <div class="setting-toggle">
+                  <div>
+                    <label class="input-switch" for="opt-show-sound">
+                      <input type="checkbox" id="opt-show-sound" />
+                      <div class="slider"></div>
+                    </label>
+                    <label>show tasklist panel</label>
+                  </div>
+                </div>
+              </div>
+
+              <div class="setting-section" id="setting-reset">
+                <div class="setting-toggle">
+                  <div>
+                    <label class="input-switch" for="opt-show-playlist">
+                      <input type="checkbox" id="opt-show-playlist" />
+                      <div class="slider"></div>
+                    </label>
+                    <label>show playlist</label>
+                  </div>
+                </div>
+
+                <div class="setting-toggle">
+                  <div>
+                    <label class="input-switch" for="opt-show-sound">
+                      <input type="checkbox" id="opt-show-sound" />
+                      <div class="slider"></div>
+                    </label>
+                    <label>show sound</label>
+                  </div>
+                </div>
               </div>
             </section>
           </div>
