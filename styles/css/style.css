@@ -773,6 +773,14 @@ body {
   color: var(--text-color);
 }
 
+.show-section {
+  display: flex !important;
+}
+
+.hide-section {
+  display: none !important;
+}
+
 #setting-timers {
   display: flex;
   flex-direction: row;
@@ -801,7 +809,7 @@ body {
   width: 200px;
 }
 
-#setting-music-sections {
+#setting-theme {
   display: flex;
   flex-direction: column;
   justify-content: start;
@@ -910,12 +918,13 @@ body {
   float: right;
 }
 
-.show-section {
-  display: flex !important;
-}
-
-.hide-section {
-  display: none !important;
+#setting-menu-buttons,
+#setting-music-sections {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: start;
+  gap: 1rem;
 }
 
 .container {

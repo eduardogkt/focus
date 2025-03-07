@@ -378,6 +378,77 @@
                 </div>
               </div>
 
+              <!-- theme settings -->
+
+              <div class="setting-section" id="setting-theme">
+                <h3>theme</h3>
+                <div class="input-select">
+                  <select id="setting-opt-theme">
+                    <option value="dark-theme">dark</option>
+                    <option value="light-theme">light</option>
+                    <option value="auto-theme">auto</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="setting-section" id="setting-gris-theme">
+                <h3>gris backgrounds</h3>
+                <div class="themes-grid">
+                  <div class="theme">
+                    <img src="./assets/backgound/gris1.png" id="gris1" />
+                  </div>
+
+                  <div class="theme">
+                    <img src="./assets/backgound/gris2.jpg" id="gris2" />
+                  </div>
+
+                  <div class="theme">
+                    <img src="./assets/backgound/gris3.jpg" id="gris3" />
+                  </div>
+
+                  <div class="theme">
+                    <img src="./assets/backgound/gris4.jpg" id="gris4" />
+                  </div>
+                </div>
+              </div>
+
+              <div class="setting-section" id="setting-solid-theme">
+                <h3>solid colors backgrounds</h3>
+                <div class="themes-grid">
+                  <div class="theme active-theme">
+                    <div id="black-theme" role="i"></div>
+                  </div>
+
+                  <div class="theme active-theme">
+                    <div id="white-theme"></div>
+                  </div>
+
+                  <div class="theme">
+                    <div id="lightgray-theme"></div>
+                  </div>
+
+                  <div class="theme">
+                    <div id="red-theme"></div>
+                  </div>
+
+                  <div class="theme">
+                    <div id="green-theme"></div>
+                  </div>
+
+                  <div class="theme">
+                    <div id="blue-theme"></div>
+                  </div>
+
+                  <div class="theme">
+                    <div id="yellow-theme"></div>
+                  </div>
+
+                  <div class="theme">
+                    <div id="purple-theme"></div>
+                  </div>
+                </div>
+              </div>
+
               <!-- sound settings -->
 
               <div class="setting-section" id="setting-sound">
@@ -420,66 +491,6 @@
                 </div>
               </div>
 
-              <!-- theme settings -->
-
-              <div class="setting-section" id="setting-gris-theme">
-                <h3>gris</h3>
-                <div class="themes-grid">
-                  <div class="theme">
-                    <img src="./assets/backgound/gris1.png" id="gris1" />
-                  </div>
-
-                  <div class="theme">
-                    <img src="./assets/backgound/gris2.jpg" id="gris2" />
-                  </div>
-
-                  <div class="theme">
-                    <img src="./assets/backgound/gris3.jpg" id="gris3" />
-                  </div>
-
-                  <div class="theme">
-                    <img src="./assets/backgound/gris4.jpg" id="gris4" />
-                  </div>
-                </div>
-              </div>
-
-              <div class="setting-section" id="setting-solid-theme">
-                <h3>solid colors</h3>
-                <div class="themes-grid">
-                  <div class="theme active-theme">
-                    <div id="black-theme" role="i"></div>
-                  </div>
-
-                  <div class="theme active-theme">
-                    <div id="white-theme"></div>
-                  </div>
-
-                  <div class="theme">
-                    <div id="lightgray-theme"></div>
-                  </div>
-
-                  <div class="theme">
-                    <div id="red-theme"></div>
-                  </div>
-
-                  <div class="theme">
-                    <div id="green-theme"></div>
-                  </div>
-
-                  <div class="theme">
-                    <div id="blue-theme"></div>
-                  </div>
-
-                  <div class="theme">
-                    <div id="yellow-theme"></div>
-                  </div>
-
-                  <div class="theme">
-                    <div id="purple-theme"></div>
-                  </div>
-                </div>
-              </div>
-
               <!-- stats settings -->
 
               <div class="setting-section" id="setting-stats">
@@ -501,6 +512,8 @@
               <!-- display settings -->
 
               <div class="setting-section" id="setting-music-sections">
+                <h3>music panel sections</h3>
+
                 <div class="setting-toggle">
                   <div>
                     <label class="input-switch" for="opt-show-playlist">
@@ -517,12 +530,14 @@
                       <input type="checkbox" id="opt-show-sound" />
                       <div class="slider"></div>
                     </label>
-                    <label>show sound</label>
+                    <label>show sounds</label>
                   </div>
                 </div>
               </div>
 
               <div class="setting-section" id="setting-menu-buttons">
+                <h3>menu panels</h3>
+
                 <div class="setting-toggle">
                   <div>
                     <label class="input-switch" for="opt-show-playlist">
@@ -555,25 +570,7 @@
               </div>
 
               <div class="setting-section" id="setting-reset">
-                <div class="setting-toggle">
-                  <div>
-                    <label class="input-switch" for="opt-show-playlist">
-                      <input type="checkbox" id="opt-show-playlist" />
-                      <div class="slider"></div>
-                    </label>
-                    <label>show playlist</label>
-                  </div>
-                </div>
-
-                <div class="setting-toggle">
-                  <div>
-                    <label class="input-switch" for="opt-show-sound">
-                      <input type="checkbox" id="opt-show-sound" />
-                      <div class="slider"></div>
-                    </label>
-                    <label>show sound</label>
-                  </div>
-                </div>
+                <button class="button button-pill button-reset-settings">reset settings</button>
               </div>
             </section>
           </div>

@@ -702,7 +702,7 @@ const settingSections = $(".setting-section");
 
 const settings = [
     { name: "opt-setting-timer",   sections: ["#setting-timers", "#setting-sequence"] },
-    { name: "opt-setting-theme",   sections: ["#setting-gris-theme", "#setting-solid-theme"] },
+    { name: "opt-setting-theme",   sections: ["#setting-gris-theme", "#setting-solid-theme", "#setting-theme"] },
     { name: "opt-setting-sound",   sections: ["#setting-sound", "#setting-alert"] },
     { name: "opt-setting-stats",   sections: ["#setting-stats"] },
     { name: "opt-setting-display", sections: ["#setting-music-sections", "#setting-menu-buttons"] },

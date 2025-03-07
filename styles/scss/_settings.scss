@@ -86,6 +86,14 @@
   }
 }
 
+.show-section {
+  display: flex !important;
+}
+
+.hide-section {
+  display: none !important;
+}
+
 // estilo para seções de configuração específicas
 #setting-timers {
   @include flex(row, start, start, 2rem);
@@ -104,7 +112,7 @@
   }
 }
 
-#setting-music-sections {
+#setting-theme {
   @include flex(column, start, start, 1rem);
 }
 
@@ -192,10 +200,7 @@
   }
 }
 
-.show-section {
-  display: flex !important;
-}
-
-.hide-section {
-  display: none !important;
+#setting-menu-buttons,
+#setting-music-sections {
+  @include flex(column, start, start, 1rem);
 }
