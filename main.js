@@ -536,7 +536,7 @@ const createTaskBox = `
         </div>
     </div>`;
 
-let hideCompleted = false;
+let hideCompleted = $("#tasklist-opt-hide-completed").attr("data-ativo") || false;
 
 $(document).on("click", ".check", handleCompletedTasks);
 $(document).on("click", "#button-task-add", addTask);
@@ -546,6 +546,10 @@ $(document).on("click", ".button-opt-task-remove", removeTask);
 $("#tasklist-opt-rem-all").on("click", removeAllTasks);
 $("#tasklist-opt-rem-completed").on("click", removeCompletedTasks);
 $("#tasklist-opt-hide-completed").on("click", hideCompletedTasks);
+
+// executa ao iniciar para atulizar o botão
+// necessário por conta das tasks salvas localmente
+hideCompletedTasks();
 
 function addTask() {
     if ($("#task-create").length) return; // evita múltiplos formulários abertos
@@ -560,6 +564,7 @@ function addTask() {
 function removeAddTaskBox() {
     tasklist.append(addTaskButton);
     $("#task-create").remove();
+    saveTasks();
 }
 
 function createTask() {
@@ -595,11 +600,11 @@ function createTask() {
     
     lucide.createIcons();
     removeAddTaskBox();
+    saveTasks();
     addTask();  // continua adicionando tarefas
 }
 
 function handleCompletedTasks() {
-    const task = $(this).closest(".task");
     $(".check").each(function() {
         const task = $(this).parent();
         if ($(this).is(":checked")) {
@@ -614,6 +619,7 @@ function handleCompletedTasks() {
             task.find(".button-opt").prop("disabled", false);
         }
     });
+    saveTasks();
 }
 
 function editTask() {
@@ -644,20 +650,24 @@ function editTask() {
     }
 
     hideOptionsMenus();
+    saveTasks();
 }
 
 function removeTask() {
     $(this).closest(".task").remove();
+    saveTasks();
 }
 
 function removeAllTasks() {
     $(".task").remove();
     hideOptionsMenus();
+    saveTasks();
 }
 
 function removeCompletedTasks() {
     $(".task.checked").remove();
     hideOptionsMenus();
+    saveTasks();
 }
 
 function hideCompletedTasks() {
@@ -675,6 +685,7 @@ function hideCompletedTasks() {
 
     lucide.createIcons();
     hideOptionsMenus();
+    saveTasks();
 }
 
 function validateInput(userInput) {
@@ -687,6 +698,15 @@ function validateInput(userInput) {
         return false;
     }
     return true;
+}
+
+function saveTasks() {
+    let data = {
+        tasklist: $("#tasklist-panel").html(),
+        hideCompleted: hideCompleted
+    }
+
+    localStorage.setItem("task-list", JSON.stringify(data));
 }
 
 // =============================================================================
@@ -912,16 +932,21 @@ $("#button-save-settings").click(function () {
 // obtém as configurações salvas anteriormente
 function getSettings() {
     if (localStorage.getItem("settings")) {
-        let s = JSON.parse(localStorage.getItem("settings"));
-        getTimerSettings(s.timer);
-        getThemeSettings(s.theme);
-        getSoundSettings(s.sounds);        
-        getDisplaySettings(s.display);
+        const settings = JSON.parse(localStorage.getItem("settings"));
+        getTimerSettings(settings.timer);
+        getThemeSettings(settings.theme);
+        getSoundSettings(settings.sounds);        
+        getDisplaySettings(settings.display);
     }
 
     if (localStorage.getItem("stats")) {
-        let s = JSON.parse(localStorage.getItem("stats"));
-        getStatsSettings(s);
+        const stats = JSON.parse(localStorage.getItem("stats"));
+        getStatsSettings(stats);
+    }
+
+    if (localStorage.getItem("task-list")) {
+        const tasklistData = JSON.parse(localStorage.getItem("task-list"));
+        getTasklistData(tasklistData);
     }
 }
 
@@ -983,6 +1008,15 @@ function getDisplaySettings(d) {
 function getStatsSettings(s) {
     $(".time-stats").text(`${Math.floor(s.focusTime)} minutes`);
     $(".streak-stats").text(s.sprintCount);
+}
+
+function getTasklistData(td) {
+    $("#tasklist-panel").html(td.tasklist);
+    $("#tasklist-opt-hide-completed").attr("data-ativo", td.hideCompleted);
+
+    $(".task.checked").each(function() {
+        $(this).find(".check").prop("checked", true);
+    })
 }
 
 });
