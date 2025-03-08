@@ -33,6 +33,7 @@
 %container-section {
   @include flex(column, start, center, 2rem);
   min-height: 590px;
+  min-width: 405px;
 }
 
 .center {

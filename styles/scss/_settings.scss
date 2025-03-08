@@ -94,6 +94,11 @@
   display: none !important;
 }
 
+.sub-setting {
+  margin-left: 2rem;
+  margin-top: -0.5rem;
+}
+
 // estilo para seções de configuração específicas
 #setting-timers {
   @include flex(row, start, start, 2rem);
@@ -200,8 +205,8 @@
   }
 }
 
-#setting-menu-buttons,
-#setting-music-sections,
+#setting-display-panels,
+#setting-display-others,
 #setting-reset {
   @include flex(column, start, start, 1rem);
 }

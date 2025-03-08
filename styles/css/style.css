@@ -781,6 +781,11 @@ body {
   display: none !important;
 }
 
+.sub-setting {
+  margin-left: 2rem;
+  margin-top: -0.5rem;
+}
+
 #setting-timers {
   display: flex;
   flex-direction: row;
@@ -918,8 +923,8 @@ body {
   float: right;
 }
 
-#setting-menu-buttons,
-#setting-music-sections,
+#setting-display-panels,
+#setting-display-others,
 #setting-reset {
   display: flex;
   flex-direction: column;
@@ -953,6 +958,7 @@ body {
   align-items: center;
   gap: 2rem;
   min-height: 590px;
+  min-width: 405px;
 }
 
 .center {

@@ -88,9 +88,9 @@
                   width="100%"
                   height="152"
                   frameborder="0"
-                  allowfullscreen=""
                   allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
                   loading="lazy"
+                  preload="false"
                 ></iframe>
               </div>
               <div class="add-playlist" id="add-playlist-section">
@@ -372,7 +372,7 @@
                       <input type="checkbox" id="opt-auto-sequence" />
                       <div class="slider"></div>
                     </label>
-                    <label>auto sequence</label>
+                    <label for="opt-auto-sequence">auto sequence</label>
                   </div>
                   <span>focus &rarr; short break (x3) &rarr; focus &rarr; long break</span>
                 </div>
@@ -415,7 +415,7 @@
                 <h3>solid colors backgrounds</h3>
                 <div class="themes-grid">
                   <div class="theme active-theme">
-                    <div id="black-theme" role="i"></div>
+                    <div id="black-theme"></div>
                   </div>
 
                   <div class="theme active-theme">
@@ -510,60 +510,80 @@
 
               <!-- display settings -->
 
-              <div class="setting-section" id="setting-music-sections">
-                <h3>music panel sections</h3>
-
-                <div class="setting-toggle">
-                  <div>
-                    <label class="input-switch" for="opt-show-playlist">
-                      <input type="checkbox" id="opt-show-playlist" />
-                      <div class="slider"></div>
-                    </label>
-                    <label>show playlist</label>
-                  </div>
-                </div>
-
-                <div class="setting-toggle">
-                  <div>
-                    <label class="input-switch" for="opt-show-sound">
-                      <input type="checkbox" id="opt-show-sound" />
-                      <div class="slider"></div>
-                    </label>
-                    <label>show sounds</label>
-                  </div>
-                </div>
-              </div>
-
-              <div class="setting-section" id="setting-menu-buttons">
+              <div class="setting-section" id="setting-display-panels">
                 <h3>menu panels</h3>
 
                 <div class="setting-toggle">
                   <div>
+                    <label class="input-switch" for="opt-show-music">
+                      <input type="checkbox" id="opt-show-music" />
+                      <div class="slider"></div>
+                    </label>
+                    <label for="opt-show-music">show music panel</label>
+                  </div>
+                </div>
+
+                <div class="setting-toggle sub-setting">
+                  <div>
+                    <label class="input-switch" for="opt-show-sounds">
+                      <input type="checkbox" id="opt-show-sounds" class="music-sub-setting" />
+                      <div class="slider"></div>
+                    </label>
+                    <label for="opt-show-sounds">show sounds</label>
+                  </div>
+                </div>
+
+                <div class="setting-toggle sub-setting">
+                  <div>
                     <label class="input-switch" for="opt-show-playlist">
-                      <input type="checkbox" id="opt-show-playlist" />
+                      <input type="checkbox" id="opt-show-playlist" class="music-sub-setting" />
                       <div class="slider"></div>
                     </label>
-                    <label>show music panel</label>
+                    <label for="opt-show-playlist">show playlist</label>
                   </div>
                 </div>
 
                 <div class="setting-toggle">
                   <div>
-                    <label class="input-switch" for="opt-show-sound">
-                      <input type="checkbox" id="opt-show-sound" />
+                    <label class="input-switch" for="opt-show-stats">
+                      <input type="checkbox" id="opt-show-stats" />
                       <div class="slider"></div>
                     </label>
-                    <label>show stats panel</label>
+                    <label for="opt-show-stats">show stats panel</label>
                   </div>
                 </div>
 
                 <div class="setting-toggle">
                   <div>
-                    <label class="input-switch" for="opt-show-sound">
-                      <input type="checkbox" id="opt-show-sound" />
+                    <label class="input-switch" for="opt-show-tasklist">
+                      <input type="checkbox" id="opt-show-tasklist" />
                       <div class="slider"></div>
                     </label>
-                    <label>show tasklist panel</label>
+                    <label for="opt-show-tasklist">show tasklist panel</label>
+                  </div>
+                </div>
+              </div>
+
+              <div class="setting-section" id="setting-display-others">
+                <h3>other</h3>
+
+                <div class="setting-toggle">
+                  <div>
+                    <label class="input-switch" for="opt-show-quote">
+                      <input type="checkbox" id="opt-show-quote" />
+                      <div class="slider"></div>
+                    </label>
+                    <label for="opt-show-quote">show quote</label>
+                  </div>
+                </div>
+
+                <div class="setting-toggle">
+                  <div>
+                    <label class="input-switch" for="opt-show-fullscreen">
+                      <input type="checkbox" id="opt-show-fullscreen" />
+                      <div class="slider"></div>
+                    </label>
+                    <label for="opt-show-fullscreen">show fullscreen button</label>
                   </div>
                 </div>
               </div>

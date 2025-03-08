@@ -481,7 +481,7 @@ $(".button-reset-stats").on("click", function() {
 // =============================================================================
 // quote
 
-let disableQuote = false;
+let enableQuote = $("#opt-show-quote").is(":checked");
 const quoteApiUrl = "http://api.quotable.io/random";
 
 displayQuote();
@@ -502,8 +502,8 @@ async function getQuote(url) {
 }
 
 function displayQuote() {
-    $("#quote").toggleClass("hidden", disableQuote);
-    if (!disableQuote) {
+    $("#quote").toggleClass("hidden", !enableQuote);
+    if (enableQuote) {
         getQuote(quoteApiUrl);
     }
 }
@@ -692,6 +692,20 @@ function validateInput(userInput) {
 // =============================================================================
 // settings
 
+const settingButtons = $(".button-setting");
+const settingSections = $(".setting-section");
+
+// configurações e suas seções correspondentes
+const settings = [
+    { name: "opt-setting-timer",   sections: ["#setting-timers", "#setting-sequence"] },
+    { name: "opt-setting-theme",   sections: ["#setting-gris-theme", "#setting-solid-theme", "#setting-theme"] },
+    { name: "opt-setting-sound",   sections: ["#setting-sound", "#setting-alert"] },
+    { name: "opt-setting-stats",   sections: ["#setting-stats"] },
+    { name: "opt-setting-display", sections: ["#setting-display-panels", "#setting-display-others"] },
+    { name: "opt-setting-other",   sections: ["#setting-reset"] }
+]
+
+// fecha o painel de configurações
 $("#button-close-settings").on("click", function() {
     $("#settings-panel, .over").fadeOut(200);
 
@@ -700,18 +714,7 @@ $("#button-close-settings").on("click", function() {
     setTimeout(getSettings, 200);
 })
 
-const settingButtons = $(".button-setting");
-const settingSections = $(".setting-section");
-
-const settings = [
-    { name: "opt-setting-timer",   sections: ["#setting-timers", "#setting-sequence"] },
-    { name: "opt-setting-theme",   sections: ["#setting-gris-theme", "#setting-solid-theme", "#setting-theme"] },
-    { name: "opt-setting-sound",   sections: ["#setting-sound", "#setting-alert"] },
-    { name: "opt-setting-stats",   sections: ["#setting-stats"] },
-    { name: "opt-setting-display", sections: ["#setting-music-sections", "#setting-menu-buttons"] },
-    { name: "opt-setting-other",   sections: ["#setting-reset"] }
-]
-
+// troca entre seções de configurações
 settingButtons.on("click", function() {
     settingSections.removeClass("show-section");
     settingButtons.removeClass("active-setting");
@@ -729,10 +732,9 @@ settingButtons.on("click", function() {
     })
 })
 
-const themes = $(".theme");
-
-themes.on("click", function() {
-    themes.removeClass("active-theme");
+// muda o background da pagina
+$(".theme").on("click", function() {
+    $(".theme").removeClass("active-theme");
     $(this).addClass("active-theme");
 
     const image = $(this).find("img").attr("src");
@@ -757,20 +759,42 @@ $("#setting-opt-alert").on("click", function() {
     alert.play();
 })
 
+// opções de display de painal de música
+$("#opt-show-music").on("click", function() {
+    const isChecked = $(this).is(":checked");
+    $("#opt-show-playlist").prop("checked", isChecked);
+    $("#opt-show-sounds").prop("checked", isChecked);
+
+    $("#playlist-opt-hide-playlist-button").toggle(isChecked)
+    $("#playlist-opt-hide-sounds-button").toggle(isChecked)
+})
+
+// opções de display de seções do painal de música
+$(".music-sub-setting").on("click", function() {
+    if ($(".music-sub-setting:checked").length > 0) {
+        $("#opt-show-music").prop("checked", true);
+    }
+    else if ($(".music-sub-setting:checked").length === 0) {
+        $("#opt-show-music").prop("checked", false);
+    }
+})
+
+// restaura as configurações para os valores padrão
 $("#button-reset-settings").on("click", async function() {
     localStorage.removeItem("settings");
     
     // retorna para modo foco
     setTimerModeOpt(timers.focus);
 
+    // carrega as configurações padrão do arquivo
     let defaultSettings = await fetch("assets/json/default-settings.json").then(resp => resp.json());
-    
     localStorage.setItem("settings", JSON.stringify(defaultSettings));
+
     getSettings();
 });
 
+// salva as confugurações
 $("#button-save-settings").click(function () {
-
     // timer
     let newFocusTime = $("#focus-time").val() * 60
     let newShortBreakTime = $("#short-break-time").val() * 60
@@ -804,38 +828,79 @@ $("#button-save-settings").click(function () {
     // sound
     timerAlert = sounds.find(sound => sound.id === $("#setting-opt-alert").val()).audio;
 
+    // display
+    let showPlaylist = $("#opt-show-playlist").is(":checked");
+    let showSounds = $("#opt-show-sounds").is(":checked");
+    let showMusic = $("#opt-show-music").is(":checked");
+    let showStats = $("#opt-show-stats").is(":checked");
+    let showTasklist = $("#opt-show-tasklist").is(":checked");
+    let showFullscreen = $("#opt-show-fullscreen").is(":checked");
+
+    $(".playlist").toggle(showPlaylist);
+    $(".sounds").toggle(showSounds);
+
+    $("#music-button").toggle(showSounds);
+    $("#stats-button").toggle(showStats);
+    $("#tasklist-button").toggle(showTasklist);
+    $("#fullscreen-button").toggle(showFullscreen);
+    
+    $("#playlist-opt-hide-playlist-button").toggle(showPlaylist);
+    $("#playlist-opt-hide-sounds-button").toggle(showSounds);
+    
+    if (!showMusic) {
+        $("#music-panel").toggle(false)
+    }
+    if (!showTasklist) {
+        $("#tasklist-panel").toggle(false)
+    }
+    if (!showStats) {
+        $("#stats-panel").toggle(false)
+    }
+
+    enableQuote = $("#opt-show-quote").is(":checked");
+    $("#quote").toggle(enableQuote);
+
+    if (enableQuote) {
+        displayQuote();
+    }
+
     let settings = {
         timer: {
             focus: newFocusTime,
             shortBreak: newShortBreakTime,
-            longBreak: newLongBreakTime
+            longBreak: newLongBreakTime,
+            autoSequence: newAutoSequence
         },
-        sequence: {
-            auto: newAutoSequence,
-            // num: $("#num-of-sequences").val()
-        },
+        
         theme: {
             active: "#" + $(".active-theme").find(">:first-child").attr("id"),
             color: $(".active-theme").find("div").attr("id")?.split("-").shift(),
             image: $(".active-theme").find("img").attr("src")
         },
-        sound: {
-            volume: $(".sound-range").val()
-        },
-        alert: {
-            sound: $("#setting-opt-alert").val(),
-            volume: $(".alert-range").val()
-        },
-        display: {
-            music: {
-                playlist: $(".playlist").is(":visible"),
-                sounds: $(".sounds").is(":visible")
+        
+        sounds: {
+            sound: {
+                volume: $(".sound-range").val()
             },
-            menu: {
-                tasklist: $("#tasklist-panel").is(":visible"),
-                music: $("#music-panel").is(":visible"),
-                stats: $("#stats-panel").is(":visible"),
-                settings: $("#settings-panel").is(":visible")
+            alert: {
+                alert: $("#setting-opt-alert").val(),
+                volume: $(".alert-range").val()
+            },
+        },
+
+        display: {
+            panels: {
+                music: {
+                    music: showMusic,
+                    playlist: showPlaylist,
+                    sounds: showSounds
+                },
+                stats: showStats,
+                tasklist: showTasklist
+            },
+            others: {
+                fullscreen: showFullscreen,
+                quote: enableQuote
             }
         }
     }
@@ -844,43 +909,80 @@ $("#button-save-settings").click(function () {
     $("#settings-panel, .over").fadeOut(200);
 });
 
+// obtém as configurações salvas anteriormente
 function getSettings() {
     if (localStorage.getItem("settings")) {
         let s = JSON.parse(localStorage.getItem("settings"));
-
-        // timer
-        $("#focus-time").val(s.timer.focus / 60);
-        $("#short-break-time").val(s.timer.shortBreak / 60);
-        $("#long-break-time").val(s.timer.longBreak / 60);
-        $("#opt-auto-sequence").prop("checked", s.sequence.auto);
-
-        $(".theme").removeClass("active-theme");
-        $(s.theme.active).parent().addClass("active-theme");
-
-        // theme
-        setBackground(s.theme.image, s.theme.color);
-
-        // sound
-        $(".sound-range").val(s.sound.volume)
-        setTimeout(() => {
-            $(".sound-range").trigger("input");
-        }, 50);
-        
-        $(".alert-range").val(s.sound.volume)
-        setTimeout(() => {    
-            $(".alert-range").trigger("input");
-        }, 50);
-        $("#setting-opt-alert").val(s.alert.sound)
-
-        // display
+        getTimerSettings(s.timer);
+        getThemeSettings(s.theme);
+        getSoundSettings(s.sounds);        
+        getDisplaySettings(s.display);
     }
 
     if (localStorage.getItem("stats")) {
         let s = JSON.parse(localStorage.getItem("stats"));
-        
-        $(".time-stats").text(`${Math.floor(s.focusTime)} minutes`);
-        $(".streak-stats").text(s.sprintCount);
+        getStatsSettings(s);
     }
+}
+
+function getTimerSettings(t) {
+    $("#focus-time").val(t.focus / 60);
+    $("#short-break-time").val(t.shortBreak / 60);
+    $("#long-break-time").val(t.longBreak / 60);
+    $("#opt-auto-sequence").prop("checked", t.autoSequence);
+}
+
+function getThemeSettings(t) {
+    $(".theme").removeClass("active-theme");
+    $(t.active).parent().addClass("active-theme");
+    setBackground(t.image, t.color);
+}
+
+function getSoundSettings(s) {
+    $(".sound-range").val(s.sound.volume)
+    setTimeout(() => {
+        $(".sound-range").trigger("input");
+    }, 50);
+    
+    $(".alert-range").val(s.alert.volume)
+    setTimeout(() => {    
+        $(".alert-range").trigger("input");
+    }, 50);
+    $("#setting-opt-alert").val(s.alert.alert)
+}
+
+function getDisplaySettings(d) {
+    let showPlaylist = d.panels.music.playlist;
+    let showSounds = d.panels.music.sounds;
+    let showMusic = d.panels.music.music;
+    let showStats = d.panels.stats;
+    let showTasklist = d.panels.tasklist;
+    let showFullscreen = d.others.fullscreen;
+    let showQuote = d.others.quote;
+
+    $("#opt-show-playlist").prop("checked", showPlaylist);
+    $("#opt-show-sounds").prop("checked", showSounds);
+    $("#opt-show-music").prop("checked", showMusic);
+    $("#opt-show-stats").prop("checked", showStats);
+    $("#opt-show-tasklist").prop("checked", showTasklist);
+    $("#opt-show-fullscreen").prop("checked", showFullscreen);
+    $("#opt-show-quote").prop("checked", showQuote);
+
+    $(".playlist").toggle(showPlaylist);
+    $(".sounds").toggle(showSounds);
+    
+    $("#music-button").toggle(showMusic);
+    $("#stats-button").toggle(showStats);
+    $("#tasklist-button").toggle(showTasklist);
+    $("#fullscreen-button").toggle(showFullscreen);
+
+    $("#playlist-opt-hide-playlist-button").toggle(showPlaylist);
+    $("#playlist-opt-hide-sounds-button").toggle(showSounds);
+}
+
+function getStatsSettings(s) {
+    $(".time-stats").text(`${Math.floor(s.focusTime)} minutes`);
+    $(".streak-stats").text(s.sprintCount);
 }
 
 });
