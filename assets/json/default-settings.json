@@ -34,7 +34,7 @@
     },
     "others": {
       "fullscreen": true,
-      "quote": true
+      "quote": false
     }
   }
 }
