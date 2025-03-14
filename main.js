@@ -498,6 +498,8 @@ async function getQuote(url) {
         console.error("Error fetching quote:", error);
         $("#quote-box").html("Failed to load quote.");
         $("#author-box").html("");
+        $("#opt-show-quote").prop("checked", false);
+        enableQuote = false;
     }
 }
 
@@ -1004,6 +1006,7 @@ function getSoundSettings(s) {
 
 function getDisplaySettings(d) {
     if (!d || !d.others || !d.panels || !d.panels.music) {
+        console.log(d, d.others, d.panels, d.panels.music)
         console.log("informações de display não encontradas");
         return;
     }
