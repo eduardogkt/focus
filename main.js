@@ -806,12 +806,18 @@ $("#button-reset-settings").on("click", async function() {
     // retorna para modo foco
     setTimerModeOpt(timers.focus);
 
+    getDefaultSettings();
+});
+
+// restaura as configuração para o padrão
+async function getDefaultSettings() {
     // carrega as configurações padrão do arquivo
-    let defaultSettings = await fetch("assets/json/default-settings.json").then(resp => resp.json());
+    let defaultSettings = await fetch("assets/json/default-settings.json")
+                                .then(resp => resp.json());
     localStorage.setItem("settings", JSON.stringify(defaultSettings));
 
     getSettings();
-});
+}
 
 // salva as confugurações
 $("#button-save-settings").click(function () {
@@ -933,10 +939,15 @@ $("#button-save-settings").click(function () {
 function getSettings() {
     if (localStorage.getItem("settings")) {
         const settings = JSON.parse(localStorage.getItem("settings"));
-        getTimerSettings(settings.timer);
-        getThemeSettings(settings.theme);
-        getSoundSettings(settings.sounds);        
-        getDisplaySettings(settings.display);
+        if (settings) {
+            getTimerSettings(settings.timer);
+            getThemeSettings(settings.theme);
+            getSoundSettings(settings.sounds);        
+            getDisplaySettings(settings.display);
+        }
+    }
+    else {
+        getDefaultSettings();
     }
 
     if (localStorage.getItem("stats")) {
@@ -964,20 +975,16 @@ function getThemeSettings(t) {
 }
 
 function getSoundSettings(s) {
-    if (s.sound) {
-        $(".sound-range").val(s.sound.volume);
-        setTimeout(() => {
-            $(".sound-range").trigger("input");
-        }, 50);
-    }
-
-    if (s.alert) {
-        $(".alert-range").val(s.alert.volume)
-        setTimeout(() => {    
-            $(".alert-range").trigger("input");
-        }, 50);
-        $("#setting-opt-alert").val(s.alert.alert)
-    }
+    $(".sound-range").val(s.sound.volume);
+    setTimeout(() => {
+        $(".sound-range").trigger("input");
+    }, 50);
+    
+    $(".alert-range").val(s.alert.volume)
+    setTimeout(() => {    
+        $(".alert-range").trigger("input");
+    }, 50);
+    $("#setting-opt-alert").val(s.alert.alert)
 }
 
 function getDisplaySettings(d) {
