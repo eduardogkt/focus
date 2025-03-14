@@ -482,7 +482,12 @@ $(".button-reset-stats").on("click", function() {
 // quote
 
 let enableQuote = $("#opt-show-quote").is(":checked");
-const quoteApiUrl = "http://api.quotable.io/random";
+
+// url de api antiga: "http://api.quotable.io/random";
+// utilizando api zenquotes pois tem conexão segura https
+// com alloworigins por conta do cabeçalho cors 
+const quoteApiUrl = "https://api.allorigins.win/get?url=" 
+                    + encodeURIComponent("https://zenquotes.io/api/random");
 
 displayQuote();
 
@@ -492,8 +497,10 @@ async function getQuote(url) {
         if (!resp.ok) throw new Error("Failed to fetch quote");
         
         const data = await resp.json();
-        $("#quote-box").html(`"${data.content}"`);
-        $("#author-box").html(`— ${data.author}`);
+        const quoteData = JSON.parse(data.contents)[0]
+
+        $("#quote-box").html(`"${quoteData.q}"`);
+        $("#author-box").html(`— ${quoteData.a}`);
     } catch (error) {
         console.error("Error fetching quote:", error);
         $("#quote-box").html("Failed to load quote.");
