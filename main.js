@@ -975,7 +975,7 @@ function getThemeSettings(t) {
 }
 
 function getSoundSettings(s) {
-    if (!s || !s.sound) {
+    if (!s || !s.sound || !s.alert) {
         console.log("som não encontrado");
         return;
     }
@@ -993,6 +993,10 @@ function getSoundSettings(s) {
 }
 
 function getDisplaySettings(d) {
+    if (!d || !d.panels || !d.others) {
+        console.log("display não encontrado");
+        return;
+    }
     let showPlaylist = d.panels.music.playlist;
     let showSounds = d.panels.music.sounds;
     let showMusic = d.panels.music.music;
