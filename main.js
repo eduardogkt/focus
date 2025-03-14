@@ -964,16 +964,20 @@ function getThemeSettings(t) {
 }
 
 function getSoundSettings(s) {
-    $(".sound-range").val(s.sound.volume)
-    setTimeout(() => {
-        $(".sound-range").trigger("input");
-    }, 50);
-    
-    $(".alert-range").val(s.alert.volume)
-    setTimeout(() => {    
-        $(".alert-range").trigger("input");
-    }, 50);
-    $("#setting-opt-alert").val(s.alert.alert)
+    if (s.sound) {
+        $(".sound-range").val(s.sound.volume);
+        setTimeout(() => {
+            $(".sound-range").trigger("input");
+        }, 50);
+    }
+
+    if (s.alert) {
+        $(".alert-range").val(s.alert.volume)
+        setTimeout(() => {    
+            $(".alert-range").trigger("input");
+        }, 50);
+        $("#setting-opt-alert").val(s.alert.alert)
+    }
 }
 
 function getDisplaySettings(d) {
