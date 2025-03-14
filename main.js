@@ -1003,7 +1003,7 @@ function getSoundSettings(s) {
 }
 
 function getDisplaySettings(d) {
-    if (!d || !d.othres || !d.panels || !d.panels.music) {
+    if (!d || !d.others || !d.panels || !d.panels.music) {
         console.log("informações de display não encontradas");
         return;
     }
