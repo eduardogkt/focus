@@ -975,6 +975,11 @@ function getThemeSettings(t) {
 }
 
 function getSoundSettings(s) {
+    if (!s || !s.sound) {
+        console.log("som não encontrado");
+        return;
+    }
+
     $(".sound-range").val(s.sound.volume);
     setTimeout(() => {
         $(".sound-range").trigger("input");
