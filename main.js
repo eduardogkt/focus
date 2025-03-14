@@ -962,6 +962,11 @@ function getSettings() {
 }
 
 function getTimerSettings(t) {
+    if (!t) {
+        console.log("informações de timer não encontradas");
+        return;
+    }
+
     $("#focus-time").val(t.focus / 60);
     $("#short-break-time").val(t.shortBreak / 60);
     $("#long-break-time").val(t.longBreak / 60);
@@ -969,6 +974,11 @@ function getTimerSettings(t) {
 }
 
 function getThemeSettings(t) {
+    if (!t) {
+        console.log("informações de theme não encontradas");
+        return;
+    }
+
     $(".theme").removeClass("active-theme");
     $(t.active).parent().addClass("active-theme");
     setBackground(t.image, t.color);
@@ -976,7 +986,7 @@ function getThemeSettings(t) {
 
 function getSoundSettings(s) {
     if (!s || !s.sound || !s.alert) {
-        console.log("som não encontrado");
+        console.log("informações de sound não encontradas");
         return;
     }
 
@@ -993,10 +1003,11 @@ function getSoundSettings(s) {
 }
 
 function getDisplaySettings(d) {
-    if (!d || !d.panels || !d.others) {
-        console.log("display não encontrado");
+    if (!d || !d.othres || !d.panels || !d.panels.music) {
+        console.log("informações de display não encontradas");
         return;
     }
+
     let showPlaylist = d.panels.music.playlist;
     let showSounds = d.panels.music.sounds;
     let showMusic = d.panels.music.music;
@@ -1026,11 +1037,21 @@ function getDisplaySettings(d) {
 }
 
 function getStatsSettings(s) {
+    if (!s) {
+        console.log("informações de status não encontradas");
+        return;
+    }
+
     $(".time-stats").text(`${Math.floor(s.focusTime)} minutes`);
     $(".streak-stats").text(s.sprintCount);
 }
 
 function getTasklistData(td) {
+    if (!td) {
+        console.log("informações de tasklist não encontradas");
+        return;
+    }
+
     $("#tasklist-panel").html(td.tasklist);
     $("#tasklist-opt-hide-completed").attr("data-ativo", td.hideCompleted);
 
