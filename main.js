@@ -825,9 +825,16 @@ $("#button-reset-settings").on("click", async function() {
 // restaura as configuração para o padrão
 async function getDefaultSettings() {
     // carrega as configurações padrão do arquivo
-    let defaultSettings = await fetch("assets/json/default-settings.json")
-                                .then(resp => resp.json());
-    localStorage.setItem("settings", JSON.stringify(defaultSettings));
+    try {
+        let resp = await fetch("assets/json/default-settings.json");
+        if (!resp.ok) throw new Error("Erro ao carregar configurações padrão");
+        
+        let defaultSettings = await resp.json();
+        localStorage.setItem("settings", JSON.stringify(defaultSettings));
+        getSettings();
+    } catch (error) {
+        console.error("Erro ao buscar configurações padrão:", error);
+    }
 
     getSettings();
 }
@@ -896,12 +903,14 @@ $("#button-save-settings").click(function () {
         $("#stats-panel").toggle(false)
     }
 
-    enableQuote = $("#opt-show-quote").is(":checked");
-    $("#quote").toggle(enableQuote);
+    let newEnableQuote = $("#opt-show-quote").is(":checked");
+    $("#quote").toggle(newEnableQuote);
 
-    if (enableQuote) {
+    if (newEnableQuote && (newEnableQuote !== enableQuote)) {
+        enableQuote = newEnableQuote;
         displayQuote();
     }
+    enableQuote = newEnableQuote;
 
     let settings = {
         timer: {
