@@ -485,14 +485,20 @@ let enableQuote = $("#opt-show-quote").is(":checked");
 
 // url de api antiga: "http://api.quotable.io/random";
 // utilizando api zenquotes pois tem conexão segura https
-// com alloworigins por conta do cabeçalho cors 
-const quoteApiUrl = "https://api.allorigins.win/get?url=" 
-                    + encodeURIComponent("https://zenquotes.io/api/random");
+// com alloworigins por conta do cabeçalho cors
+const quoteApiUrl = "https://zenquotes.io/api/random?";
 
 displayQuote();
 
-async function getQuote(url) {
+function getQuoteUrl() {
+    const allowOriginsUrl = "https://api.allorigins.win/get?url=";
+    return allowOriginsUrl + encodeURIComponent(quoteApiUrl + new Date().getTime());
+}
+
+async function getQuote() {
     try {
+        let url = getQuoteUrl();
+
         const resp = await fetch(url);
         if (!resp.ok) throw new Error("Failed to fetch quote");
         
@@ -511,12 +517,12 @@ async function getQuote(url) {
 function displayQuote() {
     $("#quote").toggleClass("hidden", !enableQuote);
     if (enableQuote) {
-        getQuote(quoteApiUrl);
+        getQuote();
     }
 }
 
 $("#quote-button").on("click", function() {
-    getQuote(quoteApiUrl);
+    getQuote();
 
     $(this).addClass("rotate-cw");
     setTimeout(() => $("#quote-button").removeClass("rotate-cw"), 1000);
